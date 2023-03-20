@@ -1,0 +1,18 @@
+{
+  "Graph|2023-03-20T15:46:04.986Z|72123": {
+    "ƒ.Graph": {
+      "name": "Game",
+      "active": true,
+      "components": {},
+      "children": [],
+      "idResource": "Graph|2023-03-20T15:46:04.986Z|72123",
+      "type": "Graph"
+    }
+  },
+  "MeshQuad|2023-03-20T15:46:36.196Z|16333": {
+    "ƒ.MeshQuad": {
+      "idResource": "MeshQuad|2023-03-20T15:46:36.196Z|16333",
+      "name": "MeshQuad"
+    }
+  }
+}
