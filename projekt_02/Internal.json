@@ -3,7 +3,23 @@
     "ƒ.Graph": {
       "name": "Game",
       "active": true,
-      "components": {},
+      "components": {
+        "ComponentMesh": [
+          {
+            "ƒ.ComponentMesh": {
+              "idMesh": "MeshQuad|2023-03-20T15:46:36.196Z|16333",
+              "pivot": {
+                "translation": "[0, 0, 0]",
+                "rotation": "[0, 0, 0]",
+                "scaling": "[1, 1, 1]"
+              },
+              "Component": {
+                "active": true
+              }
+            }
+          }
+        ]
+      },
       "children": [],
       "idResource": "Graph|2023-03-20T15:46:04.986Z|72123",
       "type": "Graph"
@@ -13,6 +29,20 @@
     "ƒ.MeshQuad": {
       "idResource": "MeshQuad|2023-03-20T15:46:36.196Z|16333",
       "name": "MeshQuad"
+    }
+  },
+  "Material|2023-03-20T16:02:09.952Z|52526": {
+    "ƒ.Material": {
+      "name": "Floor",
+      "idResource": "Material|2023-03-20T16:02:09.952Z|52526",
+      "shader": "ShaderFlatTextured",
+      "coat": {
+        "ƒ.CoatRemissiveTextured": {
+          "color": "[1, 1, 1, 1]",
+          "diffuse": 1,
+          "specular": 0
+        }
+      }
     }
   }
 }
