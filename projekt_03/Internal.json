@@ -21,12 +21,26 @@
   },
   "Material|2023-03-22T23:04:24.658Z|00041": {
     "ƒ.Material": {
-      "name": "Block_Earth",
+      "name": "Block_Dirt",
       "idResource": "Material|2023-03-22T23:04:24.658Z|00041",
       "shader": "ShaderFlatTextured",
       "coat": {
         "ƒ.CoatRemissiveTextured": {
           "color": "[0.41568627450980394, 0.21568627450980393, 0.08627450980392157, 1]",
+          "diffuse": 1,
+          "specular": 0
+        }
+      }
+    }
+  },
+  "Material|2023-03-23T02:14:22.658Z|85320": {
+    "ƒ.Material": {
+      "name": "Block_Dirt_3x3",
+      "idResource": "Material|2023-03-23T02:14:22.658Z|85320",
+      "shader": "ShaderFlatTextured",
+      "coat": {
+        "ƒ.CoatRemissiveTextured": {
+          "color": "[0.19607843137254902, 0.09019607843137255, 0.06274509803921569, 1]",
           "diffuse": 1,
           "specular": 0
         }
@@ -13229,17 +13243,36 @@
       "type": "Graph"
     }
   },
-  "Material|2023-03-23T02:14:22.658Z|85320": {
-    "ƒ.Material": {
-      "name": "Block_Earth_3x3",
-      "idResource": "Material|2023-03-23T02:14:22.658Z|85320",
-      "shader": "ShaderFlatTextured",
-      "coat": {
-        "ƒ.CoatRemissiveTextured": {
-          "color": "[0.19607843137254902, 0.09019607843137255, 0.06274509803921569, 1]",
-          "diffuse": 1,
-          "specular": 0
-        }
+  "TextureImage|2023-03-23T13:39:22.139Z|01628": {
+    "ƒ.TextureImage": {
+      "url": "Images\\block_dirt_main.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-03-23T13:39:22.139Z|01628",
+        "name": "Block_Dirt",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2023-03-23T13:39:23.744Z|69654": {
+    "ƒ.TextureImage": {
+      "url": "Images\\block_dirt_main_3x3.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-03-23T13:39:23.744Z|69654",
+        "name": "Block_Dirt_3x3_main",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2023-03-23T13:39:24.988Z|24228": {
+    "ƒ.TextureImage": {
+      "url": "Images\\block_grass_main.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-03-23T13:39:24.988Z|24228",
+        "name": "Block_Grass",
+        "mipmap": "CRISP"
       }
     }
   }
