@@ -12,7 +12,7 @@
       "shader": "ShaderFlatTextured",
       "coat": {
         "ƒ.CoatRemissiveTextured": {
-          "color": "[0.027450980392156862, 0.5725490196078431, 0.06274509803921569, 1]",
+          "color": "[1, 1, 1, 1]",
           "idTexture": "TextureImage|2023-03-23T13:39:24.988Z|24228",
           "diffuse": 1,
           "specular": 0
@@ -27,7 +27,7 @@
       "shader": "ShaderFlatTextured",
       "coat": {
         "ƒ.CoatRemissiveTextured": {
-          "color": "[0.41568627450980394, 0.21568627450980393, 0.08627450980392157, 1]",
+          "color": "[1, 1, 1, 1]",
           "idTexture": "TextureImage|2023-03-23T13:39:22.139Z|01628",
           "diffuse": 1,
           "specular": 0
@@ -42,7 +42,7 @@
       "shader": "ShaderFlatTextured",
       "coat": {
         "ƒ.CoatRemissiveTextured": {
-          "color": "[0.19607843137254902, 0.09019607843137255, 0.06274509803921569, 1]",
+          "color": "[1, 1, 1, 1]",
           "idTexture": "TextureImage|2023-03-23T13:39:23.744Z|69654",
           "diffuse": 1,
           "specular": 0
