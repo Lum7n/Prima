@@ -5,7 +5,6 @@ namespace Script {
   let viewport: ƒ.Viewport;
   let character: ƒ.Node;
   document.addEventListener("interactiveViewportStarted", <EventListener>start);
-  document.addEventListener("keydown", handleKeyboard);
 
   function start(_event: CustomEvent): void {
     viewport = _event.detail;
@@ -23,15 +22,12 @@ namespace Script {
 
   function update(_event: Event): void {
     // ƒ.Physics.simulate();  // if physics is included and used
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D]))
+      character.mtxLocal.translateX(0.05);
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A]))
+      character.mtxLocal.translateX(0.05);
     viewport.draw();
     // ƒ.AudioManager.default.update();
-
-  }
-
-  function handleKeyboard(_event: KeyboardEvent) {
-    // console.log(_event);
-    if (_event.code == "ArrowRight" || _event.code == "KeyD")
-    character.mtxLocal.translateX(0.01);
 
   }
 }
