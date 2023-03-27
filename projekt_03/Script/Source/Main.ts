@@ -15,6 +15,5 @@ namespace Script {
   function update(_event: Event): void {
     // ƒ.Physics.simulate();  // if physics is included and used
     viewport.draw();
-    // ƒ.AudioManager.default.update();
   }
 }

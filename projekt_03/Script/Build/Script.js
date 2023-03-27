@@ -50,7 +50,6 @@ var Script;
     function update(_event) {
         // ƒ.Physics.simulate();  // if physics is included and used
         viewport.draw();
-        // ƒ.AudioManager.default.update();
     }
 })(Script || (Script = {}));
 //# sourceMappingURL=Script.js.map
