@@ -13,6 +13,7 @@ namespace Script {
 
     let cmpCamera: ƒ.ComponentCamera = viewport.getBranch().getComponent(ƒ.ComponentCamera);
     viewport.camera = cmpCamera;
+
   }
 
   function update(_event: Event): void {
