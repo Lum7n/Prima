@@ -13,6 +13,7 @@
       "coat": {
         "ƒ.CoatRemissiveTextured": {
           "color": "[0.027450980392156862, 0.5725490196078431, 0.06274509803921569, 1]",
+          "idTexture": "TextureImage|2023-03-23T13:39:24.988Z|24228",
           "diffuse": 1,
           "specular": 0
         }
@@ -27,6 +28,7 @@
       "coat": {
         "ƒ.CoatRemissiveTextured": {
           "color": "[0.41568627450980394, 0.21568627450980393, 0.08627450980392157, 1]",
+          "idTexture": "TextureImage|2023-03-23T13:39:22.139Z|01628",
           "diffuse": 1,
           "specular": 0
         }
@@ -41,6 +43,7 @@
       "coat": {
         "ƒ.CoatRemissiveTextured": {
           "color": "[0.19607843137254902, 0.09019607843137255, 0.06274509803921569, 1]",
+          "idTexture": "TextureImage|2023-03-23T13:39:23.744Z|69654",
           "diffuse": 1,
           "specular": 0
         }
@@ -51,7 +54,33 @@
     "ƒ.Graph": {
       "name": "Game",
       "active": true,
-      "components": {},
+      "components": {
+        "ComponentCamera": [
+          {
+            "ƒ.ComponentCamera": {
+              "backgroundColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 1
+              },
+              "backgroundEnabled": true,
+              "projection": "central",
+              "fieldOfView": 45,
+              "direction": "diagonal",
+              "aspect": 1.7480559875583204,
+              "pivot": {
+                "translation": "[0, 0, 40]",
+                "rotation": "[0, 180, 0]",
+                "scaling": "[1, 1, 1]"
+              },
+              "Component": {
+                "active": true
+              }
+            }
+          }
+        ]
+      },
       "children": [
         {
           "ƒ.Node": {
