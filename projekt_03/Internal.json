@@ -20,6 +20,17 @@
       }
     }
   },
+  "TextureImage|2023-03-23T13:39:24.988Z|24228": {
+    "ƒ.TextureImage": {
+      "url": "Images\\block_grass_main.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-03-23T13:39:24.988Z|24228",
+        "name": "Block_Grass",
+        "mipmap": "CRISP"
+      }
+    }
+  },
   "Material|2023-03-22T23:04:24.658Z|00041": {
     "ƒ.Material": {
       "name": "Block_Dirt",
@@ -35,6 +46,17 @@
       }
     }
   },
+  "TextureImage|2023-03-23T13:39:22.139Z|01628": {
+    "ƒ.TextureImage": {
+      "url": "Images\\block_dirt_main.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-03-23T13:39:22.139Z|01628",
+        "name": "Block_Dirt",
+        "mipmap": "CRISP"
+      }
+    }
+  },
   "Material|2023-03-23T02:14:22.658Z|85320": {
     "ƒ.Material": {
       "name": "Block_Dirt_3x3",
@@ -44,6 +66,31 @@
         "ƒ.CoatRemissiveTextured": {
           "color": "[1, 1, 1, 1]",
           "idTexture": "TextureImage|2023-03-23T13:39:23.744Z|69654",
+          "diffuse": 1,
+          "specular": 0
+        }
+      }
+    }
+  },
+  "TextureImage|2023-03-23T13:39:23.744Z|69654": {
+    "ƒ.TextureImage": {
+      "url": "Images\\block_dirt_main_3x3.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-03-23T13:39:23.744Z|69654",
+        "name": "Block_Dirt_3x3_main",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "Material|2023-03-27T15:09:14.789Z|72808": {
+    "ƒ.Material": {
+      "name": "Character",
+      "idResource": "Material|2023-03-27T15:09:14.789Z|72808",
+      "shader": "ShaderFlatTextured",
+      "coat": {
+        "ƒ.CoatRemissiveTextured": {
+          "color": "[0.8117647058823529, 0.5490196078431373, 0.5490196078431373, 1]",
           "diffuse": 1,
           "specular": 0
         }
@@ -70,7 +117,7 @@
               "direction": "diagonal",
               "aspect": 1.7480559875583204,
               "pivot": {
-                "translation": "[0, 0, 40]",
+                "translation": "[0, 0, 30]",
                 "rotation": "[0, 180, 0]",
                 "scaling": "[1, 1, 1]"
               },
@@ -13266,43 +13313,59 @@
               }
             ]
           }
+        },
+        {
+          "ƒ.Node": {
+            "name": "Character",
+            "active": true,
+            "components": {
+              "ComponentMaterial": [
+                {
+                  "ƒ.ComponentMaterial": {
+                    "sortForAlpha": false,
+                    "clrPrimary": "[1, 1, 1, 1]",
+                    "clrSecondary": "[1, 1, 1, 1]",
+                    "pivot": {
+                      "translation": "[0, 0]",
+                      "rotation": 0,
+                      "scaling": "[1, 1]"
+                    },
+                    "Component": {
+                      "active": true
+                    },
+                    "idMaterial": "Material|2023-03-27T15:09:14.789Z|72808"
+                  }
+                }
+              ],
+              "ComponentMesh": [
+                {
+                  "ƒ.ComponentMesh": {
+                    "idMesh": "MeshSprite|2023-03-27T15:11:20.073Z|08860",
+                    "pivot": {
+                      "translation": "[0, 1, 0]",
+                      "rotation": "[0, 0, 0]",
+                      "scaling": "[1, 1, 1]"
+                    },
+                    "Component": {
+                      "active": true
+                    }
+                  }
+                }
+              ]
+            },
+            "children": []
+          }
         }
       ],
       "idResource": "Graph|2023-03-22T22:59:19.643Z|48246",
       "type": "Graph"
     }
   },
-  "TextureImage|2023-03-23T13:39:22.139Z|01628": {
-    "ƒ.TextureImage": {
-      "url": "Images\\block_dirt_main.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2023-03-23T13:39:22.139Z|01628",
-        "name": "Block_Dirt",
-        "mipmap": "CRISP"
-      }
-    }
-  },
-  "TextureImage|2023-03-23T13:39:23.744Z|69654": {
-    "ƒ.TextureImage": {
-      "url": "Images\\block_dirt_main_3x3.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2023-03-23T13:39:23.744Z|69654",
-        "name": "Block_Dirt_3x3_main",
-        "mipmap": "CRISP"
-      }
-    }
-  },
-  "TextureImage|2023-03-23T13:39:24.988Z|24228": {
-    "ƒ.TextureImage": {
-      "url": "Images\\block_grass_main.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2023-03-23T13:39:24.988Z|24228",
-        "name": "Block_Grass",
-        "mipmap": "CRISP"
-      }
+  "MeshSprite|2023-03-27T15:11:20.073Z|08860": {
+    "ƒ.MeshSprite": {
+      "idResource": "MeshSprite|2023-03-27T15:11:20.073Z|08860",
+      "name": "Character_MeshSprite",
+      "type": "MeshSprite"
     }
   }
 }
