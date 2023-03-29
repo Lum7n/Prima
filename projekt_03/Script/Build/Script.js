@@ -55,11 +55,15 @@ var Script;
     }
     function update(_event) {
         // ƒ.Physics.simulate();  // if physics is included and used
-        character.mtxLocal.translateY(-0.01);
-        // character.mtxLocal.translateY(0.05);
-        // console.log(character.mtxLocal.getX);
-        // if (character.mtxLocal.getY = ) {}
-        // console.log(character.mtxLocal.get(FudgeCore.Vector3.Y));
+        // console.log(character);
+        let floatArray = character.mtxWorld.get();
+        // console.log(floatArray[13])
+        if (floatArray[13] <= -1) {
+            character.mtxLocal.translateY(1);
+        }
+        else {
+            character.mtxLocal.translateY(-0.01);
+        }
         // move to left or right via keys
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D]))
             character.mtxLocal.translateX(0.05);
