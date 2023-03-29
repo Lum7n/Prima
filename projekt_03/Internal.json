@@ -132,7 +132,7 @@
               "projection": "central",
               "fieldOfView": 45,
               "direction": "diagonal",
-              "aspect": 2.331360946745562,
+              "aspect": 1.6309012875536482,
               "pivot": {
                 "translation": "[0, 3, 30]",
                 "rotation": "[0, 180, 0]",
