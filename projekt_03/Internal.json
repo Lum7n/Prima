@@ -83,17 +83,14 @@
       }
     }
   },
-  "Material|2023-03-27T15:09:14.789Z|72808": {
-    "ƒ.Material": {
-      "name": "Character",
-      "idResource": "Material|2023-03-27T15:09:14.789Z|72808",
-      "shader": "ShaderFlatTextured",
-      "coat": {
-        "ƒ.CoatRemissiveTextured": {
-          "color": "[0.8117647058823529, 0.5490196078431373, 0.5490196078431373, 1]",
-          "diffuse": 1,
-          "specular": 0
-        }
+  "TextureImage|2023-03-29T16:41:45.165Z|01298": {
+    "ƒ.TextureImage": {
+      "url": "Images\\Bunny_Angora.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-03-29T16:41:45.165Z|01298",
+        "name": "Images\\Bunny_Angora.png",
+        "mipmap": "CRISP"
       }
     }
   },
@@ -102,6 +99,19 @@
       "idResource": "MeshSprite|2023-03-27T15:11:20.073Z|08860",
       "name": "Character_MeshSprite",
       "type": "MeshSprite"
+    }
+  },
+  "Material|2023-03-29T16:52:17.880Z|87213": {
+    "ƒ.Material": {
+      "name": "Character_LitTex",
+      "idResource": "Material|2023-03-29T16:52:17.880Z|87213",
+      "shader": "ShaderLitTextured",
+      "coat": {
+        "ƒ.CoatTextured": {
+          "color": "[1, 1, 1, 1]",
+          "idTexture": "TextureImage|2023-03-29T16:41:45.165Z|01298"
+        }
+      }
     }
   },
   "Graph|2023-03-22T22:59:19.643Z|48246": {
@@ -122,9 +132,9 @@
               "projection": "central",
               "fieldOfView": 45,
               "direction": "diagonal",
-              "aspect": 1.7480559875583204,
+              "aspect": 2.331360946745562,
               "pivot": {
-                "translation": "[0, 0, 30]",
+                "translation": "[0, 3, 30]",
                 "rotation": "[0, 180, 0]",
                 "scaling": "[1, 1, 1]"
               },
@@ -13331,9 +13341,9 @@
                   "ƒ.ComponentMesh": {
                     "idMesh": "MeshSprite|2023-03-27T15:11:20.073Z|08860",
                     "pivot": {
-                      "translation": "[0, 0.5, 0]",
+                      "translation": "[0.40000003576278687, 1.3999998569488525, 0.009999999776482582]",
                       "rotation": "[0, 0, 0]",
-                      "scaling": "[1, 1, 1]"
+                      "scaling": "[3, 3, 1]"
                     },
                     "Component": {
                       "active": true
@@ -13348,14 +13358,14 @@
                     "clrPrimary": "[1, 1, 1, 1]",
                     "clrSecondary": "[1, 1, 1, 1]",
                     "pivot": {
-                      "translation": "[0, 0.02799999713897705]",
+                      "translation": "[0, 0]",
                       "rotation": 0,
-                      "scaling": "[0.10000000149011612, 0.10000000149011612]"
+                      "scaling": "[1, 0.0430000014603138]"
                     },
                     "Component": {
                       "active": true
                     },
-                    "idMaterial": "Material|2023-03-27T15:09:14.789Z|72808"
+                    "idMaterial": "Material|2023-03-29T16:52:17.880Z|87213"
                   }
                 }
               ],
@@ -13363,7 +13373,7 @@
                 {
                   "ƒ.ComponentTransform": {
                     "local": {
-                      "translation": "[0, 0.5, 0]",
+                      "translation": "[0, 0, 0]",
                       "rotation": "[0, 0, 0]",
                       "scaling": "[1, 1, 1]"
                     },
@@ -13374,14 +13384,6 @@
                 }
               ]
             },
-            "children": []
-          }
-        },
-        {
-          "ƒ.Node": {
-            "name": "Bla",
-            "active": true,
-            "components": {},
             "children": []
           }
         }
