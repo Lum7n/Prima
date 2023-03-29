@@ -25,16 +25,20 @@ namespace Script {
   function update(_event: Event): void {
     // ƒ.Physics.simulate();  // if physics is included and used
 
-    // test
+    character.mtxLocal.translateY(-0.01);
+    // character.mtxLocal.translateY(0.05);
+    // console.log(character.mtxLocal.getX);
+     // if (character.mtxLocal.getY = ) {}
+    // console.log(character.mtxLocal.get(FudgeCore.Vector3.Y));
+
+
+    // move to left or right via keys
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D]))
       character.mtxLocal.translateX(0.05);
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A]))
       character.mtxLocal.translateX(-0.05);
     viewport.draw();
-    // test
-    
-    // character.mtxLocal.translateX(0.01);
-    //   viewport.draw();
+
     // ƒ.AudioManager.default.update();
 
   }
