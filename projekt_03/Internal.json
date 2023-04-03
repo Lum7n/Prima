@@ -13391,5 +13391,25 @@
       "idResource": "Graph|2023-03-22T22:59:19.643Z|48246",
       "type": "Graph"
     }
+  },
+  "AnimationSprite|2023-04-03T15:11:18.584Z|66332": {
+    "ƒ.AnimationSprite": {
+      "idResource": "AnimationSprite|2023-04-03T15:11:18.584Z|66332",
+      "idTexture": "TextureImage|2023-03-29T16:41:45.165Z|01298",
+      "frames": 25,
+      "wrapAfter": 5,
+      "start": "[0, 0]",
+      "size": "[80, 80]",
+      "next": "[80, 0]",
+      "wrap": "[0, 80]",
+      "Animation": {
+        "idResource": "AnimationSprite|2023-04-03T15:11:18.584Z|66332",
+        "name": "AnimationSprite_Rabbit",
+        "labels": {},
+        "events": {},
+        "framesPerSecond": 25,
+        "animationStructure": {}
+      }
+    }
   }
 }
