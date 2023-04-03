@@ -1,0 +1,22 @@
+"use strict";
+var Script;
+(function (Script) {
+    var ƒ = FudgeCore;
+    ƒ.Debug.info("Main Program Template running!");
+    let viewport;
+    let sonic;
+    document.addEventListener("interactiveViewportStarted", start);
+    function start(_event) {
+        viewport = _event.detail;
+        sonic = viewport.getBranch().getChildrenByName("Sonic")[0];
+        console.log(sonic);
+        ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
+        ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
+    }
+    function update(_event) {
+        // ƒ.Physics.simulate();  // if physics is included and used
+        sonic.mtxLocal.translateX(0.01);
+        viewport.draw();
+        ƒ.AudioManager.default.update();
+    }
+})(Script || (Script = {}));
