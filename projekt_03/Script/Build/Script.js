@@ -42,35 +42,62 @@ var Script;
     ƒ.Debug.info("Main Program Template running!");
     let viewport;
     let character;
+    let gravity = -9.81;
+    let ySpeed = 0;
+    let isGrounded = true;
     document.addEventListener("interactiveViewportStarted", start);
     function start(_event) {
         viewport = _event.detail;
         character = viewport.getBranch().getChildrenByName("Character")[0];
-        console.log("Character:");
         console.log(character);
-        ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
-        ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
         let cmpCamera = viewport.getBranch().getComponent(ƒ.ComponentCamera);
         viewport.camera = cmpCamera;
+        // // bekomme zugriff auf eine einzelne tile, Tile 1
+        // let tile: ƒ.Node = viewport.getBranch().getChildrenByName("Terrain")[0].getChildren()[1];
+        // // geo = gibt die postion der Tile in Längengrad und Breitengrad an
+        // // ohne geo gibt es den Verlauf der Achsen der Tile aus
+        // console.log(tile.mtxLocal.getX().geo.toString());
+        // // setzt die Tile wieder auf Rotation 0, 0, 0
+        // // tile.mtxLocal.rotation = ƒ.Vector3.ZERO();
+        ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
+        ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
     }
     function update(_event) {
+        let timeFrame = ƒ.Loop.timeFrameGame / 1000; // time since last frame in seconds
         // ƒ.Physics.simulate();  // if physics is included and used
-        // console.log(character);
-        let floatArray = character.mtxWorld.get();
-        // console.log(floatArray[13])
-        if (floatArray[13] <= -1) {
-            character.mtxLocal.translateY(1);
-        }
-        else {
-            character.mtxLocal.translateY(-0.01);
-        }
-        // move to left or right via keys
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D]))
-            character.mtxLocal.translateX(0.05);
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A]))
-            character.mtxLocal.translateX(-0.05);
+            character.mtxLocal.translateX(1 * timeFrame);
+        if (isGrounded && ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.SPACE])) {
+            ySpeed = 5;
+            isGrounded = false;
+        }
+        ySpeed += gravity * timeFrame;
+        let pos = character.mtxLocal.translation;
+        pos.y += ySpeed * timeFrame;
+        let tileCollided = checkCollision(pos);
+        if (tileCollided) {
+            ySpeed = 0;
+            pos.y = tileCollided.mtxWorld.translation.y + 0.5;
+            isGrounded = true;
+        }
+        // if (pos.y < 0.5) {
+        //   ySpeed = 0;
+        //   pos.y = 0.5;
+        //   isGrounded = false;
+        // }
+        character.mtxLocal.translation = pos;
         viewport.draw();
         // ƒ.AudioManager.default.update();
+    }
+    function checkCollision(_posWorld) {
+        let tiles = viewport.getBranch().getChildrenByName("Blocks")[0].getChildren();
+        for (let tile of tiles) {
+            let pos = ƒ.Vector3.TRANSFORMATION(_posWorld, tile.mtxWorldInverse, true);
+            if (pos.x > -0.5 && pos.x < 0.5 && pos.y < 0.5)
+                return tile;
+            console.log(pos);
+        }
+        return null;
     }
 })(Script || (Script = {}));
 //# sourceMappingURL=Script.js.map

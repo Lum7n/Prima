@@ -66,7 +66,7 @@ namespace Script {
   }
 
   function checkCollision(_posWorld: ƒ.Vector3): ƒ.Node {
-    let tiles: ƒ.Node[] = viewport.getBranch().getChildrenByName("Terrain")[0].getChildren()
+    let tiles: ƒ.Node[] = viewport.getBranch().getChildrenByName("Blocks")[0].getChildren()
     for (let tile of tiles) {
       let pos: ƒ.Vector3 = ƒ.Vector3.TRANSFORMATION(_posWorld,tile.mtxWorldInverse, true);
       if (pos.x > -0.5 && pos.x < 0.5 && pos.y < 0.5)
