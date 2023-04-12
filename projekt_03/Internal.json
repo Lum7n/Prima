@@ -14204,6 +14204,21 @@
                     }
                   }
                 }
+              ],
+              "ComponentAnimator": [
+                {
+                  "ƒ.ComponentAnimator": {
+                    "Component": {
+                      "active": true
+                    },
+                    "idAnimation": "AnimationSprite|2023-04-03T15:11:18.584Z|66332",
+                    "playmode": "loop",
+                    "quantization": "discrete",
+                    "scale": 1,
+                    "scaleWithGameTime": true,
+                    "animateInEditor": false
+                  }
+                }
               ]
             },
             "children": []
@@ -14218,18 +14233,18 @@
     "ƒ.AnimationSprite": {
       "idResource": "AnimationSprite|2023-04-03T15:11:18.584Z|66332",
       "idTexture": "TextureImage|2023-03-29T16:41:45.165Z|01298",
-      "frames": 25,
+      "frames": 14,
       "wrapAfter": 5,
-      "start": "[0, 0]",
-      "size": "[80, 80]",
-      "next": "[80, 0]",
+      "start": "[0, 5]",
+      "size": "[45, 40]",
+      "next": "[0, 40]",
       "wrap": "[0, 80]",
       "Animation": {
         "idResource": "AnimationSprite|2023-04-03T15:11:18.584Z|66332",
         "name": "AnimationSprite_Rabbit",
         "labels": {},
         "events": {},
-        "framesPerSecond": 25,
+        "framesPerSecond": 14,
         "animationStructure": {}
       }
     }
