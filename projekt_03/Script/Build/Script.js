@@ -88,7 +88,7 @@ var Script;
         let tiles = viewport.getBranch().getChildrenByName("Blocks")[0].getChildren();
         for (let tile of tiles) {
             let pos = ƒ.Vector3.TRANSFORMATION(_posWorld, tile.mtxWorldInverse, true);
-            if (pos.y > 0.5 && pos.x < -0.5 && pos.x < 0.5)
+            if (pos.y < 0.5 && pos.x > -0.5 && pos.x < 0.5)
                 return tile;
             // console.log(pos);
         }
