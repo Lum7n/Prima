@@ -10,18 +10,28 @@ namespace Script {
 
   document.addEventListener("interactiveViewportStarted", <EventListener>start);
 
+  let graph: ƒ.Graph;
+
+  let audioComponent;
+
 
   function start(_event: CustomEvent): void {
     viewport = _event.detail;
+    graph = <ƒ.Graph>viewport.getBranch();
 
-    character = viewport.getBranch().getChildrenByName("Character")[0];
+    character = graph.getChildrenByName("Character")[0];
     console.log(character);
 
-    let cmpCamera: ƒ.ComponentCamera = viewport.getBranch().getComponent(ƒ.ComponentCamera);
+    let cmpCamera: ƒ.ComponentCamera = graph.getComponent(ƒ.ComponentCamera);
     viewport.camera = cmpCamera;
 
+    let cmpListener: ƒ.ComponentAudioListener = graph.getComponent(ƒ.ComponentAudioListener);
+
+    ƒ.AudioManager.default.listenWith(cmpListener);
+    ƒ.AudioManager.default.listenTo(graph);
+
     // // bekomme zugriff auf eine einzelne tile, Tile 1
-    // let tile: ƒ.Node = viewport.getBranch().getChildrenByName("Terrain")[0].getChildren()[1];
+    // let tile: ƒ.Node = graph.getChildrenByName("Terrain")[0].getChildren()[1];
     // // geo = gibt die postion der Tile in Längengrad und Breitengrad an
     // // ohne geo gibt es den Verlauf der Achsen der Tile aus
     // console.log(tile.mtxLocal.getX().geo.toString());
@@ -40,6 +50,11 @@ namespace Script {
     if (isGrounded && ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.SPACE])) {
       ySpeed = 5;
       isGrounded = false;
+
+//hier bin ich
+
+      // audioComponent = graph.getComponent(ƒ.ComponentAudio);
+      // console.log(audioComponent);
     }
 
     ySpeed += gravity * timeFrame;
@@ -55,7 +70,10 @@ namespace Script {
     character.mtxLocal.translation = pos;
 
     viewport.draw();
-    // ƒ.AudioManager.default.update();
+    ƒ.AudioManager.default.update();
+
+
+
   }
 
   function checkCollision(_posWorld: ƒ.Vector3): ƒ.Node {

@@ -46,14 +46,21 @@ var Script;
     let ySpeed = 0;
     let isGrounded = true;
     document.addEventListener("interactiveViewportStarted", start);
+    let graph;
+    // let audioComponent = graph.getComponent(ƒ.ComponentAudio);
+    // console.log(audioComponent);
     function start(_event) {
         viewport = _event.detail;
-        character = viewport.getBranch().getChildrenByName("Character")[0];
+        graph = viewport.getBranch();
+        character = graph.getChildrenByName("Character")[0];
         console.log(character);
-        let cmpCamera = viewport.getBranch().getComponent(ƒ.ComponentCamera);
+        let cmpCamera = graph.getComponent(ƒ.ComponentCamera);
         viewport.camera = cmpCamera;
+        let cmpListener = graph.getComponent(ƒ.ComponentAudioListener);
+        ƒ.AudioManager.default.listenWith(cmpListener);
+        ƒ.AudioManager.default.listenTo(graph);
         // // bekomme zugriff auf eine einzelne tile, Tile 1
-        // let tile: ƒ.Node = viewport.getBranch().getChildrenByName("Terrain")[0].getChildren()[1];
+        // let tile: ƒ.Node = graph.getChildrenByName("Terrain")[0].getChildren()[1];
         // // geo = gibt die postion der Tile in Längengrad und Breitengrad an
         // // ohne geo gibt es den Verlauf der Achsen der Tile aus
         // console.log(tile.mtxLocal.getX().geo.toString());
@@ -82,7 +89,7 @@ var Script;
         }
         character.mtxLocal.translation = pos;
         viewport.draw();
-        // ƒ.AudioManager.default.update();
+        ƒ.AudioManager.default.update();
     }
     function checkCollision(_posWorld) {
         let tiles = viewport.getBranch().getChildrenByName("Blocks")[0].getChildren();

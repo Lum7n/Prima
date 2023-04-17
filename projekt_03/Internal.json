@@ -163,6 +163,33 @@
               }
             }
           }
+        ],
+        "ComponentAudio": [
+          {
+            "ƒ.ComponentAudio": {
+              "active": true,
+              "idResource": "Audio|2023-04-17T14:50:16.007Z|37671",
+              "playing": true,
+              "loop": true,
+              "volume": 1
+            }
+          },
+          {
+            "ƒ.ComponentAudio": {
+              "active": true,
+              "idResource": "Audio|2023-04-17T15:02:46.264Z|27642",
+              "playing": false,
+              "loop": false,
+              "volume": 1
+            }
+          }
+        ],
+        "ComponentAudioListener": [
+          {
+            "ƒ.ComponentAudioListener": {
+              "active": true
+            }
+          }
         ]
       },
       "children": [
@@ -14449,6 +14476,24 @@
                     "animateInEditor": false
                   }
                 }
+              ],
+              "ComponentAudio": [
+                {
+                  "ƒ.ComponentAudio": {
+                    "active": true,
+                    "idResource": "Audio|2023-04-17T15:02:46.264Z|27642",
+                    "playing": false,
+                    "loop": false,
+                    "volume": 1
+                  }
+                }
+              ],
+              "ComponentAudioListener": [
+                {
+                  "ƒ.ComponentAudioListener": {
+                    "active": true
+                  }
+                }
               ]
             },
             "children": []
@@ -14457,6 +14502,22 @@
       ],
       "idResource": "Graph|2023-03-22T22:59:19.643Z|48246",
       "type": "Graph"
+    }
+  },
+  "Audio|2023-04-17T14:50:16.007Z|37671": {
+    "ƒ.Audio": {
+      "url": "Sounds\\music.mp3",
+      "idResource": "Audio|2023-04-17T14:50:16.007Z|37671",
+      "name": "Sounds\\music.mp3",
+      "type": "Audio"
+    }
+  },
+  "Audio|2023-04-17T15:02:46.264Z|27642": {
+    "ƒ.Audio": {
+      "url": "Sounds\\jump.mp3",
+      "idResource": "Audio|2023-04-17T15:02:46.264Z|27642",
+      "name": "Sounds\\jump.mp3",
+      "type": "Audio"
     }
   }
 }
