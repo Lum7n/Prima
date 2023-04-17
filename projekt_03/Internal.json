@@ -118,18 +118,18 @@
     "ƒ.AnimationSprite": {
       "idResource": "AnimationSprite|2023-04-03T15:11:18.584Z|66332",
       "idTexture": "TextureImage|2023-03-29T16:41:45.165Z|01298",
-      "frames": 14,
-      "wrapAfter": 5,
-      "start": "[0, 5]",
-      "size": "[45, 40]",
+      "frames": 7,
+      "wrapAfter": 7,
+      "start": "[5, 10]",
+      "size": "[33, 30]",
       "next": "[0, 40]",
-      "wrap": "[0, 80]",
+      "wrap": "[0, 0]",
       "Animation": {
         "idResource": "AnimationSprite|2023-04-03T15:11:18.584Z|66332",
         "name": "AnimationSprite_Rabbit",
         "labels": {},
         "events": {},
-        "framesPerSecond": 14,
+        "framesPerSecond": 10,
         "animationStructure": {}
       }
     }
@@ -175,7 +175,7 @@
               {
                 "ƒ.Node": {
                   "name": "Isle1",
-                  "active": false,
+                  "active": true,
                   "components": {},
                   "children": [
                     {
