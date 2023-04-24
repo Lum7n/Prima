@@ -1,0 +1,19 @@
+{
+  "MeshCube|2023-04-24T13:55:19.103Z|13254": {
+    "ƒ.MeshCube": {
+      "idResource": "MeshCube|2023-04-24T13:55:19.103Z|13254",
+      "name": "MeshCube",
+      "type": "MeshCube"
+    }
+  },
+  "Graph|2023-04-24T13:55:28.970Z|50760": {
+    "ƒ.Graph": {
+      "name": "Main",
+      "active": true,
+      "components": {},
+      "children": [],
+      "idResource": "Graph|2023-04-24T13:55:28.970Z|50760",
+      "type": "Graph"
+    }
+  }
+}
