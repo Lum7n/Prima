@@ -2,6 +2,21 @@
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;
+    class Block extends ƒ.Node {
+        constructor() {
+            super("Block");
+            let meshCube = new ƒ.MeshCube("Block");
+            let mtrCube = new ƒ.Material("Block", ƒ.ShaderFlat, new ƒ.CoatRemissive());
+            this.addComponent(new ƒ.ComponentTransform);
+            this.addComponent(new ƒ.ComponentMesh(meshCube));
+            this.addComponent(new ƒ.ComponentMaterial(mtrCube));
+        }
+    }
+    Script.Block = Block;
+})(Script || (Script = {}));
+var Script;
+(function (Script) {
+    var ƒ = FudgeCore;
     ƒ.Project.registerScriptNamespace(Script); // Register the namespace to FUDGE for serialization
     class CustomComponentScript extends ƒ.ComponentScript {
         // Register the script as component for use in the editor via drag&drop
@@ -45,10 +60,12 @@ var Script;
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
         viewport = _event.detail;
-        let block = ƒ.Project.resources["Graph|2023-04-20T13:16:47.382Z|26427"];
-        let instance = await ƒ.Project.createGraphInstance(block);
+        // let block: ƒ.Graph = <ƒ.Graph>ƒ.Project.resources["Graph|2023-04-24T14:18:06.025Z|47071"];
+        // let instance: ƒ.GraphInstance = await ƒ.Project.createGraphInstance(block);
+        // console.log(instance);
+        // instance.mtxLocal.translateX(1);
+        let instance = new Script.Block();
         console.log(instance);
-        instance.mtxLocal.translateX(1);
         viewport.getBranch().addChild(instance);
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
         // ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
