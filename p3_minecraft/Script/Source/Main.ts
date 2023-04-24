@@ -14,10 +14,29 @@ namespace Script {
     // console.log(instance);
     // instance.mtxLocal.translateX(1);
 
-    let instance: Block = new Block();
-    console.log(instance);
+    // let instanceArray: Block[];
+    // instanceArray.length
 
-    viewport.getBranch().addChild(instance);
+    // einen Block hinzufügen
+    // let instance1: Block = new Block(ƒ.Vector3.X(1), ƒ.Color.CSS("red"));
+    // console.log(instance);
+    // viewport.getBranch().addChild(instance1);
+
+
+    // Schleife für 3 Blöcke in Richtung X-Achse
+    for (let index = 0; index < 3; index++) {
+      let instance1: Block = new Block(ƒ.Vector3.X(index), ƒ.Color.CSS("red"));
+      viewport.getBranch().addChild(instance1);
+    }
+
+
+    // Schleife für Blöcke in Richtung Y-Achse
+    for (let index = 0; index < 3; index++) {
+      let instance1: Block = new Block(ƒ.Vector3.Y(index), ƒ.Color.CSS("red"));
+      viewport.getBranch().addChild(instance1);
+    }
+
+
 
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
     // ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a

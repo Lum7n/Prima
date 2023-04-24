@@ -1,7 +1,9 @@
 declare namespace Script {
     import ƒ = FudgeCore;
     class Block extends ƒ.Node {
-        constructor();
+        static meshCube: ƒ.MeshCube;
+        static mtrCube: ƒ.Material;
+        constructor(_position: ƒ.Vector3, _color: ƒ.Color);
     }
 }
 declare namespace Script {

@@ -2,13 +2,19 @@ namespace Script {
     import ƒ = FudgeCore;
 
     export class Block extends ƒ.Node {
-        constructor() {
+        static meshCube: ƒ.MeshCube = new ƒ.MeshCube("Block");
+        static mtrCube: ƒ.Material = new ƒ.Material("Block", ƒ.ShaderFlat, new ƒ.CoatRemissive());
+
+        constructor(_position: ƒ.Vector3, _color: ƒ.Color) {
             super("Block");
-            let meshCube: ƒ.MeshCube = new ƒ.MeshCube("Block");
-            let mtrCube: ƒ.Material = new ƒ.Material("Block", ƒ.ShaderFlat, new ƒ.CoatRemissive());
-            this.addComponent(new ƒ.ComponentTransform);
-            this.addComponent(new ƒ.ComponentMesh(meshCube));
-            this.addComponent(new ƒ.ComponentMaterial(mtrCube));
+            this.addComponent(new ƒ.ComponentMesh(Block.meshCube));
+
+            let cmpMaterial: ƒ.ComponentMaterial = new ƒ.ComponentMaterial(Block.mtrCube);
+            cmpMaterial.clrPrimary = _color;
+            this.addComponent(cmpMaterial);
+
+            this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)))
+            
 
 
         }
