@@ -47,4 +47,5 @@ namespace Script {
     viewport.draw();
     ƒ.AudioManager.default.update();
   }
+
 }

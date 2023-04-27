@@ -15,6 +15,13 @@ namespace Script {
 
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)))
             
+            this.addComponent(new ƒ.ComponentTransform())
+
+            
+            // this.cmpTransform(new ƒ.ComponentPick = new ƒ.ComponentPick()
+
+            //@ts-ignore
+            <ƒ.EventListenerUnified>
 
 
         }
