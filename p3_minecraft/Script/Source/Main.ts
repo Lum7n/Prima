@@ -9,19 +9,10 @@ namespace Script {
   async function start(_event: CustomEvent): Promise<void> {
     viewport = _event.detail;
 
-    // let block: ƒ.Graph = <ƒ.Graph>ƒ.Project.resources["Graph|2023-04-24T14:18:06.025Z|47071"];
-    // let instance: ƒ.GraphInstance = await ƒ.Project.createGraphInstance(block);
-    // console.log(instance);
-    // instance.mtxLocal.translateX(1);
-
-    // let instanceArray: Block[];
-    // instanceArray.length
-
     // einen Block hinzufügen
     // let instance1: Block = new Block(ƒ.Vector3.X(1), ƒ.Color.CSS("red"));
     // console.log(instance);
     // viewport.getBranch().addChild(instance1);
-
 
     // Schleife für 3 Blöcke in Richtung X-Achse
     for (let index = 0; index < 3; index++) {
@@ -34,7 +25,7 @@ namespace Script {
       viewport.getBranch().addChild(instance1);
     }
 
-    viewport.canvas.addEventListener("mousedown", pick);
+    viewport.canvas.addEventListener("mousedown", constructRay);
     viewport.getBranch().addEventListener("mousedown", <ƒ.EventListenerUnified>hit);
 
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
@@ -47,6 +38,11 @@ namespace Script {
     ƒ.AudioManager.default.update();
   }
 
+  function constructRay (_event: MouseEvent): void {
+    viewport.getRayFromClient(new ƒ.Vector2(_event.clientX, _event.clientY));
+    console.log(_event.clientX, _event.clientY)
+  }
+
   function pick(_event: MouseEvent): void {
     console.log("pick")
     viewport.dispatchPointerEvent(<PointerEvent>_event);
@@ -57,4 +53,12 @@ namespace Script {
     let cmpPick: ƒ.ComponentPick = node.getComponent(ƒ.ComponentPick);
     console.log(cmpPick);
   }
+
+  // function getDistance(_target: ƒ.Vector3): ƒ.Vector3 {
+
+  //   console.log(_target);
+
+  //   // return ƒ.Vector3
+  // }
+
 }

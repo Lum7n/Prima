@@ -13,15 +13,8 @@ namespace Script {
             cmpMaterial.clrPrimary = _color;
             this.addComponent(cmpMaterial);
 
-            this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)))
+            this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             
-            // this.addComponent(new ƒ.ComponentTransform())
-            
-            // this.cmpTransform(new ƒ.ComponentPick = new ƒ.ComponentPick()
-
-
         }
     }
-
-
 }
