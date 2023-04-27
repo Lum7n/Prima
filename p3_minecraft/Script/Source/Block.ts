@@ -20,9 +20,6 @@ namespace Script {
             
             // this.cmpTransform(new ƒ.ComponentPick = new ƒ.ComponentPick()
 
-            //@ts-ignore
-            <ƒ.EventListenerUnified>
-
 
         }
     }

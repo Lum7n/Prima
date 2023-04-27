@@ -13,6 +13,7 @@ var Script;
             this.addComponent(cmpMaterial);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             this.addComponent(new ƒ.ComponentTransform());
+            // this.cmpTransform(new ƒ.ComponentPick = new ƒ.ComponentPick()
         }
     }
     Script.Block = Block;
@@ -83,6 +84,8 @@ var Script;
             let instance1 = new Script.Block(ƒ.Vector3.Y(index), ƒ.Color.CSS("red"));
             viewport.getBranch().addChild(instance1);
         }
+        viewport.canvas.addEventListener("mousedown", pick);
+        viewport.getBranch().addEventListener("mousedown", hit);
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
         // ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
     }
@@ -90,6 +93,15 @@ var Script;
         // ƒ.Physics.simulate();  // if physics is included and used
         viewport.draw();
         ƒ.AudioManager.default.update();
+    }
+    function pick(_event) {
+        console.log("pick");
+        viewport.dispatchPointerEvent(_event);
+    }
+    function hit(_event) {
+        let node = _event.target;
+        let cmpPick = node.getComponent(ƒ.ComponentPick);
+        console.log(cmpPick);
     }
 })(Script || (Script = {}));
 //# sourceMappingURL=Script.js.map

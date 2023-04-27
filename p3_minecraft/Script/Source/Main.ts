@@ -36,7 +36,8 @@ namespace Script {
       viewport.getBranch().addChild(instance1);
     }
 
-
+    viewport.canvas.addEventListener("mousedown", pick);
+    viewport.getBranch().addEventListener("mousedown", <ƒ.EventListenerUnified>hit);
 
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
     // ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
@@ -48,4 +49,14 @@ namespace Script {
     ƒ.AudioManager.default.update();
   }
 
+  function pick(_event: PointerEvent): void {
+    console.log("pick")
+    viewport.dispatchPointerEvent(<PointerEvent>_event);
+  }
+
+  function hit(_event: PointerEvent): void {
+    let node: ƒ.Node = (<ƒ.Node>_event.target);
+    let cmpPick: ƒ.ComponentPick = node.getComponent(ƒ.ComponentPick);
+    console.log(cmpPick);
+  }
 }
