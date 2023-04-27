@@ -28,8 +28,6 @@ namespace Script {
       let instance1: Block = new Block(ƒ.Vector3.X(index), ƒ.Color.CSS("red"));
       viewport.getBranch().addChild(instance1);
     }
-
-
     // Schleife für Blöcke in Richtung Y-Achse
     for (let index = 0; index < 3; index++) {
       let instance1: Block = new Block(ƒ.Vector3.Y(index), ƒ.Color.CSS("red"));
@@ -49,7 +47,7 @@ namespace Script {
     ƒ.AudioManager.default.update();
   }
 
-  function pick(_event: PointerEvent): void {
+  function pick(_event: MouseEvent): void {
     console.log("pick")
     viewport.dispatchPointerEvent(<PointerEvent>_event);
   }
