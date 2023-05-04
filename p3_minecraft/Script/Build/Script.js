@@ -134,15 +134,14 @@ var Script;
         console.log("pickCamera");
         let picks = ƒ.Picker.pickViewport(Script.viewport, new ƒ.Vector2(_event.clientX, _event.clientY));
         console.log(_event.button);
-        if (_event.button == 0) {
+        if (_event.button == 1) {
             console.log("right");
             picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
             hitBlock(picks[0]?.node);
         }
-        else if (_event.button == 2) {
+        else if (_event.button == 0) {
             console.log("left");
-            let posNewBlock = picks[0]?.node.mtxWorld.translation;
-            addBlock(posNewBlock);
+            addBlock(picks[0]?.node);
         }
     }
     Script.pickByCamera = pickByCamera;
@@ -195,10 +194,11 @@ var Script;
         _block.getParent().removeChild(_block);
         Script.viewport.draw();
     }
-    function addBlock(_posNewBlock) {
-        let block = new Script.Block(_posNewBlock, ƒ.Color.CSS(Script.txtColor));
-        block.name = _posNewBlock.toString() + "|" + Script.txtColor;
-        //add to parent
+    function addBlock(_block) {
+        let _posNewBlock = _block.mtxWorld.translation;
+        let newBlock = new Script.Block(_posNewBlock, ƒ.Color.CSS(Script.txtColor));
+        newBlock.name = _posNewBlock.toString() + "|" + Script.txtColor;
+        _block.getParent().addChild(newBlock);
     }
 })(Script || (Script = {}));
 //# sourceMappingURL=Script.js.map

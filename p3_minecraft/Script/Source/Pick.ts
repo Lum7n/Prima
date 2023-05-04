@@ -25,17 +25,16 @@ namespace Script {
 
     console.log(_event.button);
 
-    if (_event.button == 0) {
+    if (_event.button == 1) {
       console.log("right")
 
       picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
       hitBlock(picks[0]?.node);
 
-    } else if (_event.button == 2) {
+    } else if (_event.button == 0) {
       console.log("left");
 
-      let posNewBlock: ƒ.Vector3 = picks[0]?.node.mtxWorld.translation;
-      addBlock(posNewBlock);
+      addBlock(picks[0]?.node);
     }
   }
 
@@ -92,9 +91,10 @@ namespace Script {
     viewport.draw();
   }
 
-  function addBlock(_posNewBlock: ƒ.Vector3) {
-    let block: Block = new Block(_posNewBlock, ƒ.Color.CSS(txtColor));
-    block.name = _posNewBlock.toString() + "|" + txtColor;
-    //add to parent
+  function addBlock(_block: Block) {
+    let _posNewBlock: ƒ.Vector3 = _block.mtxWorld.translation;
+    let newBlock: Block = new Block(_posNewBlock, ƒ.Color.CSS(txtColor));
+    newBlock.name = _posNewBlock.toString() + "|" + txtColor;
+    _block.getParent().addChild(newBlock);
   }
 }
