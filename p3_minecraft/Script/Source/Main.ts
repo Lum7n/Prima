@@ -2,32 +2,34 @@ namespace Script {
   import ƒ = FudgeCore;
   ƒ.Debug.info("Main Program Template running!");
 
-  let viewport: ƒ.Viewport;
+  export let viewport: ƒ.Viewport;
+  export let blocks: ƒ.Node
+  export let grid: Block[][][] = [];
+
   //@ts-ignore
   document.addEventListener("interactiveViewportStarted", start);
 
-  async function start(_event: CustomEvent): Promise<void> {
-    viewport = _event.detail;
+  async function start(_event: Event): Promise<void> {
+    viewport = (<CustomEvent>_event).detail;
+
+    generateWorld(8, 5, 8);
+    // generateWorld(6, 8, 6)
+
+    let pickAlgorithm = [pickByComponent, pickByCamera, pickByDistance, pickByGrid];
 
     // einen Block hinzufügen
     // let instance1: Block = new Block(ƒ.Vector3.X(1), ƒ.Color.CSS("red"));
     // console.log(instance);
     // viewport.getBranch().addChild(instance1);
 
-    // Schleife für 3 Blöcke in Richtung X-Achse
-    for (let index = 0; index < 3; index++) {
-      let instance1: Block = new Block(ƒ.Vector3.X(index), ƒ.Color.CSS("red"));
-      viewport.getBranch().addChild(instance1);
-    }
-    // Schleife für Blöcke in Richtung Y-Achse
-    for (let index = 0; index < 3; index++) {
-      let instance1: Block = new Block(ƒ.Vector3.Y(index), ƒ.Color.CSS("red"));
-      viewport.getBranch().addChild(instance1);
-    }
+    // // Schleife für 3 Blöcke in Richtung X-Achse
+    // for (let index = 0; index < 3; index++) {
+    //   let instance1: Block = new Block(ƒ.Vector3.X(index), ƒ.Color.CSS("red"));
+    //   viewport.getBranch().addChild(instance1);
+    // }
 
-
-    viewport.canvas.addEventListener("mousedown", constructRay);
-    viewport.getBranch().addEventListener("mousedown", <ƒ.EventListenerUnified>hit);
+    viewport.canvas.addEventListener("pointerdown", pickAlgorithm[1]);
+    viewport.getBranch().addEventListener("pointerdown", <ƒ.EventListenerUnified>hitComponent);
 
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
     // ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
@@ -39,27 +41,27 @@ namespace Script {
     ƒ.AudioManager.default.update();
   }
 
-  function constructRay(_event: MouseEvent): void {
-    viewport.getRayFromClient(new ƒ.Vector2(_event.clientX, _event.clientY));
-    console.log(_event.clientX, _event.clientY)
+  function generateWorld(_width: number, _height: number, _depth: number): void {
+    blocks = new ƒ.Node("Blocks");
+    viewport.getBranch().addChild(blocks);
+    // let vctOffset: ƒ.Vector2 = new ƒ.Vector2(Math.floor(_width / 2), Math.floor(_depth / 2));
+    let vctOffset: ƒ.Vector2 = ƒ.Vector2.ZERO();
+
+    for (let y: number = 0; y < _height; y++) {
+      grid[y] = [];
+      for (let z: number = 0; z < _depth; z++) {
+        grid[y][z] = [];
+        for (let x: number = 0; x < _width; x++) {
+          let vctPostion: ƒ.Vector3 = new ƒ.Vector3(x - vctOffset.x, y, z - vctOffset.y);
+          let txtColor: string = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed"]);
+          let block: Block = new Block(vctPostion, ƒ.Color.CSS(txtColor));
+          block.name = vctPostion.toString() + "|" + txtColor;
+          blocks.addChild(block);
+          grid[y][z][x] = block;
+        }
+      }
+    }
+    console.log(grid);
   }
-
-  // function pick(_event: MouseEvent): void {
-  //   console.log("pick")
-  //   viewport.dispatchPointerEvent(<PointerEvent>_event);
-  // }
-
-  function hit(_event: PointerEvent): void {
-    let node: ƒ.Node = (<ƒ.Node>_event.target);
-    let cmpPick: ƒ.ComponentPick = node.getComponent(ƒ.ComponentPick);
-    console.log(cmpPick);
-  }
-
-  // function getDistance(_target: ƒ.Vector3): ƒ.Vector3 {
-
-  //   console.log(_target);
-
-  //   // return ƒ.Vector3
-  // }
 
 }
