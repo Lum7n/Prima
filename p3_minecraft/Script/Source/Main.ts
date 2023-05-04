@@ -12,7 +12,7 @@ namespace Script {
   async function start(_event: Event): Promise<void> {
     viewport = (<CustomEvent>_event).detail;
 
-    generateWorld(8, 5, 8);
+    generateWorld(8, 6, 8);
     // generateWorld(6, 8, 6)
 
     let pickAlgorithm = [pickByComponent, pickByCamera, pickByDistance, pickByGrid];

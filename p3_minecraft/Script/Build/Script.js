@@ -65,7 +65,7 @@ var Script;
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
         Script.viewport = _event.detail;
-        generateWorld(8, 5, 8);
+        generateWorld(8, 6, 8);
         // generateWorld(6, 8, 6)
         let pickAlgorithm = [Script.pickByComponent, Script.pickByCamera, Script.pickByDistance, Script.pickByGrid];
         // einen Block hinzufügen
