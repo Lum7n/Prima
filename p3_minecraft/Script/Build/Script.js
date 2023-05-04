@@ -135,7 +135,7 @@ var Script;
         let picks = ƒ.Picker.pickViewport(Script.viewport, new ƒ.Vector2(_event.clientX, _event.clientY));
         console.log(_event.button);
         if (_event.button == 1) {
-            console.log("right");
+            console.log("middle");
             picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
             hitBlock(picks[0]?.node);
         }
@@ -200,7 +200,6 @@ var Script;
         console.log(_block.mtxWorld.translation);
         let newBlock = new Script.Block(posNewBlock, ƒ.Color.CSS(Script.txtColor));
         newBlock.name = posNewBlock.toString() + "|" + Script.txtColor;
-        console.log(newBlock);
         _block.getParent().addChild(newBlock);
         // viewport.getBranch().addChild(newBlock);
     }

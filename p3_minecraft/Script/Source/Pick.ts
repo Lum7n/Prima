@@ -26,7 +26,7 @@ namespace Script {
     console.log(_event.button);
 
     if (_event.button == 1) {
-      console.log("right")
+      console.log("middle")
 
       picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
       hitBlock(picks[0]?.node);
@@ -98,8 +98,6 @@ namespace Script {
 
     let newBlock: Block = new Block(posNewBlock, ƒ.Color.CSS(txtColor));
     newBlock.name = posNewBlock.toString() + "|" + txtColor;
-    console.log(newBlock);
-    
     _block.getParent().addChild(newBlock);
     // viewport.getBranch().addChild(newBlock);
   }
