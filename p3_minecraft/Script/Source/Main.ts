@@ -6,6 +6,8 @@ namespace Script {
   export let blocks: ƒ.Node
   export let grid: Block[][][] = [];
 
+  export let txtColor: string;
+
   //@ts-ignore
   document.addEventListener("interactiveViewportStarted", start);
 
@@ -53,7 +55,7 @@ namespace Script {
         grid[y][z] = [];
         for (let x: number = 0; x < _width; x++) {
           let vctPostion: ƒ.Vector3 = new ƒ.Vector3(x - vctOffset.x, y, z - vctOffset.y);
-          let txtColor: string = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed"]);
+          txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
           let block: Block = new Block(vctPostion, ƒ.Color.CSS(txtColor));
           block.name = vctPostion.toString() + "|" + txtColor;
           blocks.addChild(block);

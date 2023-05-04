@@ -98,9 +98,9 @@ var Script;
                 Script.grid[y][z] = [];
                 for (let x = 0; x < _width; x++) {
                     let vctPostion = new ƒ.Vector3(x - vctOffset.x, y, z - vctOffset.y);
-                    let txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed"]);
-                    let block = new Script.Block(vctPostion, ƒ.Color.CSS(txtColor));
-                    block.name = vctPostion.toString() + "|" + txtColor;
+                    Script.txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
+                    let block = new Script.Block(vctPostion, ƒ.Color.CSS(Script.txtColor));
+                    block.name = vctPostion.toString() + "|" + Script.txtColor;
                     Script.blocks.addChild(block);
                     Script.grid[y][z][x] = block;
                 }
@@ -133,8 +133,17 @@ var Script;
     function pickByCamera(_event) {
         console.log("pickCamera");
         let picks = ƒ.Picker.pickViewport(Script.viewport, new ƒ.Vector2(_event.clientX, _event.clientY));
-        picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
-        hitBlock(picks[0]?.node);
+        console.log(_event.button);
+        if (_event.button == 0) {
+            console.log("right");
+            picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
+            hitBlock(picks[0]?.node);
+        }
+        else if (_event.button == 2) {
+            console.log("left");
+            let posNewBlock = picks[0]?.node.mtxWorld.translation;
+            addBlock(posNewBlock);
+        }
     }
     Script.pickByCamera = pickByCamera;
     function pickByDistance(_event) {
@@ -185,6 +194,11 @@ var Script;
         console.log(_block.name);
         _block.getParent().removeChild(_block);
         Script.viewport.draw();
+    }
+    function addBlock(_posNewBlock) {
+        let block = new Script.Block(_posNewBlock, ƒ.Color.CSS(Script.txtColor));
+        block.name = _posNewBlock.toString() + "|" + Script.txtColor;
+        //add to parent
     }
 })(Script || (Script = {}));
 //# sourceMappingURL=Script.js.map

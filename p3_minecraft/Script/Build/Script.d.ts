@@ -20,6 +20,7 @@ declare namespace Script {
     let viewport: ƒ.Viewport;
     let blocks: ƒ.Node;
     let grid: Block[][][];
+    let txtColor: string;
 }
 declare namespace Script {
     function pickByComponent(_event: PointerEvent): void;

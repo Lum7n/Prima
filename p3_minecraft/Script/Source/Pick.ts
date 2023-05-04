@@ -22,8 +22,21 @@ namespace Script {
   export function pickByCamera(_event: PointerEvent): void {
     console.log("pickCamera");
     let picks: ƒ.Pick[] = ƒ.Picker.pickViewport(viewport, new ƒ.Vector2(_event.clientX, _event.clientY));
-    picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
-    hitBlock(picks[0]?.node);
+
+    console.log(_event.button);
+
+    if (_event.button == 0) {
+      console.log("right")
+
+      picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
+      hitBlock(picks[0]?.node);
+
+    } else if (_event.button == 2) {
+      console.log("left");
+
+      let posNewBlock: ƒ.Vector3 = picks[0]?.node.mtxWorld.translation;
+      addBlock(posNewBlock);
+    }
   }
 
   export function pickByDistance(_event: PointerEvent): void {
@@ -77,5 +90,11 @@ namespace Script {
     console.log(_block.name);
     _block.getParent().removeChild(_block);
     viewport.draw();
+  }
+
+  function addBlock(_posNewBlock: ƒ.Vector3) {
+    let block: Block = new Block(_posNewBlock, ƒ.Color.CSS(txtColor));
+    block.name = _posNewBlock.toString() + "|" + txtColor;
+    //add to parent
   }
 }
