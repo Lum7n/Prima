@@ -90,10 +90,10 @@ var Script;
         viewport.getRayFromClient(new ƒ.Vector2(_event.clientX, _event.clientY));
         console.log(_event.clientX, _event.clientY);
     }
-    function pick(_event) {
-        console.log("pick");
-        viewport.dispatchPointerEvent(_event);
-    }
+    // function pick(_event: MouseEvent): void {
+    //   console.log("pick")
+    //   viewport.dispatchPointerEvent(<PointerEvent>_event);
+    // }
     function hit(_event) {
         let node = _event.target;
         let cmpPick = node.getComponent(ƒ.ComponentPick);

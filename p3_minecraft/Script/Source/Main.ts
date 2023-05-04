@@ -25,6 +25,7 @@ namespace Script {
       viewport.getBranch().addChild(instance1);
     }
 
+
     viewport.canvas.addEventListener("mousedown", constructRay);
     viewport.getBranch().addEventListener("mousedown", <ƒ.EventListenerUnified>hit);
 
@@ -38,15 +39,15 @@ namespace Script {
     ƒ.AudioManager.default.update();
   }
 
-  function constructRay (_event: MouseEvent): void {
+  function constructRay(_event: MouseEvent): void {
     viewport.getRayFromClient(new ƒ.Vector2(_event.clientX, _event.clientY));
     console.log(_event.clientX, _event.clientY)
   }
 
-  function pick(_event: MouseEvent): void {
-    console.log("pick")
-    viewport.dispatchPointerEvent(<PointerEvent>_event);
-  }
+  // function pick(_event: MouseEvent): void {
+  //   console.log("pick")
+  //   viewport.dispatchPointerEvent(<PointerEvent>_event);
+  // }
 
   function hit(_event: PointerEvent): void {
     let node: ƒ.Node = (<ƒ.Node>_event.target);
