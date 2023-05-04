@@ -195,10 +195,14 @@ var Script;
         Script.viewport.draw();
     }
     function addBlock(_block) {
-        let _posNewBlock = _block.mtxWorld.translation;
-        let newBlock = new Script.Block(_posNewBlock, ƒ.Color.CSS(Script.txtColor));
-        newBlock.name = _posNewBlock.toString() + "|" + Script.txtColor;
+        let posNewBlock = new ƒ.Vector3(_block.mtxWorld.translation.x, _block.mtxWorld.translation.y, _block.mtxWorld.translation.z);
+        console.log(posNewBlock);
+        console.log(_block.mtxWorld.translation);
+        let newBlock = new Script.Block(posNewBlock, ƒ.Color.CSS(Script.txtColor));
+        newBlock.name = posNewBlock.toString() + "|" + Script.txtColor;
+        console.log(newBlock);
         _block.getParent().addChild(newBlock);
+        // viewport.getBranch().addChild(newBlock);
     }
 })(Script || (Script = {}));
 //# sourceMappingURL=Script.js.map

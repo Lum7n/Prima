@@ -92,9 +92,15 @@ namespace Script {
   }
 
   function addBlock(_block: Block) {
-    let _posNewBlock: ƒ.Vector3 = _block.mtxWorld.translation;
-    let newBlock: Block = new Block(_posNewBlock, ƒ.Color.CSS(txtColor));
-    newBlock.name = _posNewBlock.toString() + "|" + txtColor;
+    let posNewBlock: ƒ.Vector3 = new ƒ.Vector3(_block.mtxWorld.translation.x, _block.mtxWorld.translation.y, _block.mtxWorld.translation.z);
+    console.log(posNewBlock)
+    console.log(_block.mtxWorld.translation)
+
+    let newBlock: Block = new Block(posNewBlock, ƒ.Color.CSS(txtColor));
+    newBlock.name = posNewBlock.toString() + "|" + txtColor;
+    console.log(newBlock);
+    
     _block.getParent().addChild(newBlock);
+    // viewport.getBranch().addChild(newBlock);
   }
 }
