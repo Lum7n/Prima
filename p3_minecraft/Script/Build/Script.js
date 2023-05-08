@@ -63,6 +63,8 @@ var Script;
     var ƒ = FudgeCore;
     ƒ.Debug.info("Main Program Template running!");
     Script.grid = [];
+    let character;
+    let cmpRigidbody;
     //@ts-ignore
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
@@ -82,10 +84,16 @@ var Script;
         // }
         Script.viewport.canvas.addEventListener("pointerdown", pickAlgorithm[1]);
         Script.viewport.getBranch().addEventListener("pointerdown", Script.hitComponent);
+        character = Script.viewport.getBranch().getChildrenByName("Character")[0];
+        console.log(character);
+        Script.viewport.camera = character.getComponent(ƒ.ComponentCamera);
+        cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
+        cmpRigidbody.effectRotation = ƒ.Vector3.Y();
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
-        // ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
+        ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
     }
     function update(_event) {
+        cmpRigidbody.applyForce(ƒ.Vector3.Z(1));
         ƒ.Physics.simulate(); // if physics is included and used
         Script.viewport.draw();
         ƒ.AudioManager.default.update();

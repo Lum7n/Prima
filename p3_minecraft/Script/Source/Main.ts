@@ -5,6 +5,9 @@ namespace Script {
   export let viewport: ƒ.Viewport;
   export let blocks: ƒ.Node
   export let grid: Block[][][] = [];
+  let character: ƒ.Node;
+  let cmpRigidbody: ƒ.ComponentRigidbody;
+
 
   //@ts-ignore
   document.addEventListener("interactiveViewportStarted", start);
@@ -32,11 +35,20 @@ namespace Script {
     viewport.canvas.addEventListener("pointerdown", pickAlgorithm[1]);
     viewport.getBranch().addEventListener("pointerdown", <ƒ.EventListenerUnified>hitComponent);
 
+    character = viewport.getBranch().getChildrenByName("Character")[0];
+    console.log(character);
+    viewport.camera = character.getComponent(ƒ.ComponentCamera);
+    cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
+    cmpRigidbody.effectRotation = ƒ.Vector3.Y();
+
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
-    // ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
+    ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
   }
 
   function update(_event: Event): void {
+
+    cmpRigidbody.applyForce(ƒ.Vector3.Z(1));
+
     ƒ.Physics.simulate();  // if physics is included and used
     viewport.draw();
     ƒ.AudioManager.default.update();
