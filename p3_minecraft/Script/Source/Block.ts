@@ -18,6 +18,9 @@ namespace Script {
             let cmpPick: ƒ.ComponentPick = new ƒ.ComponentPick();
             cmpPick.pick = ƒ.PICK.CAMERA;
             this.addComponent(cmpPick);
+
+            let cmpRigidbody: ƒ.ComponentRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.CUBE);
+            this.addComponent(cmpRigidbody);
         }
     }
 }

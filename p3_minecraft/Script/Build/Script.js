@@ -15,6 +15,8 @@ var Script;
             let cmpPick = new ƒ.ComponentPick();
             cmpPick.pick = ƒ.PICK.CAMERA;
             this.addComponent(cmpPick);
+            let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.CUBE);
+            this.addComponent(cmpRigidbody);
         }
     }
     Script.Block = Block;
@@ -65,6 +67,7 @@ var Script;
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
         Script.viewport = _event.detail;
+        Script.viewport.physicsDebugMode = ƒ.PHYSICS_DEBUGMODE.COLLIDERS;
         generateWorld(8, 6, 8);
         // generateWorld(6, 8, 6)
         let pickAlgorithm = [Script.pickByComponent, Script.pickByCamera, Script.pickByDistance, Script.pickByGrid];
@@ -83,7 +86,7 @@ var Script;
         // ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
     }
     function update(_event) {
-        // ƒ.Physics.simulate();  // if physics is included and used
+        ƒ.Physics.simulate(); // if physics is included and used
         Script.viewport.draw();
         ƒ.AudioManager.default.update();
     }
@@ -98,9 +101,9 @@ var Script;
                 Script.grid[y][z] = [];
                 for (let x = 0; x < _width; x++) {
                     let vctPostion = new ƒ.Vector3(x - vctOffset.x, y, z - vctOffset.y);
-                    Script.txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
-                    let block = new Script.Block(vctPostion, ƒ.Color.CSS(Script.txtColor));
-                    block.name = vctPostion.toString() + "|" + Script.txtColor;
+                    let txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
+                    let block = new Script.Block(vctPostion, ƒ.Color.CSS(txtColor));
+                    block.name = vctPostion.toString() + "|" + txtColor;
                     Script.blocks.addChild(block);
                     Script.grid[y][z][x] = block;
                 }
@@ -195,11 +198,14 @@ var Script;
         Script.viewport.draw();
     }
     function addBlock(_block) {
-        let posNewBlock = new ƒ.Vector3(_block.mtxWorld.translation.x, _block.mtxWorld.translation.y, _block.mtxWorld.translation.z);
+        let posOldBlock = new ƒ.Vector3(_block.mtxWorld.translation.x, _block.mtxWorld.translation.y, _block.mtxWorld.translation.z);
+        console.log(posOldBlock);
+        let posNewBlock = new ƒ.Vector3(_block.mtxWorld.translation.x + 1, _block.mtxWorld.translation.y + 1, _block.mtxWorld.translation.z + 1);
         console.log(posNewBlock);
-        console.log(_block.mtxWorld.translation);
-        let newBlock = new Script.Block(posNewBlock, ƒ.Color.CSS(Script.txtColor));
-        newBlock.name = posNewBlock.toString() + "|" + Script.txtColor;
+        let txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
+        let newBlock = new Script.Block(posNewBlock, ƒ.Color.CSS(txtColor));
+        newBlock.name = posNewBlock.toString() + "|" + txtColor;
+        console.log(newBlock);
         _block.getParent().addChild(newBlock);
         // viewport.getBranch().addChild(newBlock);
     }

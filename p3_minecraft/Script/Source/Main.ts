@@ -6,13 +6,12 @@ namespace Script {
   export let blocks: ƒ.Node
   export let grid: Block[][][] = [];
 
-  export let txtColor: string;
-
   //@ts-ignore
   document.addEventListener("interactiveViewportStarted", start);
 
   async function start(_event: Event): Promise<void> {
     viewport = (<CustomEvent>_event).detail;
+    viewport.physicsDebugMode = ƒ.PHYSICS_DEBUGMODE.COLLIDERS;
 
     generateWorld(8, 6, 8);
     // generateWorld(6, 8, 6)
@@ -38,7 +37,7 @@ namespace Script {
   }
 
   function update(_event: Event): void {
-    // ƒ.Physics.simulate();  // if physics is included and used
+    ƒ.Physics.simulate();  // if physics is included and used
     viewport.draw();
     ƒ.AudioManager.default.update();
   }
@@ -55,7 +54,7 @@ namespace Script {
         grid[y][z] = [];
         for (let x: number = 0; x < _width; x++) {
           let vctPostion: ƒ.Vector3 = new ƒ.Vector3(x - vctOffset.x, y, z - vctOffset.y);
-          txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
+          let txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
           let block: Block = new Block(vctPostion, ƒ.Color.CSS(txtColor));
           block.name = vctPostion.toString() + "|" + txtColor;
           blocks.addChild(block);
