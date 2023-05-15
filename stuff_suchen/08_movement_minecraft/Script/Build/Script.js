@@ -3,11 +3,11 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     class Block extends ƒ.Node {
-        static meshCube = new ƒ.MeshCube("Block");
+        static mshCube = new ƒ.MeshCube("Block");
         static mtrCube = new ƒ.Material("Block", ƒ.ShaderFlat, new ƒ.CoatRemissive());
         constructor(_position, _color) {
             super("Block");
-            this.addComponent(new ƒ.ComponentMesh(Block.meshCube));
+            this.addComponent(new ƒ.ComponentMesh(Block.mshCube));
             let cmpMaterial = new ƒ.ComponentMaterial(Block.mtrCube);
             cmpMaterial.clrPrimary = _color;
             this.addComponent(cmpMaterial);
@@ -17,6 +17,7 @@ var Script;
             this.addComponent(cmpPick);
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.CUBE);
             this.addComponent(cmpRigidbody);
+            // cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.COLLISION_ENTER, () => console.log("Collision"));
         }
     }
     Script.Block = Block;
@@ -36,21 +37,21 @@ var Script;
             if (ƒ.Project.mode == ƒ.MODE.EDITOR)
                 return;
             // Listen to this component being added to or removed from a node
-            this.addEventListener("componentAdd" /* ƒ.EVENT.COMPONENT_ADD */, this.hndEvent);
-            this.addEventListener("componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */, this.hndEvent);
-            this.addEventListener("nodeDeserialized" /* ƒ.EVENT.NODE_DESERIALIZED */, this.hndEvent);
+            this.addEventListener("componentAdd" /* COMPONENT_ADD */, this.hndEvent);
+            this.addEventListener("componentRemove" /* COMPONENT_REMOVE */, this.hndEvent);
+            this.addEventListener("nodeDeserialized" /* NODE_DESERIALIZED */, this.hndEvent);
         }
         // Activate the functions of this component as response to events
         hndEvent = (_event) => {
             switch (_event.type) {
-                case "componentAdd" /* ƒ.EVENT.COMPONENT_ADD */:
+                case "componentAdd" /* COMPONENT_ADD */:
                     ƒ.Debug.log(this.message, this.node);
                     break;
-                case "componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */:
-                    this.removeEventListener("componentAdd" /* ƒ.EVENT.COMPONENT_ADD */, this.hndEvent);
-                    this.removeEventListener("componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */, this.hndEvent);
+                case "componentRemove" /* COMPONENT_REMOVE */:
+                    this.removeEventListener("componentAdd" /* COMPONENT_ADD */, this.hndEvent);
+                    this.removeEventListener("componentRemove" /* COMPONENT_REMOVE */, this.hndEvent);
                     break;
-                case "nodeDeserialized" /* ƒ.EVENT.NODE_DESERIALIZED */:
+                case "nodeDeserialized" /* NODE_DESERIALIZED */:
                     // if deserialized the node is now fully reconstructed and access to all its components and children is possible
                     break;
             }
@@ -62,44 +63,47 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     ƒ.Debug.info("Main Program Template running!");
-    Script.grid = [];
-    let character;
-    let cmpRigidbody;
-    let isGrounded;
-    //@ts-ignore
+    Script.grid3D = [];
+    Script.gridAssoc = {};
+    let steve;
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
         Script.viewport = _event.detail;
         Script.viewport.physicsDebugMode = ƒ.PHYSICS_DEBUGMODE.COLLIDERS;
-        generateWorld(8, 6, 8);
-        // generateWorld(6, 8, 6)
-        let pickAlgorithm = [Script.pickByComponent, Script.pickByCamera, Script.pickByDistance, Script.pickByGrid];
+        Script.viewport.canvas.addEventListener("contextmenu", _event => _event.preventDefault());
+        generateWorld(10, 3, 9);
+        let pickAlgorithm = [Script.pickByComponent, Script.pickByCamera, Script.pickByRadius, Script.pickByGrid];
         Script.viewport.canvas.addEventListener("pointerdown", pickAlgorithm[1]);
         Script.viewport.getBranch().addEventListener("pointerdown", Script.hitComponent);
-        Script.viewport.getBranch().addEventListener("characterCollided", (_event) => console.log(_event));
-        character = Script.viewport.getBranch().getChildrenByName("Character")[0];
-        console.log(character);
-        Script.viewport.camera = character.getChild(0).getComponent(ƒ.ComponentCamera);
-        cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
-        cmpRigidbody.effectRotation = ƒ.Vector3.Y();
-        // addEventListener.; // für collision
-        ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
+        setupSteve();
+        ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, update);
         ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
     }
     function update(_event) {
-        characterMovement();
-        // cmpRigidbody.applyForce(ƒ.Vector3.Z(1));
+        controlSteve();
         ƒ.Physics.simulate(); // if physics is included and used
         Script.viewport.draw();
         ƒ.AudioManager.default.update();
     }
-    function characterCollision(_event) {
-        // let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
-        // if (vctCollision.x == 0 && vctCollision)
-        isGrounded = true;
-        //damit das event bei einem Elternteil ankommt, auch wenn sich andere kinder dazwischen schieben, die hirarchie verändert wurde
-        let CustomEvent = new CustomEvent("characterCollided", { bubbles: true, detail: character.mtxWorld.translation });
-        character.dispatchEvent(CustomEvent);
+    function setupSteve() {
+        // console.log(ƒ.Physics.settings.sleepingAngularVelocityThreshold);
+        steve = Script.viewport.getBranch().getChildrenByName("Steve")[0];
+        console.log(steve);
+        Script.viewport.camera = steve.getComponent(ƒ.ComponentCamera);
+        steve.getComponent(ƒ.ComponentRigidbody).effectRotation = ƒ.Vector3.Y();
+    }
+    function controlSteve() {
+        let cmpRigidbody = steve.getComponent(ƒ.ComponentRigidbody);
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A, ƒ.KEYBOARD_CODE.ARROW_LEFT]))
+            cmpRigidbody.applyTorque(ƒ.Vector3.Y(5));
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D, ƒ.KEYBOARD_CODE.ARROW_RIGHT]))
+            cmpRigidbody.applyTorque(ƒ.Vector3.Y(-5));
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W, ƒ.KEYBOARD_CODE.ARROW_UP]))
+            cmpRigidbody.applyForce(ƒ.Vector3.SCALE(steve.mtxWorld.getZ(), 1000));
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S, ƒ.KEYBOARD_CODE.ARROW_DOWN]))
+            cmpRigidbody.applyForce(ƒ.Vector3.SCALE(steve.mtxWorld.getZ(), -1000));
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.SPACE]) && cmpRigidbody.getVelocity().y == 0)
+            cmpRigidbody.addVelocity(ƒ.Vector3.Y(5));
     }
     function generateWorld(_width, _height, _depth) {
         Script.blocks = new ƒ.Node("Blocks");
@@ -107,44 +111,30 @@ var Script;
         // let vctOffset: ƒ.Vector2 = new ƒ.Vector2(Math.floor(_width / 2), Math.floor(_depth / 2));
         let vctOffset = ƒ.Vector2.ZERO();
         for (let y = 0; y < _height; y++) {
-            Script.grid[y] = [];
+            Script.grid3D[y] = [];
             for (let z = 0; z < _depth; z++) {
-                Script.grid[y][z] = [];
+                Script.grid3D[y][z] = [];
                 for (let x = 0; x < _width; x++) {
-                    let vctPostion = new ƒ.Vector3(x - vctOffset.x, y, z - vctOffset.y);
-                    let txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
-                    let block = new Script.Block(vctPostion, ƒ.Color.CSS(txtColor));
-                    block.name = vctPostion.toString() + "|" + txtColor;
-                    Script.blocks.addChild(block);
-                    Script.grid[y][z][x] = block;
+                    let vctPosition = new ƒ.Vector3(x - vctOffset.x, y + Math.random() * 0.2, z - vctOffset.y);
+                    let txtColor = ƒ.Random.default.getElement(["red", "lime", "blue", "yellow"]);
+                    createBlock(vctPosition, txtColor);
                 }
             }
         }
-        console.log(Script.grid);
-        // einen Block hinzufügen
-        // let instance1: Block = new Block(ƒ.Vector3.X(1), ƒ.Color.CSS("red"));
-        // console.log(instance);
-        // viewport.getBranch().addChild(instance1);
-        // // Schleife für 3 Blöcke in Richtung X-Achse
-        // for (let index = 0; index < 3; index++) {
-        //   let instance1: Block = new Block(ƒ.Vector3.X(index), ƒ.Color.CSS("red"));
-        //   viewport.getBranch().addChild(instance1);
-        // }
+        console.log(Script.gridAssoc);
     }
-    function characterMovement() {
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.X(-5));
+    function createBlock(_vctPosition, _txtColor) {
+        let block = new Script.Block(_vctPosition, ƒ.Color.CSS(_txtColor));
+        block.name = _vctPosition.toString() + "|" + _txtColor;
+        console.log(block.name);
+        Script.blocks.addChild(block);
+        Script.gridAssoc[_vctPosition.toString()] = block;
+        try {
+            Script.grid3D[_vctPosition.y][_vctPosition.z][_vctPosition.x] = block;
         }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.X(5));
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.Z(5));
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5));
-        }
+        catch (_e) { }
     }
+    Script.createBlock = createBlock;
 })(Script || (Script = {}));
 var Script;
 (function (Script) {
@@ -170,19 +160,17 @@ var Script;
     function pickByCamera(_event) {
         console.log("pickCamera");
         let picks = ƒ.Picker.pickViewport(Script.viewport, new ƒ.Vector2(_event.clientX, _event.clientY));
-        console.log(_event.button);
-        if (_event.button == 1) {
-            console.log("middle");
-            picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
-            hitBlock(picks[0]?.node);
-        }
-        else if (_event.button == 0) {
-            console.log("left");
-            addBlock(picks[0]?.node);
+        picks.sort((_a, _b) => _a.zBuffer < _b.zBuffer ? -1 : 1);
+        let pick = picks[0];
+        if (_event.button == 1)
+            hitBlock(pick.node);
+        else if (_event.button == 2) {
+            let posNewBlock = ƒ.Vector3.SUM(pick.node.mtxWorld.translation, pick.normal);
+            addBlock(posNewBlock);
         }
     }
     Script.pickByCamera = pickByCamera;
-    function pickByDistance(_event) {
+    function pickByRadius(_event) {
         console.log("pickByRay");
         let ray = Script.viewport.getRayFromClient(new ƒ.Vector2(_event.clientX, _event.clientY));
         let shortest;
@@ -199,7 +187,7 @@ var Script;
         }
         hitBlock(found);
     }
-    Script.pickByDistance = pickByDistance;
+    Script.pickByRadius = pickByRadius;
     function pickByGrid(_event) {
         console.log("pickByGrid");
         let ray = Script.viewport.getRayFromClient(new ƒ.Vector2(_event.clientX, _event.clientY));
@@ -214,7 +202,8 @@ var Script;
             let posGrid = posCheck.map(_value => Math.round(_value));
             console.log(posGrid.toString(), posCheck.toString());
             try {
-                let block = Script.grid[posGrid.y][posGrid.z][posGrid.x];
+                let block = Script.grid3D[posGrid.y][posGrid.z][posGrid.x];
+                // let block = gridAssoc[posGrid.toString()];
                 if (block) {
                     hitBlock(block);
                     return;
@@ -231,17 +220,11 @@ var Script;
         _block.getParent().removeChild(_block);
         Script.viewport.draw();
     }
-    function addBlock(_block) {
-        let posOldBlock = new ƒ.Vector3(_block.mtxWorld.translation.x, _block.mtxWorld.translation.y, _block.mtxWorld.translation.z);
-        console.log(posOldBlock);
-        let posNewBlock = new ƒ.Vector3(_block.mtxWorld.translation.x + 1, _block.mtxWorld.translation.y + 1, _block.mtxWorld.translation.z + 1);
-        console.log(posNewBlock);
-        let txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
-        let newBlock = new Script.Block(posNewBlock, ƒ.Color.CSS(txtColor));
-        newBlock.name = posNewBlock.toString() + "|" + txtColor;
-        console.log(newBlock);
-        _block.getParent().addChild(newBlock);
-        // viewport.getBranch().addChild(newBlock);
+    function addBlock(_pos) {
+        if (Script.gridAssoc[_pos.toString()]) // already a block there...
+            return;
+        Script.createBlock(_pos, "white");
+        Script.viewport.draw();
     }
 })(Script || (Script = {}));
 //# sourceMappingURL=Script.js.map

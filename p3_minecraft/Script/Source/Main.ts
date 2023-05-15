@@ -7,6 +7,7 @@ namespace Script {
   export let grid: Block[][][] = [];
   let character: ƒ.Node;
   let cmpRigidbody: ƒ.ComponentRigidbody;
+  let isGrounded: boolean;
 
 
   //@ts-ignore
@@ -21,25 +22,16 @@ namespace Script {
 
     let pickAlgorithm = [pickByComponent, pickByCamera, pickByDistance, pickByGrid];
 
-    // einen Block hinzufügen
-    // let instance1: Block = new Block(ƒ.Vector3.X(1), ƒ.Color.CSS("red"));
-    // console.log(instance);
-    // viewport.getBranch().addChild(instance1);
-
-    // // Schleife für 3 Blöcke in Richtung X-Achse
-    // for (let index = 0; index < 3; index++) {
-    //   let instance1: Block = new Block(ƒ.Vector3.X(index), ƒ.Color.CSS("red"));
-    //   viewport.getBranch().addChild(instance1);
-    // }
-
     viewport.canvas.addEventListener("pointerdown", pickAlgorithm[1]);
     viewport.getBranch().addEventListener("pointerdown", <ƒ.EventListenerUnified>hitComponent);
+    viewport.getBranch().addEventListener("characterCollided", (_event: Event) => console.log(_event))
 
     character = viewport.getBranch().getChildrenByName("Character")[0];
     console.log(character);
-    viewport.camera = character.getComponent(ƒ.ComponentCamera);
+    viewport.camera = character.getChild(0).getComponent(ƒ.ComponentCamera);
     cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
     cmpRigidbody.effectRotation = ƒ.Vector3.Y();
+    // addEventListener.; // für collision
 
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
     ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
@@ -47,11 +39,22 @@ namespace Script {
 
   function update(_event: Event): void {
 
-    cmpRigidbody.applyForce(ƒ.Vector3.Z(1));
+    characterMovement();
+    // cmpRigidbody.applyForce(ƒ.Vector3.Z(1));
 
     ƒ.Physics.simulate();  // if physics is included and used
     viewport.draw();
     ƒ.AudioManager.default.update();
+  }
+
+  function characterCollision(_event: ƒ.EventPhysics): void {
+    // let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
+    // if (vctCollision.x == 0 && vctCollision)
+    isGrounded = true;
+
+    //damit das event bei einem Elternteil ankommt, auch wenn sich andere kinder dazwischen schieben, die hirarchie verändert wurde
+    let CustomEvent: CustomEvent = new CustomEvent("characterCollided", {bubbles: true, detail: character.mtxWorld.translation})
+    character.dispatchEvent(CustomEvent);
   }
 
   function generateWorld(_width: number, _height: number, _depth: number): void {
@@ -75,6 +78,36 @@ namespace Script {
       }
     }
     console.log(grid);
+
+    // einen Block hinzufügen
+    // let instance1: Block = new Block(ƒ.Vector3.X(1), ƒ.Color.CSS("red"));
+    // console.log(instance);
+    // viewport.getBranch().addChild(instance1);
+
+    // // Schleife für 3 Blöcke in Richtung X-Achse
+    // for (let index = 0; index < 3; index++) {
+    //   let instance1: Block = new Block(ƒ.Vector3.X(index), ƒ.Color.CSS("red"));
+    //   viewport.getBranch().addChild(instance1);
+    // }
+  }
+
+  function characterMovement(): void {
+
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D])) {
+      cmpRigidbody.setVelocity(ƒ.Vector3.X(-5))
+    }
+
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A])) {
+      cmpRigidbody.setVelocity(ƒ.Vector3.X(5))
+    }
+    
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W])) {
+      cmpRigidbody.setVelocity(ƒ.Vector3.Z(5))
+    }
+
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S])) {
+      cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5))
+    }
   }
 
 }

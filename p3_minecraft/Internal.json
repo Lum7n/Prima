@@ -64,6 +64,15 @@
       "type": "Graph"
     }
   },
+  "MeshSphere|2023-05-08T15:12:54.451Z|12369": {
+    "ƒ.MeshSphere": {
+      "idResource": "MeshSphere|2023-05-08T15:12:54.451Z|12369",
+      "name": "MeshSphere",
+      "type": "MeshSphere",
+      "longitudes": 8,
+      "latitudes": 8
+    }
+  },
   "Graph|2023-04-24T14:45:52.289Z|90621": {
     "ƒ.Graph": {
       "name": "Game",
@@ -116,7 +125,7 @@
                 {
                   "ƒ.ComponentTransform": {
                     "local": {
-                      "translation": "[0, 10, 0]",
+                      "translation": "[0, 6.5, 0]",
                       "rotation": "[0, 0, 0]",
                       "scaling": "[0.9999999403953552, 1, 0.9999999403953552]"
                     },
@@ -132,7 +141,7 @@
                     "initialization": "TO_PIVOT",
                     "friction": 0.2,
                     "restitution": 0.2,
-                    "mass": 60,
+                    "mass": 40,
                     "dampTranslation": 0.1,
                     "dampRotation": 0.1,
                     "effectGravity": 1,
@@ -161,7 +170,7 @@
                       "scaling": "[0.800000011920929, 1.5999999046325684, 0.800000011920929]"
                     },
                     "Component": {
-                      "active": true
+                      "active": false
                     }
                   }
                 }
@@ -184,47 +193,113 @@
                   }
                 }
               ],
-              "ComponentCamera": [
+              "ComponentCamera": [],
+              "JointRevolute": [
                 {
-                  "ƒ.ComponentCamera": {
-                    "backgroundColor": {
-                      "r": 0,
-                      "g": 0,
-                      "b": 0,
-                      "a": 1
-                    },
-                    "backgroundEnabled": true,
-                    "projection": "central",
-                    "fieldOfView": 45,
-                    "direction": "diagonal",
-                    "aspect": 1.5239786856127886,
-                    "pivot": {
-                      "translation": "[0, 0, -8]",
-                      "rotation": "[0, 0, 0]",
-                      "scaling": "[1, 1, 1]"
-                    },
-                    "Component": {
-                      "active": true
+                  "ƒ.JointRevolute": {
+                    "motorTorque": 0,
+                    "JointAxial": {
+                      "springDamping": 0,
+                      "springFrequency": 0,
+                      "maxMotor": 360,
+                      "minMotor": 0,
+                      "motorSpeed": 0,
+                      "axis": "[0, 1, 0]",
+                      "Joint": {
+                        "nameChildToConnect": "Camera",
+                        "internalCollision": false,
+                        "breakForce": 0,
+                        "breakTorque": 0,
+                        "anchor": "[0, 0, 0]",
+                        "Component": {
+                          "active": true
+                        }
+                      }
                     }
                   }
                 }
               ]
             },
-            "children": []
+            "children": [
+              {
+                "ƒ.Node": {
+                  "name": "Camera",
+                  "active": true,
+                  "components": {
+                    "ComponentCamera": [
+                      {
+                        "ƒ.ComponentCamera": {
+                          "backgroundColor": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1
+                          },
+                          "backgroundEnabled": true,
+                          "projection": "central",
+                          "fieldOfView": 45,
+                          "direction": "diagonal",
+                          "aspect": 1,
+                          "pivot": {
+                            "translation": "[0, 0, 0]",
+                            "rotation": "[0, 0, 0]",
+                            "scaling": "[1, 1, 1]"
+                          },
+                          "Component": {
+                            "active": true
+                          }
+                        }
+                      }
+                    ],
+                    "ComponentTransform": [
+                      {
+                        "ƒ.ComponentTransform": {
+                          "local": {
+                            "translation": "[0, 0.5, 2]",
+                            "rotation": "[0, 0, 0]",
+                            "scaling": "[0.5, 1, 1]"
+                          },
+                          "Component": {
+                            "active": true
+                          }
+                        }
+                      }
+                    ],
+                    "ComponentRigidbody": [
+                      {
+                        "ƒ.ComponentRigidbody": {
+                          "initialization": "TO_PIVOT",
+                          "friction": 0.2,
+                          "restitution": 0.2,
+                          "mass": 1,
+                          "dampTranslation": 0.1,
+                          "dampRotation": 0.1,
+                          "effectGravity": 1,
+                          "typeBody": "DYNAMIC",
+                          "typeCollider": "SPHERE",
+                          "isTrigger": false,
+                          "id": 1,
+                          "pivot": {
+                            "translation": "[0, 0, 0]",
+                            "rotation": "[0, 0, 0]",
+                            "scaling": "[1, 1, 1]"
+                          },
+                          "Component": {
+                            "active": true
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              }
+            ]
           }
         }
       ],
       "idResource": "Graph|2023-04-24T14:45:52.289Z|90621",
       "type": "Graph"
-    }
-  },
-  "MeshSphere|2023-05-08T15:12:54.451Z|12369": {
-    "ƒ.MeshSphere": {
-      "idResource": "MeshSphere|2023-05-08T15:12:54.451Z|12369",
-      "name": "MeshSphere",
-      "type": "MeshSphere",
-      "longitudes": 8,
-      "latitudes": 8
     }
   }
 }
