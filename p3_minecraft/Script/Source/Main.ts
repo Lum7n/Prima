@@ -7,7 +7,7 @@ namespace Script {
   export let grid: Block[][][] = [];
   let character: ƒ.Node;
   let cmpRigidbody: ƒ.ComponentRigidbody;
-  let isGrounded: boolean;
+  // let isGrounded: boolean;
 
 
   //@ts-ignore
@@ -17,6 +17,7 @@ namespace Script {
     viewport = (<CustomEvent>_event).detail;
     viewport.physicsDebugMode = ƒ.PHYSICS_DEBUGMODE.COLLIDERS;
 
+    createBody;
     generateWorld(8, 6, 8);
     // generateWorld(6, 8, 6)
 
@@ -47,14 +48,18 @@ namespace Script {
     ƒ.AudioManager.default.update();
   }
 
-  function characterCollision(_event: ƒ.EventPhysics): void {
-    // let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
-    // if (vctCollision.x == 0 && vctCollision)
-    isGrounded = true;
+  // function characterCollision(_event: ƒ.EventPhysics): void {
+  //   // let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
+  //   // if (vctCollision.x == 0 && vctCollision)
+  //   isGrounded = true;
 
-    //damit das event bei einem Elternteil ankommt, auch wenn sich andere kinder dazwischen schieben, die hirarchie verändert wurde
-    let CustomEvent: CustomEvent = new CustomEvent("characterCollided", {bubbles: true, detail: character.mtxWorld.translation})
-    character.dispatchEvent(CustomEvent);
+  //   //damit das event bei einem Elternteil ankommt, auch wenn sich andere kinder dazwischen schieben, die hirarchie verändert wurde
+  //   let CustomEvent: CustomEvent = new CustomEvent("characterCollided", {bubbles: true, detail: character.mtxWorld.translation})
+  //   character.dispatchEvent(CustomEvent);
+  // }
+
+  function createBody(): void {
+
   }
 
   function generateWorld(_width: number, _height: number, _depth: number): void {
