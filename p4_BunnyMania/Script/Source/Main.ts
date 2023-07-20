@@ -126,10 +126,6 @@ namespace Script {
     }
   }
 
-
-
-
-
   enum TileType {
     Ground,
     Border,
@@ -137,3 +133,5 @@ namespace Script {
     Empty,
   }
 }
+
+//169 stars und anderes müssen eingesammelt werden

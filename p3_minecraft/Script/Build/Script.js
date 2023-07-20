@@ -65,12 +65,13 @@ var Script;
     Script.grid = [];
     let character;
     let cmpRigidbody;
-    let isGrounded;
+    // let isGrounded: boolean;
     //@ts-ignore
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
         Script.viewport = _event.detail;
         Script.viewport.physicsDebugMode = ƒ.PHYSICS_DEBUGMODE.COLLIDERS;
+        createBody;
         generateWorld(8, 6, 8);
         // generateWorld(6, 8, 6)
         let pickAlgorithm = [Script.pickByComponent, Script.pickByCamera, Script.pickByDistance, Script.pickByGrid];
@@ -93,13 +94,15 @@ var Script;
         Script.viewport.draw();
         ƒ.AudioManager.default.update();
     }
-    function characterCollision(_event) {
-        // let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
-        // if (vctCollision.x == 0 && vctCollision)
-        isGrounded = true;
-        //damit das event bei einem Elternteil ankommt, auch wenn sich andere kinder dazwischen schieben, die hirarchie verändert wurde
-        let CustomEvent = new CustomEvent("characterCollided", { bubbles: true, detail: character.mtxWorld.translation });
-        character.dispatchEvent(CustomEvent);
+    // function characterCollision(_event: ƒ.EventPhysics): void {
+    //   // let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
+    //   // if (vctCollision.x == 0 && vctCollision)
+    //   isGrounded = true;
+    //   //damit das event bei einem Elternteil ankommt, auch wenn sich andere kinder dazwischen schieben, die hirarchie verändert wurde
+    //   let CustomEvent: CustomEvent = new CustomEvent("characterCollided", {bubbles: true, detail: character.mtxWorld.translation})
+    //   character.dispatchEvent(CustomEvent);
+    // }
+    function createBody() {
     }
     function generateWorld(_width, _height, _depth) {
         Script.blocks = new ƒ.Node("Blocks");
