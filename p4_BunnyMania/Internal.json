@@ -13,7 +13,8 @@
       "shader": "ShaderLitTextured",
       "coat": {
         "ƒ.CoatTextured": {
-          "color": "[1, 1, 1, 1]"
+          "color": "[1, 1, 1, 1]",
+          "idTexture": "TextureImage|2023-07-20T15:55:49.996Z|44625"
         }
       }
     }
@@ -2868,6 +2869,17 @@
       "Texture": {
         "idResource": "TextureImage|2023-07-20T15:29:28.781Z|19471",
         "name": "Assets\\concrete2000.png",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2023-07-20T15:55:49.996Z|44625": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\bush_1000_transparent.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-07-20T15:55:49.996Z|44625",
+        "name": "Assets\\bush_1000_transparent.png",
         "mipmap": "CRISP"
       }
     }
