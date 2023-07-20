@@ -2377,34 +2377,6 @@
             "components": {},
             "children": []
           }
-        },
-        {
-          "ƒ.Node": {
-            "name": "Light",
-            "active": true,
-            "components": {
-              "ComponentLight": [
-                {
-                  "ƒ.ComponentLight": {
-                    "pivot": {
-                      "translation": "[0, 0, 0]",
-                      "rotation": "[0, 0, 0]",
-                      "scaling": "[1, 1, 1]"
-                    },
-                    "light": {
-                      "ƒ.LightAmbient": {
-                        "color": "[1, 1, 1, 0.47]"
-                      }
-                    },
-                    "Component": {
-                      "active": true
-                    }
-                  }
-                }
-              ]
-            },
-            "children": []
-          }
         }
       ],
       "idResource": "Graph|2023-07-19T17:29:49.783Z|51214",
