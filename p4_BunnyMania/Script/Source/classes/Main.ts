@@ -54,22 +54,48 @@ namespace Script {
     }
 
 
-
+    private previousItemType: ItemType = ItemType.Empty; // Initialize with Empty
     public addStarsAndPowerUps1() {
       for (let z = 0; z < this.height; z++) {
         for (let x = 0; x < this.width; x++) {
           if (this.grid[z][x] === TileType.Empty) {
             if (!isCollidingWithLevel1(x, z)) {
               let randomNumber: number = Math.random();
-              if(randomNumber <= 0.005) { //0,5%
-                this.addLives(x, z);
-              } else if (randomNumber <= 0.03) { //2,5%
-                this.addPowerUp(x, z);
-              } else if (randomNumber <= 0.08) { //4,5%
-                this.addAdditionalTime(x, z);
+              let itemType: ItemType;
+
+              if (randomNumber <= 0.005) { // 0.5%
+                itemType = ItemType.Lives;
+              } else if (randomNumber <= 0.03) { // 2.5%
+                itemType = ItemType.PowerUp;
+              } else if (randomNumber <= 0.08) { // 4.5%
+                itemType = ItemType.AdditionalTime;
               } else {
-                this.addStar(x, z);
+                itemType = ItemType.Star;
               }
+
+              // Check if the current item type is the same as the previous one
+              while (itemType === this.previousItemType) {
+                itemType = ItemType.Star; // If same, set it to Star (you can choose another default type if you prefer)
+              }
+
+              // Add the item based on the itemType
+              switch (itemType) {
+                case ItemType.Star:
+                  this.addStar(x, z);
+                  break;
+                case ItemType.PowerUp:
+                  this.addPowerUp(x, z);
+                  break;
+                case ItemType.Lives:
+                  this.addLives(x, z);
+                  break;
+                case ItemType.AdditionalTime:
+                  this.addAdditionalTime(x, z);
+                  break;
+              }
+
+              // Update the previousItemType
+              this.previousItemType = itemType;
             }
           }
         }
@@ -95,6 +121,14 @@ namespace Script {
       const additionalTime: AdditionalTime = new AdditionalTime(new Vector3(x, 0.5, z));
       maze.addChild(additionalTime);
     }
+  }
+
+  enum ItemType {
+    Star,
+    PowerUp,
+    Lives,
+    AdditionalTime,
+    Empty//Its foking empty
   }
 
   function isCollidingWithLevel1(x: number, z: number): boolean {
