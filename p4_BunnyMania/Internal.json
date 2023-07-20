@@ -366,8 +366,8 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
-                                "clrPrimary": "[0.4666666666666667, 0.39215686274509803, 0.8470588235294118, 1]",
+                                "sortForAlpha": true,
+                                "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
                                   "translation": "[0, 0]",
@@ -422,7 +422,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -478,7 +478,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -534,7 +534,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -590,7 +590,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -646,7 +646,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -702,7 +702,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -758,7 +758,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -814,7 +814,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -870,7 +870,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -926,7 +926,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -982,7 +982,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1038,7 +1038,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1094,7 +1094,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1150,7 +1150,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1206,7 +1206,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1262,7 +1262,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1318,7 +1318,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1374,7 +1374,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1430,7 +1430,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1486,7 +1486,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1542,7 +1542,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1598,7 +1598,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1654,7 +1654,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1710,7 +1710,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1766,7 +1766,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1822,7 +1822,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1878,7 +1878,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1934,7 +1934,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -1990,7 +1990,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2046,7 +2046,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2102,7 +2102,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2158,7 +2158,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2214,7 +2214,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2270,7 +2270,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2326,7 +2326,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2382,7 +2382,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2438,7 +2438,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2494,7 +2494,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2550,7 +2550,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2606,7 +2606,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2662,7 +2662,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
@@ -2718,7 +2718,7 @@
                           "ComponentMaterial": [
                             {
                               "ƒ.ComponentMaterial": {
-                                "sortForAlpha": false,
+                                "sortForAlpha": true,
                                 "clrPrimary": "[1, 1, 1, 1]",
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
