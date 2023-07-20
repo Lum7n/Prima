@@ -2,6 +2,9 @@ namespace Script {
   import ƒ = FudgeCore;
   import Vector3 = FudgeCore.Vector3;
 
+  let character: ƒ.Node;
+  let cmpRigidbody: ƒ.ComponentRigidbody;
+
   let maze: ƒ.Node;
   ƒ.Debug.info("Main Program Template running!");
 
@@ -20,13 +23,37 @@ namespace Script {
 
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
     // ƒ.Loop.start();  // start the game loop to continuously draw the viewport, update the audiosystem and drive the physics i/a
+
+    character = viewport.getBranch().getChildrenByName("Character")[0];
+    console.log(character);
+    viewport.camera = character.getChild(0).getComponent(ƒ.ComponentCamera);
+    cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
+    cmpRigidbody.effectRotation = ƒ.Vector3.Y();
+
   }
 
   function update(_event: Event): void {
+
+    characterMovement();
+
     // ƒ.Physics.simulate();  // if physics is included and used
     viewport.draw();
     ƒ.AudioManager.default.update();
   }
+
+  enum ItemType {
+    Star,
+    PowerUp,
+    Lives,
+    AdditionalTime,
+    Empty, // Add Empty as a value
+  }
+
+  let itemTypeArray: ItemType[] = [];
+  itemTypeArray[0] = 0;
+  let itemNumber: number = 1;
+  let previousItem: number = 0;
+  let lastItem: ItemType = ItemType.Empty;
 
   export class Maze {
     private readonly width: number;
@@ -42,9 +69,9 @@ namespace Script {
     private createEmptyGrid(): TileType[][] {
       const grid: TileType[][] = [];
 
-      for (let z = 0; z < this.height; z++) {
+      for (let z = 0; z < this.width; z++) {
         const row: TileType[] = [];
-        for (let x = 0; x < this.width; x++) {
+        for (let x = 0; x < this.height; x++) {
           row.push(TileType.Empty);
         }
         grid.push(row);
@@ -53,22 +80,63 @@ namespace Script {
       return grid;
     }
 
-
-
     public addStarsAndPowerUps1() {
       for (let z = 0; z < this.height; z++) {
         for (let x = 0; x < this.width; x++) {
           if (this.grid[z][x] === TileType.Empty) {
             if (!isCollidingWithLevel1(x, z)) {
               let randomNumber: number = Math.random();
-              if(randomNumber <= 0.005) { //0,5%
-                this.addLives(x, z);
-              } else if (randomNumber <= 0.03) { //2,5%
-                this.addPowerUp(x, z);
-              } else if (randomNumber <= 0.08) { //4,5%
-                this.addAdditionalTime(x, z);
+              let itemType: ItemType;
+
+              if (randomNumber <= 0.01) { // 1%
+                itemType = ItemType.Lives;
+              } else if (randomNumber <= 0.05) { // 4%
+                itemType = ItemType.PowerUp;
+              } else if (randomNumber <= 0.12) { // 7%
+                itemType = ItemType.AdditionalTime;
               } else {
-                this.addStar(x, z);
+                itemType = ItemType.Star;
+              }
+
+              // Checks for Vertical Duplicates
+              previousItem++;
+
+              if (itemNumber >= 17) {
+                if (itemType == itemTypeArray[previousItem]) {
+                  itemType = ItemType.Star;
+                } else {
+                  //console.log("type:" + itemType);
+                }
+              }
+              itemTypeArray[previousItem] = itemType;
+
+              if (previousItem == 16) {
+                previousItem = 0;
+              }
+
+              itemNumber++;
+
+              // Checks for Horizontal Duplicates
+              if (lastItem == itemType) {
+                itemType = ItemType.Star;
+              }
+              lastItem = itemType;
+
+              // Add the item based on the itemType
+              switch (itemType) {
+
+                case ItemType.Star:
+                  this.addStar(x, z);
+                  break;
+                case ItemType.PowerUp:
+                  this.addPowerUp(x, z);
+                  break;
+                case ItemType.Lives:
+                  this.addLives(x, z);
+                  break;
+                case ItemType.AdditionalTime:
+                  this.addAdditionalTime(x, z);
+                  break;
               }
             }
           }
@@ -119,12 +187,10 @@ namespace Script {
     const distance: number = -10; // Adjust this value depending on the size of the cubes or nodes
     //console.log(posA);
     let lengthDifference :number = posA.magnitude - posB.magnitude; // Magnitude = Length of Vector
-    if (lengthDifference <= distance) {
-      return true;
-    } else {
-      return false;
-    }
+    return lengthDifference <= distance;
   }
+
+
 
   enum TileType {
     Ground,
@@ -132,6 +198,23 @@ namespace Script {
     Cube,
     Empty,
   }
-}
 
-//169 stars und anderes müssen eingesammelt werden
+  function characterMovement(): void {
+
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D])) {
+      cmpRigidbody.setVelocity(ƒ.Vector3.X(-5))
+    }
+
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A])) {
+      cmpRigidbody.setVelocity(ƒ.Vector3.X(5))
+    }
+
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W])) {
+      cmpRigidbody.setVelocity(ƒ.Vector3.Z(5))
+    }
+
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S])) {
+      cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5))
+    }
+  }
+}

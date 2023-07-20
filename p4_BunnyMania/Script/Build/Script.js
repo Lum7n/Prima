@@ -74,6 +74,8 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     var Vector3 = FudgeCore.Vector3;
+    let character;
+    let cmpRigidbody;
     let maze;
     ƒ.Debug.info("Main Program Template running!");
     let viewport;
@@ -86,12 +88,31 @@ var Script;
         myMaze.addStarsAndPowerUps1();
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
         // ƒ.Loop.start();  // start the game loop to continuously draw the viewport, update the audiosystem and drive the physics i/a
+        character = viewport.getBranch().getChildrenByName("Character")[0];
+        console.log(character);
+        viewport.camera = character.getChild(0).getComponent(ƒ.ComponentCamera);
+        cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
+        cmpRigidbody.effectRotation = ƒ.Vector3.Y();
     }
     function update(_event) {
+        characterMovement();
         // ƒ.Physics.simulate();  // if physics is included and used
         viewport.draw();
         ƒ.AudioManager.default.update();
     }
+    let ItemType;
+    (function (ItemType) {
+        ItemType[ItemType["Star"] = 0] = "Star";
+        ItemType[ItemType["PowerUp"] = 1] = "PowerUp";
+        ItemType[ItemType["Lives"] = 2] = "Lives";
+        ItemType[ItemType["AdditionalTime"] = 3] = "AdditionalTime";
+        ItemType[ItemType["Empty"] = 4] = "Empty";
+    })(ItemType || (ItemType = {}));
+    let itemTypeArray = [];
+    itemTypeArray[0] = 0;
+    let itemNumber = 1;
+    let previousItem = 0;
+    let lastItem = ItemType.Empty;
     class Maze {
         width;
         height;
@@ -103,9 +124,9 @@ var Script;
         }
         createEmptyGrid() {
             const grid = [];
-            for (let z = 0; z < this.height; z++) {
+            for (let z = 0; z < this.width; z++) {
                 const row = [];
-                for (let x = 0; x < this.width; x++) {
+                for (let x = 0; x < this.height; x++) {
                     row.push(TileType.Empty);
                 }
                 grid.push(row);
@@ -118,17 +139,53 @@ var Script;
                     if (this.grid[z][x] === TileType.Empty) {
                         if (!isCollidingWithLevel1(x, z)) {
                             let randomNumber = Math.random();
-                            if (randomNumber <= 0.005) { //0,5%
-                                this.addLives(x, z);
+                            let itemType;
+                            if (randomNumber <= 0.01) { // 1%
+                                itemType = ItemType.Lives;
                             }
-                            else if (randomNumber <= 0.03) { //2,5%
-                                this.addPowerUp(x, z);
+                            else if (randomNumber <= 0.05) { // 4%
+                                itemType = ItemType.PowerUp;
                             }
-                            else if (randomNumber <= 0.08) { //4,5%
-                                this.addAdditionalTime(x, z);
+                            else if (randomNumber <= 0.12) { // 7%
+                                itemType = ItemType.AdditionalTime;
                             }
                             else {
-                                this.addStar(x, z);
+                                itemType = ItemType.Star;
+                            }
+                            // Checks for Vertical Duplicates
+                            previousItem++;
+                            if (itemNumber >= 17) {
+                                if (itemType == itemTypeArray[previousItem]) {
+                                    itemType = ItemType.Star;
+                                }
+                                else {
+                                    //console.log("type:" + itemType);
+                                }
+                            }
+                            itemTypeArray[previousItem] = itemType;
+                            if (previousItem == 16) {
+                                previousItem = 0;
+                            }
+                            itemNumber++;
+                            // Checks for Horizontal Duplicates
+                            if (lastItem == itemType) {
+                                itemType = ItemType.Star;
+                            }
+                            lastItem = itemType;
+                            // Add the item based on the itemType
+                            switch (itemType) {
+                                case ItemType.Star:
+                                    this.addStar(x, z);
+                                    break;
+                                case ItemType.PowerUp:
+                                    this.addPowerUp(x, z);
+                                    break;
+                                case ItemType.Lives:
+                                    this.addLives(x, z);
+                                    break;
+                                case ItemType.AdditionalTime:
+                                    this.addAdditionalTime(x, z);
+                                    break;
                             }
                         }
                     }
@@ -173,12 +230,7 @@ var Script;
         const distance = -10; // Adjust this value depending on the size of the cubes or nodes
         //console.log(posA);
         let lengthDifference = posA.magnitude - posB.magnitude; // Magnitude = Length of Vector
-        if (lengthDifference <= distance) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return lengthDifference <= distance;
     }
     let TileType;
     (function (TileType) {
@@ -187,8 +239,21 @@ var Script;
         TileType[TileType["Cube"] = 2] = "Cube";
         TileType[TileType["Empty"] = 3] = "Empty";
     })(TileType || (TileType = {}));
+    function characterMovement() {
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D])) {
+            cmpRigidbody.setVelocity(ƒ.Vector3.X(-5));
+        }
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A])) {
+            cmpRigidbody.setVelocity(ƒ.Vector3.X(5));
+        }
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W])) {
+            cmpRigidbody.setVelocity(ƒ.Vector3.Z(5));
+        }
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S])) {
+            cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5));
+        }
+    }
 })(Script || (Script = {}));
-//169 stars und anderes müssen eingesammelt werden
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;
