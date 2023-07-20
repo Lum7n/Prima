@@ -128,7 +128,7 @@
                 {
                   "ƒ.ComponentTransform": {
                     "local": {
-                      "translation": "[8, 0, 7]",
+                      "translation": "[0, 0, 0]",
                       "rotation": "[0, 0, 0]",
                       "scaling": "[1, 1, 1]"
                     },
@@ -188,7 +188,7 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[8.5, 0.5, 0]",
+                                  "translation": "[16, 0.5, 8]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 18]"
                                 },
@@ -244,7 +244,7 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-8.5, 0.5, 0]",
+                                  "translation": "[0, 0.5, 8]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 18]"
                                 },
@@ -300,7 +300,7 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[0, 0.5, 8.5]",
+                                  "translation": "[8, 0.5, 16.5]",
                                   "rotation": "[0, 90, 0]",
                                   "scaling": "[1, 1, 16]"
                                 },
@@ -356,7 +356,7 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[0, 0.5, -8.500001907348633]",
+                                  "translation": "[8, 0.5, -0.5]",
                                   "rotation": "[0, 90, 0]",
                                   "scaling": "[1, 1, 16]"
                                 },
@@ -2815,7 +2815,7 @@
                         "ƒ.ComponentMesh": {
                           "idMesh": "MeshQuad|2023-07-20T00:43:59.355Z|32124",
                           "pivot": {
-                            "translation": "[0, 0, 0]",
+                            "translation": "[8, 0, 8]",
                             "rotation": "[-90, 0, 0]",
                             "scaling": "[16, 16, 0]"
                           },
@@ -2868,7 +2868,7 @@
                   "ƒ.ComponentMesh": {
                     "idMesh": "MeshSphere|2023-07-19T23:22:06.713Z|22535",
                     "pivot": {
-                      "translation": "[0.5, 1.5, -0.5]",
+                      "translation": "[0.5, 1.5, 0.5]",
                       "rotation": "[0, 0, 0]",
                       "scaling": "[1, 1, 1]"
                     },
