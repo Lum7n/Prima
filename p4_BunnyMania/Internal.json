@@ -38,7 +38,7 @@
       "coat": {
         "ƒ.CoatTextured": {
           "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2023-07-20T11:57:20.599Z|61258"
+          "idTexture": "TextureImage|2023-07-20T14:18:41.057Z|72484"
         }
       }
     }
@@ -2341,7 +2341,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0, 0]",
+                                  "translation": "[0, 0.5, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2397,7 +2397,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0, 0]",
+                                  "translation": "[0, 0.5, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 2]"
                                 },
@@ -2421,7 +2421,7 @@
                                 "Component": {
                                   "active": true
                                 },
-                                "idMaterial": "Material|2023-07-19T17:33:56.151Z|74339"
+                                "idMaterial": "Material|2023-07-19T21:51:49.438Z|71275"
                               }
                             }
                           ],
@@ -2941,6 +2941,17 @@
       "Texture": {
         "idResource": "TextureImage|2023-07-20T11:57:20.599Z|61258",
         "name": "Assets\\Bush_little.jpg",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2023-07-20T14:18:41.057Z|72484": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\bush_18x1000.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-07-20T14:18:41.057Z|72484",
+        "name": "Assets\\bush_18x1000.png",
         "mipmap": "CRISP"
       }
     }
