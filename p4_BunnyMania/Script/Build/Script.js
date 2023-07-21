@@ -88,7 +88,6 @@ var Script;
     let graph;
     let maze;
     let character;
-    let characterA;
     let cmpRigidbody;
     let isGrounded = false;
     //@ts-ignore
@@ -105,8 +104,7 @@ var Script;
         console.log(cameraNode);
         let camera = cameraNode.getComponent(ƒ.ComponentCamera);
         console.log(camera);
-        //viewport.camera = camera;
-        viewport.camera = viewport.camera;
+        viewport.camera = camera;
         // Add stars and power-ups to the maze where there are no cubes
         myMaze.addStarsAndPowerUps1();
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
@@ -145,37 +143,41 @@ var Script;
         ƒ.AudioManager.default.update();
     }
     function setUpCharacter() {
-        characterA = graph.getChildrenByName("Character")[0];
-        cmpRigidbody = characterA.getComponent(ƒ.ComponentRigidbody);
+        cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
         cmpRigidbody.mass = 3000;
         cmpRigidbody.friction = 2;
         cmpRigidbody.dampTranslation = 5;
-        cmpRigidbody.addEventListener("ColliderEnteredCollision" /* ƒ.EVENT_PHYSICS.COLLISION_ENTER */, characterCollision);
+        cmpRigidbody.addEventListener("TriggerEnteredCollision" /* ƒ.EVENT_PHYSICS.TRIGGER_ENTER */, bla);
     }
-    function characterCollision(_event) {
-        let vctCollision = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, characterA.mtxWorld.translation);
-        isGrounded = true;
-        characterA.mtxWorld.translate(vctCollision);
-        if (vctCollision.y > 0) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.Y(0));
-        }
-        // let ground: ƒ.Node = maze.getChildrenByName("Ground")[0];
-        // console.log("grou: " + ground);
+    function bla(_event) {
+        console.log(_event.cmpRigidbody.node);
+        let collidedObject = _event.cmpRigidbody.node;
+        let collidedObjectParent = collidedObject.getParent();
+        collidedObjectParent.removeChild(collidedObject);
+        // console.log(tet.node);
     }
+    // function characterCollision(_event: ƒ.EventPhysics): void {
+    //   let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
+    //   isGrounded = true;
+    //   character.mtxWorld.translate(vctCollision);
+    //   if (vctCollision.y > 0) {
+    //     cmpRigidbody.setVelocity(ƒ.Vector3.Y(0));
+    //   }
+    // }
     function characterMovement() {
         const moveSpeed = 5;
         let velocity = ƒ.Vector3.ZERO();
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
-            velocity.x = -moveSpeed;
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
             velocity.x = moveSpeed;
         }
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
+            velocity.x = -moveSpeed;
+        }
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.W])) {
-            velocity.z = moveSpeed;
+            velocity.z = -moveSpeed;
         }
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
-            velocity.z = -moveSpeed;
+            velocity.z = moveSpeed;
         }
         cmpRigidbody.setVelocity(velocity);
     }

@@ -198,7 +198,7 @@
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
                                   "translation": "[0, 0, 0]",
-                                  "rotation": "[0, 90, 0]",
+                                  "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
@@ -279,7 +279,7 @@
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
                                   "translation": "[0, 0, 0]",
-                                  "rotation": "[0, 90, 0]",
+                                  "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
@@ -360,7 +360,7 @@
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
                                   "translation": "[0, 0, 0]",
-                                  "rotation": "[0, 90, 0]",
+                                  "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
@@ -441,7 +441,7 @@
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
                                   "translation": "[0, 0, 0]",
-                                  "rotation": "[0, 90, 0]",
+                                  "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
@@ -545,7 +545,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -577,7 +577,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-5.5, 0, -6.5]",
+                                  "translation": "[-5.5, 0.5, -6.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 4,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -601,9 +626,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -633,7 +658,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-6.5, 0, -6]",
+                                  "translation": "[-6.5, 0.5, -6]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 5,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -657,9 +707,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[4, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -689,7 +739,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-2, 0, -6.5]",
+                                  "translation": "[-2, 0.5, -6.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[4, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 6,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -713,9 +788,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[1.999999761581421, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -745,7 +820,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[1.5, 0, -6]",
+                                  "translation": "[1.5, 0.5, -6]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 7,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -769,9 +869,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[3, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -801,7 +901,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[1.5, 0, -4.5]",
+                                  "translation": "[1.5, 0.5, -4.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[3, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 8,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -825,9 +950,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -857,7 +982,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[4, 0, -6.5]",
+                                  "translation": "[4, 0.5, -6.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 9,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -881,7 +1031,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -913,7 +1063,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[6.5, 0, -6.5]",
+                                  "translation": "[6.5, 0.5, -6.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 10,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -937,9 +1112,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -969,7 +1144,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-4, 0, -4.5]",
+                                  "translation": "[-4, 0.5, -4.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 11,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -993,9 +1193,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[3, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1025,7 +1225,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-5.5, 0, -3.5]",
+                                  "translation": "[-5.5, 0.5, -3.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[3, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 12,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1049,7 +1274,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1081,7 +1306,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-4.5, 0, -2.5]",
+                                  "translation": "[-4.5, 0.5, -2.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 13,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1105,9 +1355,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[4, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1137,7 +1387,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-1.5, 0, -3]",
+                                  "translation": "[-1.5, 0.5, -3]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[4, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 14,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1161,7 +1436,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1193,7 +1468,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-2.5, 0, -2.5]",
+                                  "translation": "[-2.5, 0.5, -2.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 15,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1217,7 +1517,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1249,7 +1549,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-0.5, 0, -2.5]",
+                                  "translation": "[-0.5, 0.5, -2.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 16,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1273,9 +1598,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[3, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1305,7 +1630,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[5.5, 0, -4.5]",
+                                  "translation": "[5.5, 0.5, -4.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[3, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 17,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1329,9 +1679,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1361,7 +1711,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[6.5, 0, -3]",
+                                  "translation": "[6.5, 0.5, -3]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 18,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1385,9 +1760,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[4, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1417,7 +1792,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-5, 0, -0.5]",
+                                  "translation": "[-5, 0.5, -0.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[4, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 19,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1441,7 +1841,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1473,7 +1873,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-6.5, 0, -1.5]",
+                                  "translation": "[-6.5, 0.5, -1.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 20,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1497,8 +1922,8 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
                                   "scaling": "[3, 1, 1]"
                                 },
                                 "Component": {
@@ -1529,7 +1954,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[1.5, 0, -1.5]",
+                                  "translation": "[1.5, 0.5, -1.5]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 21,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1553,7 +2003,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1585,7 +2035,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[0.5, 0, -0.5]",
+                                  "translation": "[0.5, 0.5, -0.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 22,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1609,9 +2084,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1641,7 +2116,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[0, 0, 0.5]",
+                                  "translation": "[0, 0.5, 0.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 23,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1665,9 +2165,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[2, 1, 2]"
+                                  "scaling": "[0.9999998807907104, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1697,7 +2197,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[4, 0, -2]",
+                                  "translation": "[4, 0.5, -2]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[2, 1, 2]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 24,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1721,7 +2246,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1753,7 +2278,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-6.5, 0, 1.5]",
+                                  "translation": "[-6.5, 0.5, 1.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 25,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1777,9 +2327,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[3, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1809,7 +2359,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-3.5, 0, 1.5]",
+                                  "translation": "[-3.5, 0.5, 1.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[3, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 26,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1833,9 +2408,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1865,7 +2440,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[4, 0, 0.5]",
+                                  "translation": "[4, 0.5, 0.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 27,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1889,9 +2489,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -1921,7 +2521,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[3, 0, 1.5]",
+                                  "translation": "[3, 0.5, 1.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 28,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1945,7 +2570,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -1977,7 +2602,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[6.5, 0, -0.5]",
+                                  "translation": "[6.5, 0.5, -0.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 29,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2001,9 +2651,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[4, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2033,7 +2683,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-6.5, 0, 5]",
+                                  "translation": "[-6.5, 0.5, 5]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[4, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 30,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2057,7 +2732,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2089,7 +2764,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-5.5, 0, 6.5]",
+                                  "translation": "[-5.5, 0.5, 6.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 31,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2113,9 +2813,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2145,7 +2845,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-4.5, 0, 4]",
+                                  "translation": "[-4.5, 0.5, 4]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 32,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2169,7 +2894,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2201,7 +2926,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-2.5, 0, 3.5]",
+                                  "translation": "[-2.5, 0.5, 3.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 33,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2225,7 +2975,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2257,7 +3007,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[0.5, 0, 2.5]",
+                                  "translation": "[0.5, 0.5, 2.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 34,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2281,9 +3056,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2313,7 +3088,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-0.5, 0, 3]",
+                                  "translation": "[-0.5, 0.5, 3]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 35,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2337,7 +3137,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2369,7 +3169,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[5.5, 0, 2.5]",
+                                  "translation": "[5.5, 0.5, 2.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 36,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2393,9 +3218,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2425,7 +3250,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[6.5, 0, 2]",
+                                  "translation": "[6.5, 0.5, 2]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 37,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2449,7 +3299,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2481,7 +3331,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[1.5, 0, 4.5]",
+                                  "translation": "[1.5, 0.5, 4.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 38,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2505,7 +3380,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2537,7 +3412,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[2.500000476837158, 0, 3.499999523162842]",
+                                  "translation": "[2.500000476837158, 0.5, 3.499999523162842]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 39,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2561,9 +3461,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2593,7 +3493,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[3.499999523162842, 0, 4]",
+                                  "translation": "[3.499999523162842, 0.5, 4]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 40,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2617,9 +3542,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2649,7 +3574,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[6, 0, 4.5]",
+                                  "translation": "[6, 0.5, 4.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 41,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2673,7 +3623,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2705,7 +3655,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[6.5, 0, 6.5]",
+                                  "translation": "[6.5, 0.5, 6.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 42,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2729,9 +3704,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[4, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2761,7 +3736,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[3, 0, 6.5]",
+                                  "translation": "[3, 0.5, 6.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[4, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 43,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2785,7 +3785,7 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2817,7 +3817,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-3.5, 0, 6.5]",
+                                  "translation": "[-3.5, 0.5, 6.5]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 44,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2841,9 +3866,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2873,7 +3898,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-2.5, 0, 6]",
+                                  "translation": "[-2.5, 0.5, 6]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 45,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -2897,9 +3947,9 @@
                               "ƒ.ComponentMesh": {
                                 "idMesh": "MeshCube|2023-07-19T17:29:58.642Z|29732",
                                 "pivot": {
-                                  "translation": "[0, 0.5, 0]",
-                                  "rotation": "[0, 90, 0]",
-                                  "scaling": "[2, 1, 1]"
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2929,7 +3979,32 @@
                             {
                               "ƒ.ComponentTransform": {
                                 "local": {
-                                  "translation": "[-0.5, 0, 6]",
+                                  "translation": "[-0.5, 0.5, 6]",
+                                  "rotation": "[0, 90, 0]",
+                                  "scaling": "[2, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": [
+                            {
+                              "ƒ.ComponentRigidbody": {
+                                "initialization": "TO_PIVOT",
+                                "friction": 0.2,
+                                "restitution": 0.2,
+                                "mass": 1,
+                                "dampTranslation": 0,
+                                "dampRotation": 0,
+                                "effectGravity": 0,
+                                "typeBody": "STATIC",
+                                "typeCollider": "CUBE",
+                                "isTrigger": false,
+                                "id": 46,
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
@@ -3108,13 +4183,13 @@
                     "dampRotation": 0.1,
                     "effectGravity": 0,
                     "typeBody": "DYNAMIC",
-                    "typeCollider": "CAPSULE",
+                    "typeCollider": "CUBE",
                     "isTrigger": false,
                     "id": 1,
                     "pivot": {
-                      "translation": "[0, 0.4999999403953552, 0]",
+                      "translation": "[0, 0.3100000023841858, 0]",
                       "rotation": "[0, 0, 0]",
-                      "scaling": "[-0.7999999523162842, 0.20000001788139343, 1]"
+                      "scaling": "[0.6000000834465027, 0.6000000238418579, 0.6000000238418579]"
                     },
                     "Component": {
                       "active": true
@@ -3159,7 +4234,7 @@
                         "ƒ.ComponentMesh": {
                           "idMesh": "MeshCube|2023-07-20T20:55:45.174Z|39627",
                           "pivot": {
-                            "translation": "[0, 0.5, 0]",
+                            "translation": "[0, 0.2600000202655792, 0]",
                             "rotation": "[0, 0, 0]",
                             "scaling": "[0.5, 0.5, 0.5]"
                           },
@@ -3225,8 +4300,8 @@
                       {
                         "ƒ.ComponentTransform": {
                           "local": {
-                            "translation": "[0, 5, 5]",
-                            "rotation": "[40, 180, 0]",
+                            "translation": "[0, 6, 5]",
+                            "rotation": "[50, 180, 0]",
                             "scaling": "[1, 1, 1]"
                           },
                           "Component": {
@@ -3277,7 +4352,7 @@
                   "ƒ.ComponentMesh": {
                     "idMesh": "MeshSphere|2023-07-19T23:22:06.713Z|22535",
                     "pivot": {
-                      "translation": "[0, 1.5, 0]",
+                      "translation": "[0, 0, 0]",
                       "rotation": "[0, 0, 0]",
                       "scaling": "[1, 1, 1]"
                     },
@@ -3302,6 +4377,45 @@
                       "active": true
                     },
                     "idMaterial": "Material|2023-07-20T11:29:45.265Z|50756"
+                  }
+                }
+              ],
+              "ComponentTransform": [
+                {
+                  "ƒ.ComponentTransform": {
+                    "local": {
+                      "translation": "[0, 0.30000001192092896, 1.5000001192092896]",
+                      "rotation": "[0, 0, 0]",
+                      "scaling": "[0.5999999642372131, 0.5999999046325684, 0.5999999046325684]"
+                    },
+                    "Component": {
+                      "active": true
+                    }
+                  }
+                }
+              ],
+              "ComponentRigidbody": [
+                {
+                  "ƒ.ComponentRigidbody": {
+                    "initialization": "TO_PIVOT",
+                    "friction": 0.2,
+                    "restitution": 0.2,
+                    "mass": 1,
+                    "dampTranslation": 0,
+                    "dampRotation": 0,
+                    "effectGravity": 0,
+                    "typeBody": "STATIC",
+                    "typeCollider": "SPHERE",
+                    "isTrigger": true,
+                    "id": 47,
+                    "pivot": {
+                      "translation": "[0, 0, 0]",
+                      "rotation": "[0, 0, 0]",
+                      "scaling": "[1.2000000476837158, 1.2000000476837158, 1.2000000476837158]"
+                    },
+                    "Component": {
+                      "active": true
+                    }
                   }
                 }
               ]
