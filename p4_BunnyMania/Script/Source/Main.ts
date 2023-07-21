@@ -108,28 +108,18 @@ namespace Script {
     cmpRigidbody.friction = 2;
     cmpRigidbody.dampTranslation = 5;
 
-    cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, bla);
+    cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, collision);
   }
 
-  function bla(_event: ƒ.EventPhysics): void {
+  function collision(_event: ƒ.EventPhysics): void {
+
     console.log(_event.cmpRigidbody.node);
-    let collidedObject: ƒ.Node = _event.cmpRigidbody.node;
-    let collidedObjectParent: ƒ.Node = collidedObject.getParent();
-    collidedObjectParent.removeChild(collidedObject);
 
-    // console.log(tet.node);
+    let collidedWithObject: ƒ.Node = _event.cmpRigidbody.node;
+    let objectParent: ƒ.Node = collidedWithObject.getParent();
+    objectParent.removeChild(collidedWithObject);
+
   }
-
-  // function characterCollision(_event: ƒ.EventPhysics): void {
-  //   let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
-  //   isGrounded = true;
-  //   character.mtxWorld.translate(vctCollision);
-
-  //   if (vctCollision.y > 0) {
-  //     cmpRigidbody.setVelocity(ƒ.Vector3.Y(0));
-  //   }
-
-  // }
 
   function characterMovement(): void {
 
