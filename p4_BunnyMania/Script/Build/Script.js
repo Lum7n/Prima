@@ -143,7 +143,7 @@ var Script;
         ƒ.AudioManager.default.update();
     }
     function setUpCharacter() {
-        characterA = viewport.getBranch().getChildrenByName("Character")[0];
+        characterA = graph.getChildrenByName("Character")[0];
         cmpRigidbody = characterA.getComponent(ƒ.ComponentRigidbody);
         cmpRigidbody.mass = 5;
         cmpRigidbody.friction = 0.8;

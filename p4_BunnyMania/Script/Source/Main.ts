@@ -105,7 +105,7 @@ namespace Script {
 
   function setUpCharacter(): void {
 
-    characterA = viewport.getBranch().getChildrenByName("Character")[0];
+    characterA = graph.getChildrenByName("Character")[0];
 
     cmpRigidbody = characterA.getComponent(ƒ.ComponentRigidbody);
     cmpRigidbody.mass = 5;
