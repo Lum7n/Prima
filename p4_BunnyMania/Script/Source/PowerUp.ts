@@ -4,7 +4,7 @@ namespace Script {
         static meshSphere: ƒ.MeshSphere = new ƒ.MeshSphere("PowerUp");
         static mtrSphere: ƒ.Material = new ƒ.Material("PowerUp", ƒ.ShaderFlat, new ƒ.CoatRemissive());
 
-        constructor(_position: ƒ.Vector3) {
+        constructor(_position: ƒ.Vector3, _scale: number) {
             super("PowerUp");
             this.addComponent(new ƒ.ComponentMesh(Star.meshSphere));
 
@@ -13,6 +13,8 @@ namespace Script {
             this.addComponent(cmpMaterial);
 
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
+
+            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
         }
     }
 }

@@ -108,8 +108,8 @@ namespace Script {
     characterA = graph.getChildrenByName("Character")[0];
 
     cmpRigidbody = characterA.getComponent(ƒ.ComponentRigidbody);
-    cmpRigidbody.mass = 5;
-    cmpRigidbody.friction = 0.8;
+    cmpRigidbody.mass = 3000;
+    cmpRigidbody.friction = 2;
     cmpRigidbody.dampTranslation = 5;
 
     cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.COLLISION_ENTER, characterCollision);
@@ -120,25 +120,38 @@ namespace Script {
     isGrounded = true;
     characterA.mtxWorld.translate(vctCollision);
 
+    if (vctCollision.y > 0) {
+      cmpRigidbody.setVelocity(ƒ.Vector3.Y(0));
+    }
+
+    // let ground: ƒ.Node = maze.getChildrenByName("Ground")[0];
+    // console.log("grou: " + ground);
+
   }
 
   function characterMovement(): void {
 
+    const moveSpeed: number = 5;
+
+    let velocity: ƒ.Vector3 = ƒ.Vector3.ZERO();
+
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
-      cmpRigidbody.setVelocity(ƒ.Vector3.X(-5))
+      velocity.x = -moveSpeed;
     }
 
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
-      cmpRigidbody.setVelocity(ƒ.Vector3.X(5))
+      velocity.x = moveSpeed;
     }
 
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.W])) {
-      cmpRigidbody.setVelocity(ƒ.Vector3.Z(5))
+      velocity.z = moveSpeed;
     }
 
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
-      cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5))
+      velocity.z = -moveSpeed;
     }
+
+    cmpRigidbody.setVelocity(velocity);
   }
 
   enum ItemType {
@@ -154,6 +167,8 @@ namespace Script {
   let itemNumber: number = 1;
   let previousItem: number = 0;
   let lastItem: ItemType = ItemType.Empty;
+
+  let itemScale: number = 0.5;
 
   export class Maze {
     private readonly width: number;
@@ -245,22 +260,22 @@ namespace Script {
     }
 
     protected addStar(x: number, z: number): void {
-      const star: Star = new Star(new Vector3(x, 0.5, z));
+      const star: Star = new Star(new Vector3(x, 0.5, z), itemScale);
       maze.addChild(star);
     }
 
     protected addPowerUp(x: number, z: number): void {
-      const powerUp: PowerUp = new PowerUp(new Vector3(x, 0.5, z));
+      const powerUp: PowerUp = new PowerUp(new Vector3(x, 0.5, z), itemScale);
       maze.addChild(powerUp);
     }
 
     protected addLives(x: number, z: number): void {
-      const lives: Lives = new Lives(new Vector3(x, 0.5, z));
+      const lives: Lives = new Lives(new Vector3(x, 0.5, z), itemScale);
       maze.addChild(lives);
     }
 
     protected addAdditionalTime(x: number, z: number): void {
-      const additionalTime: AdditionalTime = new AdditionalTime(new Vector3(x, 0.5, z));
+      const additionalTime: AdditionalTime = new AdditionalTime(new Vector3(x, 0.5, z), itemScale);
       maze.addChild(additionalTime);
     }
   }

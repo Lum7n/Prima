@@ -5,13 +5,14 @@ var Script;
     class AdditionalTime extends ƒ.Node {
         static meshSphere = new ƒ.MeshSphere("AdditionalTime");
         static mtrSphere = new ƒ.Material("AdditionalTime", ƒ.ShaderFlat, new ƒ.CoatRemissive());
-        constructor(_position) {
+        constructor(_position, _scale) {
             super("AdditionalTime");
             this.addComponent(new ƒ.ComponentMesh(Script.Star.meshSphere));
             let cmpMaterial = new ƒ.ComponentMaterial(Script.Star.mtrSphere);
             cmpMaterial.clrPrimary = ƒ.Color.CSS("DarkSlateBlue");
             this.addComponent(cmpMaterial);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
+            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
         }
     }
     Script.AdditionalTime = AdditionalTime;
@@ -59,13 +60,14 @@ var Script;
     class Lives extends ƒ.Node {
         static meshSphere = new ƒ.MeshSphere("Lives");
         static mtrSphere = new ƒ.Material("Lives", ƒ.ShaderFlat, new ƒ.CoatRemissive());
-        constructor(_position) {
+        constructor(_position, _scale) {
             super("Lives");
             this.addComponent(new ƒ.ComponentMesh(Script.Star.meshSphere));
             let cmpMaterial = new ƒ.ComponentMaterial(Script.Star.mtrSphere);
             cmpMaterial.clrPrimary = ƒ.Color.CSS("LawnGreen");
             this.addComponent(cmpMaterial);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
+            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
         }
     }
     Script.Lives = Lives;
@@ -145,8 +147,8 @@ var Script;
     function setUpCharacter() {
         characterA = graph.getChildrenByName("Character")[0];
         cmpRigidbody = characterA.getComponent(ƒ.ComponentRigidbody);
-        cmpRigidbody.mass = 5;
-        cmpRigidbody.friction = 0.8;
+        cmpRigidbody.mass = 3000;
+        cmpRigidbody.friction = 2;
         cmpRigidbody.dampTranslation = 5;
         cmpRigidbody.addEventListener("ColliderEnteredCollision" /* ƒ.EVENT_PHYSICS.COLLISION_ENTER */, characterCollision);
     }
@@ -154,20 +156,28 @@ var Script;
         let vctCollision = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, characterA.mtxWorld.translation);
         isGrounded = true;
         characterA.mtxWorld.translate(vctCollision);
+        if (vctCollision.y > 0) {
+            cmpRigidbody.setVelocity(ƒ.Vector3.Y(0));
+        }
+        // let ground: ƒ.Node = maze.getChildrenByName("Ground")[0];
+        // console.log("grou: " + ground);
     }
     function characterMovement() {
+        const moveSpeed = 5;
+        let velocity = ƒ.Vector3.ZERO();
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.X(-5));
+            velocity.x = -moveSpeed;
         }
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.X(5));
+            velocity.x = moveSpeed;
         }
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.W])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.Z(5));
+            velocity.z = moveSpeed;
         }
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5));
+            velocity.z = -moveSpeed;
         }
+        cmpRigidbody.setVelocity(velocity);
     }
     let ItemType;
     (function (ItemType) {
@@ -182,6 +192,7 @@ var Script;
     let itemNumber = 1;
     let previousItem = 0;
     let lastItem = ItemType.Empty;
+    let itemScale = 0.5;
     class Maze {
         width;
         height;
@@ -262,19 +273,19 @@ var Script;
             }
         }
         addStar(x, z) {
-            const star = new Script.Star(new Vector3(x, 0.5, z));
+            const star = new Script.Star(new Vector3(x, 0.5, z), itemScale);
             maze.addChild(star);
         }
         addPowerUp(x, z) {
-            const powerUp = new Script.PowerUp(new Vector3(x, 0.5, z));
+            const powerUp = new Script.PowerUp(new Vector3(x, 0.5, z), itemScale);
             maze.addChild(powerUp);
         }
         addLives(x, z) {
-            const lives = new Script.Lives(new Vector3(x, 0.5, z));
+            const lives = new Script.Lives(new Vector3(x, 0.5, z), itemScale);
             maze.addChild(lives);
         }
         addAdditionalTime(x, z) {
-            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0.5, z));
+            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0.5, z), itemScale);
             maze.addChild(additionalTime);
         }
     }
@@ -308,13 +319,14 @@ var Script;
     class PowerUp extends ƒ.Node {
         static meshSphere = new ƒ.MeshSphere("PowerUp");
         static mtrSphere = new ƒ.Material("PowerUp", ƒ.ShaderFlat, new ƒ.CoatRemissive());
-        constructor(_position) {
+        constructor(_position, _scale) {
             super("PowerUp");
             this.addComponent(new ƒ.ComponentMesh(Script.Star.meshSphere));
             let cmpMaterial = new ƒ.ComponentMaterial(Script.Star.mtrSphere);
             cmpMaterial.clrPrimary = ƒ.Color.CSS("CornflowerBlue");
             this.addComponent(cmpMaterial);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
+            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
         }
     }
     Script.PowerUp = PowerUp;
@@ -325,13 +337,14 @@ var Script;
     class Star extends ƒ.Node {
         static meshSphere = new ƒ.MeshSphere("Star");
         static mtrSphere = new ƒ.Material("Star", ƒ.ShaderFlat, new ƒ.CoatRemissive());
-        constructor(_position) {
+        constructor(_position, _scale) {
             super("Star");
             this.addComponent(new ƒ.ComponentMesh(Star.meshSphere));
             let cmpMaterial = new ƒ.ComponentMaterial(Star.mtrSphere);
             cmpMaterial.clrPrimary = ƒ.Color.CSS("Gold");
             this.addComponent(cmpMaterial);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
+            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
         }
     }
     Script.Star = Star;

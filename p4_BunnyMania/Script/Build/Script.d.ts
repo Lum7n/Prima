@@ -3,7 +3,7 @@ declare namespace Script {
     class AdditionalTime extends ƒ.Node {
         static meshSphere: ƒ.MeshSphere;
         static mtrSphere: ƒ.Material;
-        constructor(_position: ƒ.Vector3);
+        constructor(_position: ƒ.Vector3, _scale: number);
     }
 }
 declare namespace Script {
@@ -20,7 +20,7 @@ declare namespace Script {
     class Lives extends ƒ.Node {
         static meshSphere: ƒ.MeshSphere;
         static mtrSphere: ƒ.Material;
-        constructor(_position: ƒ.Vector3);
+        constructor(_position: ƒ.Vector3, _scale: number);
     }
 }
 declare namespace Script {
@@ -44,7 +44,7 @@ declare namespace Script {
     class PowerUp extends ƒ.Node {
         static meshSphere: ƒ.MeshSphere;
         static mtrSphere: ƒ.Material;
-        constructor(_position: ƒ.Vector3);
+        constructor(_position: ƒ.Vector3, _scale: number);
     }
 }
 declare namespace Script {
@@ -52,6 +52,6 @@ declare namespace Script {
     class Star extends ƒ.Node {
         static meshSphere: ƒ.MeshSphere;
         static mtrSphere: ƒ.Material;
-        constructor(_position: ƒ.Vector3);
+        constructor(_position: ƒ.Vector3, _scale: number);
     }
 }
