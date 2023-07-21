@@ -4149,6 +4149,14 @@
                   },
                   "children": []
                 }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "Items",
+                  "active": true,
+                  "components": {},
+                  "children": []
+                }
               }
             ]
           }
@@ -4341,99 +4349,21 @@
               }
             ]
           }
-        },
-        {
-          "ƒ.Node": {
-            "name": "Star",
-            "active": true,
-            "components": {
-              "ComponentMesh": [
-                {
-                  "ƒ.ComponentMesh": {
-                    "idMesh": "MeshSphere|2023-07-19T23:22:06.713Z|22535",
-                    "pivot": {
-                      "translation": "[0, 0, 0]",
-                      "rotation": "[0, 0, 0]",
-                      "scaling": "[1, 1, 1]"
-                    },
-                    "Component": {
-                      "active": true
-                    }
-                  }
-                }
-              ],
-              "ComponentMaterial": [
-                {
-                  "ƒ.ComponentMaterial": {
-                    "sortForAlpha": false,
-                    "clrPrimary": "[1, 1, 1, 1]",
-                    "clrSecondary": "[1, 1, 1, 1]",
-                    "pivot": {
-                      "translation": "[0, 0]",
-                      "rotation": 0,
-                      "scaling": "[1, 1]"
-                    },
-                    "Component": {
-                      "active": true
-                    },
-                    "idMaterial": "Material|2023-07-20T11:29:45.265Z|50756"
-                  }
-                }
-              ],
-              "ComponentTransform": [
-                {
-                  "ƒ.ComponentTransform": {
-                    "local": {
-                      "translation": "[0, 0.30000001192092896, 1.5000001192092896]",
-                      "rotation": "[0, 0, 0]",
-                      "scaling": "[0.5999999642372131, 0.5999999046325684, 0.5999999046325684]"
-                    },
-                    "Component": {
-                      "active": true
-                    }
-                  }
-                }
-              ],
-              "ComponentRigidbody": [
-                {
-                  "ƒ.ComponentRigidbody": {
-                    "initialization": "TO_PIVOT",
-                    "friction": 0.2,
-                    "restitution": 0.2,
-                    "mass": 1,
-                    "dampTranslation": 0,
-                    "dampRotation": 0,
-                    "effectGravity": 0,
-                    "typeBody": "STATIC",
-                    "typeCollider": "SPHERE",
-                    "isTrigger": true,
-                    "id": 47,
-                    "pivot": {
-                      "translation": "[0, 0, 0]",
-                      "rotation": "[0, 0, 0]",
-                      "scaling": "[1.2000000476837158, 1.2000000476837158, 1.2000000476837158]"
-                    },
-                    "Component": {
-                      "active": true
-                    }
-                  }
-                }
-              ]
-            },
-            "children": []
-          }
-        },
-        {
-          "ƒ.Node": {
-            "name": "PowerUp",
-            "active": true,
-            "components": {},
-            "children": []
-          }
         }
       ],
       "idResource": "Graph|2023-07-19T17:29:49.783Z|51214",
       "type": "Graph"
+    }
+  },
+  "TextureImage|2023-07-21T18:01:37.066Z|77921": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\bush_1000_transparent.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-07-21T18:01:37.066Z|77921",
+        "name": "Textures\\bush_1000_transparent.png",
+        "mipmap": "CRISP"
+      }
     }
   }
 }

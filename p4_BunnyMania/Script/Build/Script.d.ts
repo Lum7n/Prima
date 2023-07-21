@@ -25,14 +25,16 @@ declare namespace Script {
 }
 declare namespace Script {
     import ƒ = FudgeCore;
-    let rabbit: ƒ.Node;
+    let items: ƒ.Node;
+}
+declare namespace Script {
     class Maze {
         private readonly width;
         private readonly height;
         private readonly grid;
         constructor(_width: number, _height: number);
         private createEmptyGrid;
-        addStarsAndPowerUps1(): void;
+        addItems(): void;
         protected addStar(x: number, z: number): void;
         protected addPowerUp(x: number, z: number): void;
         protected addLives(x: number, z: number): void;
