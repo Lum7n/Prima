@@ -7,8 +7,8 @@ namespace Script {
   export let grid: Block[][][] = [];
   let character: ƒ.Node;
   let cmpRigidbody: ƒ.ComponentRigidbody;
-  // let isGrounded: boolean;
-
+  let isGrounded: boolean;
+  let CustomEvent: CustomEvent;
 
   //@ts-ignore
   document.addEventListener("interactiveViewportStarted", start);
@@ -32,7 +32,7 @@ namespace Script {
     viewport.camera = character.getChild(0).getComponent(ƒ.ComponentCamera);
     cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
     cmpRigidbody.effectRotation = ƒ.Vector3.Y();
-    // addEventListener.; // für collision
+    cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.COLLISION_ENTER, characterCollides);
 
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
     ƒ.Loop.start();  // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
@@ -49,14 +49,15 @@ namespace Script {
   }
 
   // function characterCollision(_event: ƒ.EventPhysics): void {
-  //   // let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
-  //   // if (vctCollision.x == 0 && vctCollision)
+  //   let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
+  //   if (vctCollision.x == 0 && vctCollision)
   //   isGrounded = true;
 
   //   //damit das event bei einem Elternteil ankommt, auch wenn sich andere kinder dazwischen schieben, die hirarchie verändert wurde
-  //   let CustomEvent: CustomEvent = new CustomEvent("characterCollided", {bubbles: true, detail: character.mtxWorld.translation})
+
+  //   CustomEvent = new CustomEvent("characterCollided", { bubbles: true, detail: character.mtxWorld.translation })
   //   character.dispatchEvent(CustomEvent);
-  // }
+  }
 
   function createBody(): void {
 
@@ -105,7 +106,7 @@ namespace Script {
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A])) {
       cmpRigidbody.setVelocity(ƒ.Vector3.X(5))
     }
-    
+
     if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W])) {
       cmpRigidbody.setVelocity(ƒ.Vector3.Z(5))
     }

@@ -24,6 +24,8 @@ declare namespace Script {
     }
 }
 declare namespace Script {
+    import ƒ = FudgeCore;
+    let rabbit: ƒ.Node;
     class Maze {
         private readonly width;
         private readonly height;

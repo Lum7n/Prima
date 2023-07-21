@@ -74,31 +74,100 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     var Vector3 = FudgeCore.Vector3;
-    let character;
-    let cmpRigidbody;
-    let maze;
-    ƒ.Debug.info("Main Program Template running!");
+    //import Mesh = FudgeCore.Mesh;
+    let TileType;
+    (function (TileType) {
+        TileType[TileType["Ground"] = 0] = "Ground";
+        TileType[TileType["Border"] = 1] = "Border";
+        TileType[TileType["Cube"] = 2] = "Cube";
+        TileType[TileType["Empty"] = 3] = "Empty";
+    })(TileType || (TileType = {}));
     let viewport;
+    let graph;
+    let maze;
+    let character;
+    let characterA;
+    let cmpRigidbody;
+    let isGrounded = false;
+    //@ts-ignore
     document.addEventListener("interactiveViewportStarted", start);
-    function start(_event) {
+    async function start(_event) {
         viewport = _event.detail;
-        maze = viewport.getBranch().getChildrenByName("Maze")[0];
+        graph = viewport.getBranch();
+        console.log(graph);
+        maze = graph.getChildrenByName("Maze")[0];
         const myMaze = new Maze(16, 16);
+        character = graph.getChildrenByName("Character")[0];
+        console.log(character);
+        let cameraNode = character.getChildrenByName("Camera")[0];
+        console.log(cameraNode);
+        let camera = cameraNode.getComponent(ƒ.ComponentCamera);
+        console.log(camera);
+        //viewport.camera = camera;
+        viewport.camera = viewport.camera;
         // Add stars and power-ups to the maze where there are no cubes
         myMaze.addStarsAndPowerUps1();
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
-        // ƒ.Loop.start();  // start the game loop to continuously draw the viewport, update the audiosystem and drive the physics i/a
-        character = viewport.getBranch().getChildrenByName("Character")[0];
-        console.log(character);
-        viewport.camera = character.getChild(0).getComponent(ƒ.ComponentCamera);
-        cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
-        cmpRigidbody.effectRotation = ƒ.Vector3.Y();
+        ƒ.Loop.start();
+        setUpCharacter();
+        //loadMesh
     }
+    // async function loadMesh(): Promise<void> {
+    //   let meshURL: string = new URL(this.url.toString(), Project.baseURL).toString();
+    //   try {
+    //     const mesh: Mesh = await meshURL.load(meshURL);
+    //     // Create a new node and add the loaded mesh as a component
+    //     const node: ƒ.Node = new ƒ.Node("MeshNode");
+    //     const cmpMesh: ƒ.ComponentMesh = new ƒ.ComponentMesh(mesh);
+    //     // Optionally, you can also create a material and add it to the mesh
+    //     const material: ƒ.Material = new ƒ.Material("Material", ƒ.ShaderFlat, new ƒ.CoatColored(new ƒ.Color(1, 0.5, 0.3, 1)));
+    //     const cmpMaterial: ƒ.ComponentMaterial = new ƒ.ComponentMaterial(material);
+    //     node.addComponent(cmpMaterial);
+    //     // Position and scale the mesh node as needed
+    //     const transform: ƒ.
+    //     node.mtxLocal.translate();
+    //     node.mtxLocal.scale(new Vector3(1, 1, 1));
+    //     rabbit = new ƒ.Node("Rabbit");
+    //     rabbit.addComponent(cmpMesh);
+    //     rabbit.addComponent(cmpMaterial);
+    //     rabbit.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(new Vector3(0, 0, 0))));
+    //     viewport.getBranch().addChild(rabbit);
+    //   } catch (error) {
+    //     console.error("Error", error);
+    //   }
+    //}
     function update(_event) {
         characterMovement();
-        // ƒ.Physics.simulate();  // if physics is included and used
+        ƒ.Physics.simulate(); // if physics is included and used
         viewport.draw();
         ƒ.AudioManager.default.update();
+    }
+    function setUpCharacter() {
+        characterA = viewport.getBranch().getChildrenByName("Character")[0];
+        cmpRigidbody = characterA.getComponent(ƒ.ComponentRigidbody);
+        cmpRigidbody.mass = 5;
+        cmpRigidbody.friction = 0.8;
+        cmpRigidbody.dampTranslation = 5;
+        cmpRigidbody.addEventListener("ColliderEnteredCollision" /* ƒ.EVENT_PHYSICS.COLLISION_ENTER */, characterCollision);
+    }
+    function characterCollision(_event) {
+        let vctCollision = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, characterA.mtxWorld.translation);
+        isGrounded = true;
+        characterA.mtxWorld.translate(vctCollision);
+    }
+    function characterMovement() {
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
+            cmpRigidbody.setVelocity(ƒ.Vector3.X(-5));
+        }
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
+            cmpRigidbody.setVelocity(ƒ.Vector3.X(5));
+        }
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.W])) {
+            cmpRigidbody.setVelocity(ƒ.Vector3.Z(5));
+        }
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
+            cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5));
+        }
     }
     let ItemType;
     (function (ItemType) {
@@ -231,27 +300,6 @@ var Script;
         //console.log(posA);
         let lengthDifference = posA.magnitude - posB.magnitude; // Magnitude = Length of Vector
         return lengthDifference <= distance;
-    }
-    let TileType;
-    (function (TileType) {
-        TileType[TileType["Ground"] = 0] = "Ground";
-        TileType[TileType["Border"] = 1] = "Border";
-        TileType[TileType["Cube"] = 2] = "Cube";
-        TileType[TileType["Empty"] = 3] = "Empty";
-    })(TileType || (TileType = {}));
-    function characterMovement() {
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.X(-5));
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.X(5));
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.Z(5));
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5));
-        }
     }
 })(Script || (Script = {}));
 var Script;

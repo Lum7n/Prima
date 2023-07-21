@@ -65,7 +65,8 @@ var Script;
     Script.grid = [];
     let character;
     let cmpRigidbody;
-    // let isGrounded: boolean;
+    let isGrounded;
+    let CustomEvent;
     //@ts-ignore
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
@@ -83,7 +84,7 @@ var Script;
         Script.viewport.camera = character.getChild(0).getComponent(ƒ.ComponentCamera);
         cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
         cmpRigidbody.effectRotation = ƒ.Vector3.Y();
-        // addEventListener.; // für collision
+        cmpRigidbody.addEventListener("ColliderEnteredCollision" /* ƒ.EVENT_PHYSICS.COLLISION_ENTER */, characterCollides);
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
         ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
     }
@@ -95,60 +96,59 @@ var Script;
         ƒ.AudioManager.default.update();
     }
     // function characterCollision(_event: ƒ.EventPhysics): void {
-    //   // let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
-    //   // if (vctCollision.x == 0 && vctCollision)
+    //   let vctCollision: ƒ.Vector3 = ƒ.Vector3.DIFFERENCE(_event.collisionPoint, character.mtxWorld.translation);
+    //   if (vctCollision.x == 0 && vctCollision)
     //   isGrounded = true;
     //   //damit das event bei einem Elternteil ankommt, auch wenn sich andere kinder dazwischen schieben, die hirarchie verändert wurde
-    //   let CustomEvent: CustomEvent = new CustomEvent("characterCollided", {bubbles: true, detail: character.mtxWorld.translation})
+    //   CustomEvent = new CustomEvent("characterCollided", { bubbles: true, detail: character.mtxWorld.translation })
     //   character.dispatchEvent(CustomEvent);
-    // }
-    function createBody() {
-    }
-    function generateWorld(_width, _height, _depth) {
-        Script.blocks = new ƒ.Node("Blocks");
-        Script.viewport.getBranch().addChild(Script.blocks);
-        // let vctOffset: ƒ.Vector2 = new ƒ.Vector2(Math.floor(_width / 2), Math.floor(_depth / 2));
-        let vctOffset = ƒ.Vector2.ZERO();
-        for (let y = 0; y < _height; y++) {
-            Script.grid[y] = [];
-            for (let z = 0; z < _depth; z++) {
-                Script.grid[y][z] = [];
-                for (let x = 0; x < _width; x++) {
-                    let vctPostion = new ƒ.Vector3(x - vctOffset.x, y, z - vctOffset.y);
-                    let txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
-                    let block = new Script.Block(vctPostion, ƒ.Color.CSS(txtColor));
-                    block.name = vctPostion.toString() + "|" + txtColor;
-                    Script.blocks.addChild(block);
-                    Script.grid[y][z][x] = block;
-                }
+})(Script || (Script = {}));
+function createBody() {
+}
+function generateWorld(_width, _height, _depth) {
+    blocks = new ƒ.Node("Blocks");
+    viewport.getBranch().addChild(blocks);
+    // let vctOffset: ƒ.Vector2 = new ƒ.Vector2(Math.floor(_width / 2), Math.floor(_depth / 2));
+    let vctOffset = ƒ.Vector2.ZERO();
+    for (let y = 0; y < _height; y++) {
+        grid[y] = [];
+        for (let z = 0; z < _depth; z++) {
+            grid[y][z] = [];
+            for (let x = 0; x < _width; x++) {
+                let vctPostion = new ƒ.Vector3(x - vctOffset.x, y, z - vctOffset.y);
+                let txtColor = ƒ.Random.default.getElement(["DarkOliveGreen", "DarkKhaki", "DarkSalmon", "IndianRed", "OliveDrab", "Salmon"]);
+                let block = new Block(vctPostion, ƒ.Color.CSS(txtColor));
+                block.name = vctPostion.toString() + "|" + txtColor;
+                blocks.addChild(block);
+                grid[y][z][x] = block;
             }
         }
-        console.log(Script.grid);
-        // einen Block hinzufügen
-        // let instance1: Block = new Block(ƒ.Vector3.X(1), ƒ.Color.CSS("red"));
-        // console.log(instance);
-        // viewport.getBranch().addChild(instance1);
-        // // Schleife für 3 Blöcke in Richtung X-Achse
-        // for (let index = 0; index < 3; index++) {
-        //   let instance1: Block = new Block(ƒ.Vector3.X(index), ƒ.Color.CSS("red"));
-        //   viewport.getBranch().addChild(instance1);
-        // }
     }
-    function characterMovement() {
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.X(-5));
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.X(5));
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.Z(5));
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S])) {
-            cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5));
-        }
+    console.log(grid);
+    // einen Block hinzufügen
+    // let instance1: Block = new Block(ƒ.Vector3.X(1), ƒ.Color.CSS("red"));
+    // console.log(instance);
+    // viewport.getBranch().addChild(instance1);
+    // // Schleife für 3 Blöcke in Richtung X-Achse
+    // for (let index = 0; index < 3; index++) {
+    //   let instance1: Block = new Block(ƒ.Vector3.X(index), ƒ.Color.CSS("red"));
+    //   viewport.getBranch().addChild(instance1);
+    // }
+}
+function characterMovement() {
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D])) {
+        cmpRigidbody.setVelocity(ƒ.Vector3.X(-5));
     }
-})(Script || (Script = {}));
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A])) {
+        cmpRigidbody.setVelocity(ƒ.Vector3.X(5));
+    }
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W])) {
+        cmpRigidbody.setVelocity(ƒ.Vector3.Z(5));
+    }
+    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S])) {
+        cmpRigidbody.setVelocity(ƒ.Vector3.Z(-5));
+    }
+}
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;

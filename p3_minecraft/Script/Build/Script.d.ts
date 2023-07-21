@@ -21,6 +21,9 @@ declare namespace Script {
     let blocks: ƒ.Node;
     let grid: Block[][][];
 }
+declare function createBody(): void;
+declare function generateWorld(_width: number, _height: number, _depth: number): void;
+declare function characterMovement(): void;
 declare namespace Script {
     function pickByComponent(_event: PointerEvent): void;
     function hitComponent(_event: PointerEvent): void;
