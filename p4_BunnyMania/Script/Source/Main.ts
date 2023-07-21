@@ -5,11 +5,16 @@ namespace Script {
   let viewport: ƒ.Viewport;
   let graph: ƒ.Node;
   let maze: ƒ.Node;
-  export let items: ƒ.Node;
   let character: ƒ.Node;
   let cmpRigidbody: ƒ.ComponentRigidbody;
+  export let items: ƒ.Node;
+  let sound: ƒ.Node;
+
 
   let objectAte: number = 0;
+  let score: number = 0;
+  let starPling: ƒ.ComponentAudio;
+  let itemAte: ƒ.ComponentAudio;
 
   //@ts-ignore
   document.addEventListener("interactiveViewportStarted", start);
@@ -22,7 +27,10 @@ namespace Script {
 
     maze = graph.getChildrenByName("Maze")[0];
     items = maze.getChildrenByName("Items")[0];
+
     const myMaze: Maze = new Maze(16, 16);
+        // Add stars and power-ups to the maze where there are no cubes
+    myMaze.addItems();
 
     character = graph.getChildrenByName("Character")[0];
     console.log(character);
@@ -34,8 +42,9 @@ namespace Script {
 
     viewport.camera = camera;
 
-    // Add stars and power-ups to the maze where there are no cubes
-    myMaze.addItems();
+    sound = graph.getChildrenByName("Audio")[0];
+    starPling = sound.getChildrenByName("Star")[0].getComponent(ƒ.ComponentAudio);
+    itemAte = sound.getChildrenByName("otherItem")[0].getComponent(ƒ.ComponentAudio);
 
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
     ƒ.Loop.start();
@@ -76,6 +85,27 @@ namespace Script {
       window.alert("You Won!");
     }
 
+    switch (collidedWithObject.name) {
+
+      case "Star":
+        score += 50;
+        starPling.play(true);
+        console.log(score);
+        break;
+      case "PowerUp":
+        score += 20;
+        itemAte.play(true)
+        break;
+      case "Lives":
+        window.alert("Live Added!")
+        itemAte.play(true)
+        break;
+      case "AdditionalTime":
+        score += 10;
+        itemAte.play(true)
+        break;
+    }
+
   }
 
   function characterMovement(): void {
@@ -103,5 +133,4 @@ namespace Script {
     cmpRigidbody.setVelocity(velocity);
   }
 
-  
 }

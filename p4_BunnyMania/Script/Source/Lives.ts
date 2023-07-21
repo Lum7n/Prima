@@ -1,14 +1,14 @@
 namespace Script {
     import ƒ = FudgeCore;
     export class Lives extends ƒ.Node {
-        static meshSphere: ƒ.MeshSphere = new ƒ.MeshSphere("Lives");
-        static mtrSphere: ƒ.Material = new ƒ.Material("Lives", ƒ.ShaderFlat, new ƒ.CoatRemissive());
+        static meshCube: ƒ.MeshCube = new ƒ.MeshCube("Lives");
+        static mtrCube: ƒ.Material = new ƒ.Material("Lives", ƒ.ShaderFlat, new ƒ.CoatRemissive());
 
         constructor(_position: ƒ.Vector3, _scale: number) {
             super("Lives");
-            this.addComponent(new ƒ.ComponentMesh(Lives.meshSphere));
+            this.addComponent(new ƒ.ComponentMesh(Lives.meshCube));
 
-            let cmpMaterial: ƒ.ComponentMaterial = new ƒ.ComponentMaterial(Lives.mtrSphere);
+            let cmpMaterial: ƒ.ComponentMaterial = new ƒ.ComponentMaterial(Lives.mtrCube);
             cmpMaterial.clrPrimary = ƒ.Color.CSS("LawnGreen");
             this.addComponent(cmpMaterial);
 

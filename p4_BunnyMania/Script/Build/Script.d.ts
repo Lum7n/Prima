@@ -1,8 +1,8 @@
 declare namespace Script {
     import ƒ = FudgeCore;
     class AdditionalTime extends ƒ.Node {
-        static meshSphere: ƒ.MeshSphere;
-        static mtrSphere: ƒ.Material;
+        static meshPyramid: ƒ.MeshPyramid;
+        static mtrPyramid: ƒ.Material;
         constructor(_position: ƒ.Vector3, _scale: number);
     }
 }
@@ -18,8 +18,8 @@ declare namespace Script {
 declare namespace Script {
     import ƒ = FudgeCore;
     class Lives extends ƒ.Node {
-        static meshSphere: ƒ.MeshSphere;
-        static mtrSphere: ƒ.Material;
+        static meshCube: ƒ.MeshCube;
+        static mtrCube: ƒ.Material;
         constructor(_position: ƒ.Vector3, _scale: number);
     }
 }
@@ -44,8 +44,8 @@ declare namespace Script {
 declare namespace Script {
     import ƒ = FudgeCore;
     class PowerUp extends ƒ.Node {
-        static meshSphere: ƒ.MeshSphere;
-        static mtrSphere: ƒ.Material;
+        static meshTorus: ƒ.MeshTorus;
+        static mtrTorus: ƒ.Material;
         constructor(_position: ƒ.Vector3, _scale: number);
     }
 }
@@ -56,4 +56,6 @@ declare namespace Script {
         static mtrSphere: ƒ.Material;
         constructor(_position: ƒ.Vector3, _scale: number);
     }
+}
+declare namespace Script {
 }

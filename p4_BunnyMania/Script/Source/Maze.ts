@@ -104,7 +104,6 @@ namespace Script {
                                 break;
                             case ItemType.AdditionalTime:
                                 this.addAdditionalTime(x, z);
-                                console.log(this);
                                 break;
                         }
                     }

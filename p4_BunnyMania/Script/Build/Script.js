@@ -3,12 +3,12 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     class AdditionalTime extends ƒ.Node {
-        static meshSphere = new ƒ.MeshSphere("AdditionalTime");
-        static mtrSphere = new ƒ.Material("AdditionalTime", ƒ.ShaderFlat, new ƒ.CoatRemissive());
+        static meshPyramid = new ƒ.MeshPyramid("AdditionalTime");
+        static mtrPyramid = new ƒ.Material("AdditionalTime", ƒ.ShaderFlat, new ƒ.CoatRemissive());
         constructor(_position, _scale) {
             super("AdditionalTime");
-            this.addComponent(new ƒ.ComponentMesh(AdditionalTime.meshSphere));
-            let cmpMaterial = new ƒ.ComponentMaterial(AdditionalTime.mtrSphere);
+            this.addComponent(new ƒ.ComponentMesh(AdditionalTime.meshPyramid));
+            let cmpMaterial = new ƒ.ComponentMaterial(AdditionalTime.mtrPyramid);
             cmpMaterial.clrPrimary = ƒ.Color.CSS("DarkSlateBlue");
             this.addComponent(cmpMaterial);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
@@ -61,12 +61,12 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     class Lives extends ƒ.Node {
-        static meshSphere = new ƒ.MeshSphere("Lives");
-        static mtrSphere = new ƒ.Material("Lives", ƒ.ShaderFlat, new ƒ.CoatRemissive());
+        static meshCube = new ƒ.MeshCube("Lives");
+        static mtrCube = new ƒ.Material("Lives", ƒ.ShaderFlat, new ƒ.CoatRemissive());
         constructor(_position, _scale) {
             super("Lives");
-            this.addComponent(new ƒ.ComponentMesh(Lives.meshSphere));
-            let cmpMaterial = new ƒ.ComponentMaterial(Lives.mtrSphere);
+            this.addComponent(new ƒ.ComponentMesh(Lives.meshCube));
+            let cmpMaterial = new ƒ.ComponentMaterial(Lives.mtrCube);
             cmpMaterial.clrPrimary = ƒ.Color.CSS("LawnGreen");
             this.addComponent(cmpMaterial);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
@@ -86,7 +86,11 @@ var Script;
     let maze;
     let character;
     let cmpRigidbody;
+    let sound;
     let objectAte = 0;
+    let score = 0;
+    let starPling;
+    let itemAte;
     //@ts-ignore
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
@@ -96,6 +100,8 @@ var Script;
         maze = graph.getChildrenByName("Maze")[0];
         Script.items = maze.getChildrenByName("Items")[0];
         const myMaze = new Script.Maze(16, 16);
+        // Add stars and power-ups to the maze where there are no cubes
+        myMaze.addItems();
         character = graph.getChildrenByName("Character")[0];
         console.log(character);
         let cameraNode = character.getChildrenByName("Camera")[0];
@@ -103,8 +109,9 @@ var Script;
         let camera = cameraNode.getComponent(ƒ.ComponentCamera);
         console.log(camera);
         viewport.camera = camera;
-        // Add stars and power-ups to the maze where there are no cubes
-        myMaze.addItems();
+        sound = graph.getChildrenByName("Audio")[0];
+        starPling = sound.getChildrenByName("Star")[0].getComponent(ƒ.ComponentAudio);
+        itemAte = sound.getChildrenByName("otherItem")[0].getComponent(ƒ.ComponentAudio);
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
         ƒ.Loop.start();
         setUpCharacter();
@@ -131,6 +138,25 @@ var Script;
         console.log(objectAte);
         if (objectAte == 169) {
             window.alert("You Won!");
+        }
+        switch (collidedWithObject.name) {
+            case "Star":
+                score += 50;
+                starPling.play(true);
+                console.log(score);
+                break;
+            case "PowerUp":
+                score += 20;
+                itemAte.play(true);
+                break;
+            case "Lives":
+                window.alert("Live Added!");
+                itemAte.play(true);
+                break;
+            case "AdditionalTime":
+                score += 10;
+                itemAte.play(true);
+                break;
         }
     }
     function characterMovement() {
@@ -246,7 +272,6 @@ var Script;
                                 break;
                             case ItemType.AdditionalTime:
                                 this.addAdditionalTime(x, z);
-                                console.log(this);
                                 break;
                         }
                     }
@@ -276,15 +301,17 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     class PowerUp extends ƒ.Node {
-        static meshSphere = new ƒ.MeshSphere("PowerUp");
-        static mtrSphere = new ƒ.Material("PowerUp", ƒ.ShaderFlat, new ƒ.CoatRemissive());
+        static meshTorus = new ƒ.MeshTorus("PowerUp");
+        static mtrTorus = new ƒ.Material("PowerUp", ƒ.ShaderFlat, new ƒ.CoatRemissive());
         constructor(_position, _scale) {
             super("PowerUp");
-            this.addComponent(new ƒ.ComponentMesh(PowerUp.meshSphere));
-            let cmpMaterial = new ƒ.ComponentMaterial(PowerUp.mtrSphere);
+            this.addComponent(new ƒ.ComponentMesh(PowerUp.meshTorus));
+            let cmpMaterial = new ƒ.ComponentMaterial(PowerUp.mtrTorus);
             cmpMaterial.clrPrimary = ƒ.Color.CSS("CornflowerBlue");
             this.addComponent(cmpMaterial);
-            this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
+            let cmpTransform = new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position));
+            cmpTransform.mtxLocal.rotateX(90, false);
+            this.addComponent(cmpTransform);
             this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;

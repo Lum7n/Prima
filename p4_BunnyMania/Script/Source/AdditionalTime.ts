@@ -2,14 +2,14 @@ namespace Script {
     import ƒ = FudgeCore;
 
     export class AdditionalTime extends ƒ.Node {
-        static meshSphere: ƒ.MeshSphere = new ƒ.MeshSphere("AdditionalTime");
-        static mtrSphere: ƒ.Material = new ƒ.Material("AdditionalTime", ƒ.ShaderFlat, new ƒ.CoatRemissive());
+        static meshPyramid: ƒ.MeshPyramid = new ƒ.MeshPyramid("AdditionalTime");
+        static mtrPyramid: ƒ.Material = new ƒ.Material("AdditionalTime", ƒ.ShaderFlat, new ƒ.CoatRemissive());
 
         constructor(_position: ƒ.Vector3, _scale: number) {
             super("AdditionalTime");
-            this.addComponent(new ƒ.ComponentMesh(AdditionalTime.meshSphere));
+            this.addComponent(new ƒ.ComponentMesh(AdditionalTime.meshPyramid));
 
-            let cmpMaterial: ƒ.ComponentMaterial = new ƒ.ComponentMaterial(AdditionalTime.mtrSphere);
+            let cmpMaterial: ƒ.ComponentMaterial = new ƒ.ComponentMaterial(AdditionalTime.mtrPyramid);
             cmpMaterial.clrPrimary = ƒ.Color.CSS("DarkSlateBlue");
             this.addComponent(cmpMaterial);
 
