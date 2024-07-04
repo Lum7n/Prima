@@ -97,7 +97,7 @@
   "MeshCube|2023-07-20T20:55:45.174Z|39627": {
     "ƒ.MeshCube": {
       "idResource": "MeshCube|2023-07-20T20:55:45.174Z|39627",
-      "name": "Character",
+      "name": "MeshCube",
       "type": "MeshCube"
     }
   },
@@ -433,7 +433,7 @@
         {
           "ƒ.Node": {
             "name": "Maze",
-            "active": true,
+            "active": false,
             "components": {
               "ComponentTransform": [
                 {
@@ -4570,7 +4570,7 @@
                       {
                         "ƒ.ComponentAnimator": {
                           "Component": {
-                            "active": true
+                            "active": false
                           },
                           "idAnimation": "Animation|2023-07-21T22:12:21.329Z|67912",
                           "playmode": "loop",
@@ -4627,7 +4627,7 @@
                     },
                     {
                       "ƒ.Node": {
-                        "name": "RightEar",
+                        "name": "EarRight",
                         "active": true,
                         "components": {
                           "ComponentMesh": [
@@ -4669,7 +4669,7 @@
                     },
                     {
                       "ƒ.Node": {
-                        "name": "LeftEar",
+                        "name": "EarLeft",
                         "active": true,
                         "components": {
                           "ComponentMesh": [
@@ -4702,6 +4702,132 @@
                                   "active": true
                                 },
                                 "idMaterial": "Material|2023-07-20T20:36:12.995Z|40632"
+                              }
+                            }
+                          ]
+                        },
+                        "children": []
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "Tuft",
+                        "active": true,
+                        "components": {
+                          "ComponentMesh": [
+                            {
+                              "ƒ.ComponentMesh": {
+                                "idMesh": "MeshCube|2023-07-20T20:55:45.174Z|39627",
+                                "pivot": {
+                                  "translation": "[0, 0.11999999731779099, -0.32999998331069946]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[0.14000000059604645, 0.1600000113248825, 0.11999999731779099]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentMaterial": [
+                            {
+                              "ƒ.ComponentMaterial": {
+                                "sortForAlpha": false,
+                                "clrPrimary": "[1, 1, 1, 1]",
+                                "clrSecondary": "[1, 1, 1, 1]",
+                                "pivot": {
+                                  "translation": "[0, 0]",
+                                  "rotation": 0,
+                                  "scaling": "[1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                },
+                                "idMaterial": "Material|2024-07-04T15:29:16.812Z|96310"
+                              }
+                            }
+                          ]
+                        },
+                        "children": []
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "EyeRight",
+                        "active": true,
+                        "components": {
+                          "ComponentMesh": [
+                            {
+                              "ƒ.ComponentMesh": {
+                                "idMesh": "MeshCube|2023-07-20T20:55:45.174Z|39627",
+                                "pivot": {
+                                  "translation": "[0.11999999731779099, 0.34999996423721313, 0.17000000178813934]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[0.10999999940395355, 0.12999999523162842, 0.20000003278255463]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentMaterial": [
+                            {
+                              "ƒ.ComponentMaterial": {
+                                "sortForAlpha": false,
+                                "clrPrimary": "[1, 1, 1, 1]",
+                                "clrSecondary": "[1, 1, 1, 1]",
+                                "pivot": {
+                                  "translation": "[0, 0]",
+                                  "rotation": 0,
+                                  "scaling": "[1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                },
+                                "idMaterial": "Material|2024-07-04T15:29:16.812Z|96310"
+                              }
+                            }
+                          ]
+                        },
+                        "children": []
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "EyeLeft",
+                        "active": true,
+                        "components": {
+                          "ComponentMesh": [
+                            {
+                              "ƒ.ComponentMesh": {
+                                "idMesh": "MeshCube|2023-07-20T20:55:45.174Z|39627",
+                                "pivot": {
+                                  "translation": "[-0.11999999731779099, 0.34999996423721313, 0.16999998688697815]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[0.10999999940395355, 0.12999999523162842, 0.20000003278255463]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentMaterial": [
+                            {
+                              "ƒ.ComponentMaterial": {
+                                "sortForAlpha": false,
+                                "clrPrimary": "[1, 1, 1, 1]",
+                                "clrSecondary": "[1, 1, 1, 1]",
+                                "pivot": {
+                                  "translation": "[0, 0]",
+                                  "rotation": 0,
+                                  "scaling": "[1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                },
+                                "idMaterial": "Material|2024-07-04T15:29:16.812Z|96310"
                               }
                             }
                           ]
@@ -4850,6 +4976,20 @@
         "idResource": "TextureImage|2023-07-21T18:01:37.066Z|77921",
         "name": "Textures\\bush_1000_transparent.png",
         "mipmap": "CRISP"
+      }
+    }
+  },
+  "Material|2024-07-04T15:29:16.812Z|96310": {
+    "ƒ.Material": {
+      "name": "Rabbit-ShaderFlat",
+      "idResource": "Material|2024-07-04T15:29:16.812Z|96310",
+      "shader": "ShaderFlat",
+      "coat": {
+        "ƒ.CoatRemissive": {
+          "color": "[0.8352941176470589, 0.7372549019607844, 0.6235294117647059, 1]",
+          "diffuse": 1,
+          "specular": 0
+        }
       }
     }
   }
