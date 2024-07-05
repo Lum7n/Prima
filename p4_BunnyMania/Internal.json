@@ -2,7 +2,7 @@
   "MeshCube|2023-07-19T17:29:58.642Z|29732": {
     "ƒ.MeshCube": {
       "idResource": "MeshCube|2023-07-19T17:29:58.642Z|29732",
-      "name": "Cube",
+      "name": "Border-Bush-Cube",
       "type": "MeshCube"
     }
   },
@@ -25,21 +25,8 @@
       "type": "TextureImage",
       "Texture": {
         "idResource": "TextureImage|2023-07-20T18:34:27.466Z|08056",
-        "name": "Textures\\bush_1000.png",
+        "name": "bush-Texture",
         "mipmap": "CRISP"
-      }
-    }
-  },
-  "Material|2023-07-19T17:41:53.987Z|93034": {
-    "ƒ.Material": {
-      "name": "Ground-ShaderLitTextured",
-      "idResource": "Material|2023-07-19T17:41:53.987Z|93034",
-      "shader": "ShaderLitTextured",
-      "coat": {
-        "ƒ.CoatTextured": {
-          "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2023-07-20T18:34:34.290Z|05298"
-        }
       }
     }
   },
@@ -49,7 +36,7 @@
       "type": "TextureImage",
       "Texture": {
         "idResource": "TextureImage|2023-07-20T18:34:34.290Z|05298",
-        "name": "Textures\\concrete2000.png",
+        "name": "concrete-Texture",
         "mipmap": "CRISP"
       }
     }
@@ -97,7 +84,7 @@
   "MeshCube|2023-07-20T20:55:45.174Z|39627": {
     "ƒ.MeshCube": {
       "idResource": "MeshCube|2023-07-20T20:55:45.174Z|39627",
-      "name": "MeshCube",
+      "name": "Rabbit-Cube",
       "type": "MeshCube"
     }
   },
@@ -122,7 +109,7 @@
       "type": "TextureImage",
       "Texture": {
         "idResource": "TextureImage|2023-07-20T22:06:15.798Z|31398",
-        "name": "Textures\\rabbit.png",
+        "name": "rabbit-Texture",
         "mipmap": "CRISP"
       }
     }
@@ -130,13 +117,13 @@
   "MeshCube|2023-07-21T00:13:49.744Z|51193": {
     "ƒ.MeshCube": {
       "idResource": "MeshCube|2023-07-21T00:13:49.744Z|51193",
-      "name": "MeshCube",
+      "name": "Ground-Cube",
       "type": "MeshCube"
     }
   },
   "Material|2023-07-21T20:31:33.724Z|54110": {
     "ƒ.Material": {
-      "name": "ShaderFlatTextured",
+      "name": "Bush-ShaderFlatTextured",
       "idResource": "Material|2023-07-21T20:31:33.724Z|54110",
       "shader": "ShaderFlatTextured",
       "coat": {
@@ -151,13 +138,13 @@
   },
   "Material|2023-07-21T20:32:59.380Z|29853": {
     "ƒ.Material": {
-      "name": "ShaderFlatTextured",
+      "name": "Ground-ShaderFlatTextured",
       "idResource": "Material|2023-07-21T20:32:59.380Z|29853",
       "shader": "ShaderFlatTextured",
       "coat": {
         "ƒ.CoatRemissiveTextured": {
           "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2024-07-05T14:11:04.725Z|87420",
+          "idTexture": "TextureImage|2024-07-05T16:13:58.899Z|34021",
           "diffuse": 1,
           "specular": 0
         }
@@ -334,7 +321,7 @@
       "type": "TextureImage",
       "Texture": {
         "idResource": "TextureImage|2023-07-21T22:23:15.359Z|19681",
-        "name": "Assets\\Textures\\torus.png",
+        "name": "torus-Texture",
         "mipmap": "CRISP"
       }
     }
@@ -4329,12 +4316,12 @@
                       {
                         "ƒ.ComponentMaterial": {
                           "sortForAlpha": false,
-                          "clrPrimary": "[1, 1, 1, 0.79]",
+                          "clrPrimary": "[0.9254901960784314, 0.8980392156862745, 0.8745098039215686, 1]",
                           "clrSecondary": "[1, 1, 1, 1]",
                           "pivot": {
                             "translation": "[0, 0]",
                             "rotation": 0,
-                            "scaling": "[1, 1]"
+                            "scaling": "[3, 3]"
                           },
                           "Component": {
                             "active": true
@@ -4605,7 +4592,7 @@
                           "ComponentMesh": [
                             {
                               "ƒ.ComponentMesh": {
-                                "idMesh": "MeshCube|2023-07-21T00:13:49.744Z|51193",
+                                "idMesh": "MeshCube|2023-07-20T20:55:45.174Z|39627",
                                 "pivot": {
                                   "translation": "[0, 0.25999999046325684, 0]",
                                   "rotation": "[0, 0, 0]",
@@ -4647,7 +4634,7 @@
                           "ComponentMesh": [
                             {
                               "ƒ.ComponentMesh": {
-                                "idMesh": "MeshCube|2023-07-21T00:13:49.744Z|51193",
+                                "idMesh": "MeshCube|2023-07-20T20:55:45.174Z|39627",
                                 "pivot": {
                                   "translation": "[0.11999999731779099, 0.5, 0.11999999731779099]",
                                   "rotation": "[-2.255385160446167, 0, 0]",
@@ -4689,7 +4676,7 @@
                           "ComponentMesh": [
                             {
                               "ƒ.ComponentMesh": {
-                                "idMesh": "MeshCube|2023-07-21T00:13:49.744Z|51193",
+                                "idMesh": "MeshCube|2023-07-20T20:55:45.174Z|39627",
                                 "pivot": {
                                   "translation": "[-0.11999999731779099, 0.5000000596046448, 0.11999999731779099]",
                                   "rotation": "[2.255385160446167, 0, 0]",
@@ -5030,29 +5017,73 @@
       "type": "TextureImage",
       "Texture": {
         "idResource": "TextureImage|2023-07-21T18:01:37.066Z|77921",
-        "name": "Textures\\bush_1000_transparent.png",
+        "name": "bush-transparent-Texture",
         "mipmap": "CRISP"
       }
     }
   },
-  "TextureImage|2024-07-05T14:11:04.725Z|87420": {
+  "TextureImage|2024-07-05T14:23:16.271Z|33334": {
     "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\ground_2000.png",
+      "url": "Assets\\Textures\\rock2000x4.png",
       "type": "TextureImage",
       "Texture": {
-        "idResource": "TextureImage|2024-07-05T14:11:04.725Z|87420",
-        "name": "Assets\\Textures\\ground_2000.png",
+        "idResource": "TextureImage|2024-07-05T14:23:16.271Z|33334",
+        "name": "rock-Texture",
         "mipmap": "CRISP"
       }
     }
   },
-  "TextureImage|2024-07-05T14:11:30.158Z|58210": {
+  "TextureImage|2024-07-05T14:41:32.387Z|46679": {
     "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000.png",
+      "url": "Assets\\Textures\\rock2000x4_oil.png",
       "type": "TextureImage",
       "Texture": {
-        "idResource": "TextureImage|2024-07-05T14:11:30.158Z|58210",
-        "name": "Assets\\Textures\\rock2000.png",
+        "idResource": "TextureImage|2024-07-05T14:41:32.387Z|46679",
+        "name": "oil-rock-Texture",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2024-07-05T15:34:48.509Z|04207": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\rock2000x4_oil3.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-05T15:34:48.509Z|04207",
+        "name": "Assets\\Textures\\rock2000x4_oil3.png",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2024-07-05T16:03:56.500Z|38271": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\rock2000x4_cubism4.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-05T16:03:56.500Z|38271",
+        "name": "Assets\\Textures\\rock2000x4_cubism4.png",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2024-07-05T16:03:58.846Z|40883": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\rock2000x4_oil4.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-05T16:03:58.846Z|40883",
+        "name": "Assets\\Textures\\rock2000x4_oil4.png",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2024-07-05T16:13:58.899Z|34021": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\rock2000x4_oil5.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-05T16:13:58.899Z|34021",
+        "name": "Assets\\Textures\\rock2000x4_oil5.png",
         "mipmap": "CRISP"
       }
     }
