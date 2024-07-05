@@ -157,7 +157,7 @@
       "coat": {
         "ƒ.CoatRemissiveTextured": {
           "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2023-07-20T18:34:34.290Z|05298",
+          "idTexture": "TextureImage|2024-07-05T14:11:04.725Z|87420",
           "diffuse": 1,
           "specular": 0
         }
@@ -4584,7 +4584,7 @@
                       {
                         "ƒ.ComponentAnimator": {
                           "Component": {
-                            "active": false
+                            "active": true
                           },
                           "idAnimation": "Animation|2023-07-21T22:12:21.329Z|67912",
                           "playmode": "loop",
@@ -5031,6 +5031,28 @@
       "Texture": {
         "idResource": "TextureImage|2023-07-21T18:01:37.066Z|77921",
         "name": "Textures\\bush_1000_transparent.png",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2024-07-05T14:11:04.725Z|87420": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\ground_2000.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-05T14:11:04.725Z|87420",
+        "name": "Assets\\Textures\\ground_2000.png",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2024-07-05T14:11:30.158Z|58210": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\rock2000.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-05T14:11:30.158Z|58210",
+        "name": "Assets\\Textures\\rock2000.png",
         "mipmap": "CRISP"
       }
     }
