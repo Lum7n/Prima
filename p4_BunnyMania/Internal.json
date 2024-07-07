@@ -144,7 +144,7 @@
       "coat": {
         "ƒ.CoatRemissiveTextured": {
           "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2024-07-05T16:13:58.899Z|34021",
+          "idTexture": "TextureImage|2024-07-05T16:37:34.148Z|58810",
           "diffuse": 1,
           "specular": 0
         }
@@ -5077,13 +5077,13 @@
       }
     }
   },
-  "TextureImage|2024-07-05T16:13:58.899Z|34021": {
+  "TextureImage|2024-07-05T16:37:34.148Z|58810": {
     "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000x4_oil5.png",
+      "url": "Assets\\Textures\\rock2000x4_oil6.png",
       "type": "TextureImage",
       "Texture": {
-        "idResource": "TextureImage|2024-07-05T16:13:58.899Z|34021",
-        "name": "Assets\\Textures\\rock2000x4_oil5.png",
+        "idResource": "TextureImage|2024-07-05T16:37:34.148Z|58810",
+        "name": "Assets\\Textures\\rock2000x4_oil6.png",
         "mipmap": "CRISP"
       }
     }
