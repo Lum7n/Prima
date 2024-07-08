@@ -8,24 +8,24 @@
   },
   "Material|2023-07-19T17:33:56.151Z|74339": {
     "ƒ.Material": {
-      "name": "Cube-ShaderLitTextured",
+      "name": "Bush-ShaderLitTextured",
       "idResource": "Material|2023-07-19T17:33:56.151Z|74339",
       "shader": "ShaderLitTextured",
       "coat": {
         "ƒ.CoatTextured": {
           "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2023-07-20T18:34:27.466Z|08056"
+          "idTexture": "TextureImage|2024-07-08T17:03:37.369Z|23184"
         }
       }
     }
   },
-  "TextureImage|2023-07-20T18:34:27.466Z|08056": {
+  "TextureImage|2024-07-08T17:03:37.369Z|23184": {
     "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\bush_1000.png",
+      "url": "Assets\\Textures\\bush_1000_oil2.png",
       "type": "TextureImage",
       "Texture": {
-        "idResource": "TextureImage|2023-07-20T18:34:27.466Z|08056",
-        "name": "bush-Texture",
+        "idResource": "TextureImage|2024-07-08T17:03:37.369Z|23184",
+        "name": "bush-oil2-Texture",
         "mipmap": "CRISP"
       }
     }
@@ -53,19 +53,6 @@
       "coat": {
         "ƒ.CoatTextured": {
           "color": "[1, 1, 1, 1]"
-        }
-      }
-    }
-  },
-  "Material|2023-07-20T14:53:09.376Z|34289": {
-    "ƒ.Material": {
-      "name": "Border-ShaderLitTextured",
-      "idResource": "Material|2023-07-20T14:53:09.376Z|34289",
-      "shader": "ShaderLitTextured",
-      "coat": {
-        "ƒ.CoatTextured": {
-          "color": "[0.7686274509803922, 0.7686274509803922, 0.7686274509803922, 1]",
-          "idTexture": "TextureImage|2023-07-20T18:34:27.466Z|08056"
         }
       }
     }
@@ -112,16 +99,27 @@
   },
   "Material|2023-07-21T20:31:33.724Z|54110": {
     "ƒ.Material": {
-      "name": "Bush-ShaderFlatTextured",
+      "name": "BorderBush-ShaderFlatTextured",
       "idResource": "Material|2023-07-21T20:31:33.724Z|54110",
       "shader": "ShaderFlatTextured",
       "coat": {
         "ƒ.CoatRemissiveTextured": {
           "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2023-07-20T18:34:27.466Z|08056",
+          "idTexture": "TextureImage|2024-07-08T16:43:29.489Z|88953",
           "diffuse": 1,
           "specular": 0
         }
+      }
+    }
+  },
+  "TextureImage|2024-07-08T16:43:29.489Z|88953": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\bush_1000_oil1.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-08T16:43:29.489Z|88953",
+        "name": "bush-oil1-Texture",
+        "mipmap": "CRISP"
       }
     }
   },
@@ -137,6 +135,17 @@
           "diffuse": 1,
           "specular": 0
         }
+      }
+    }
+  },
+  "TextureImage|2024-07-08T16:34:48.822Z|76943": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\rock2000x4_oil2.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-08T16:34:48.822Z|76943",
+        "name": "ground-rock-oil-Texture",
+        "mipmap": "CRISP"
       }
     }
   },
@@ -5007,17 +5016,6 @@
       "Texture": {
         "idResource": "TextureImage|2023-07-21T18:01:37.066Z|77921",
         "name": "bush-transparent-Texture",
-        "mipmap": "CRISP"
-      }
-    }
-  },
-  "TextureImage|2024-07-08T16:34:48.822Z|76943": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000x4_oil2.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2024-07-08T16:34:48.822Z|76943",
-        "name": "ground-rock-oil-Texture",
         "mipmap": "CRISP"
       }
     }
