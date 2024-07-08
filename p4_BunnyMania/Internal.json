@@ -151,6 +151,17 @@
       }
     }
   },
+  "TextureImage|2024-07-05T16:37:34.148Z|58810": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\rock2000x4_oil6.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-05T16:37:34.148Z|58810",
+        "name": "Assets\\Textures\\rock2000x4_oil6.png",
+        "mipmap": "CRISP"
+      }
+    }
+  },
   "Audio|2023-07-21T20:56:26.124Z|01386": {
     "ƒ.Audio": {
       "url": "Assets\\Sounds\\Star_pling.wav",
@@ -5077,12 +5088,12 @@
       }
     }
   },
-  "TextureImage|2024-07-05T16:37:34.148Z|58810": {
+  "TextureImage|2024-07-08T15:36:13.526Z|82461": {
     "ƒ.TextureImage": {
       "url": "Assets\\Textures\\rock2000x4_oil6.png",
       "type": "TextureImage",
       "Texture": {
-        "idResource": "TextureImage|2024-07-05T16:37:34.148Z|58810",
+        "idResource": "TextureImage|2024-07-08T15:36:13.526Z|82461",
         "name": "Assets\\Textures\\rock2000x4_oil6.png",
         "mipmap": "CRISP"
       }
