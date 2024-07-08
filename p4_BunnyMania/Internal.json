@@ -30,17 +30,6 @@
       }
     }
   },
-  "TextureImage|2023-07-20T18:34:34.290Z|05298": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\concrete2000.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2023-07-20T18:34:34.290Z|05298",
-        "name": "concrete-Texture",
-        "mipmap": "CRISP"
-      }
-    }
-  },
   "MeshQuad|2023-07-20T00:43:59.355Z|32124": {
     "ƒ.MeshQuad": {
       "idResource": "MeshQuad|2023-07-20T00:43:59.355Z|32124",
@@ -144,21 +133,10 @@
       "coat": {
         "ƒ.CoatRemissiveTextured": {
           "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2024-07-05T16:37:34.148Z|58810",
+          "idTexture": "TextureImage|2024-07-08T16:34:48.822Z|76943",
           "diffuse": 1,
           "specular": 0
         }
-      }
-    }
-  },
-  "TextureImage|2024-07-05T16:37:34.148Z|58810": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000x4_oil6.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2024-07-05T16:37:34.148Z|58810",
-        "name": "Assets\\Textures\\rock2000x4_oil6.png",
-        "mipmap": "CRISP"
       }
     }
   },
@@ -166,7 +144,7 @@
     "ƒ.Audio": {
       "url": "Assets\\Sounds\\Star_pling.wav",
       "idResource": "Audio|2023-07-21T20:56:26.124Z|01386",
-      "name": "Assets\\Sounds\\Star_pling.wav",
+      "name": "Star-pling-Sound",
       "type": "Audio"
     }
   },
@@ -174,7 +152,7 @@
     "ƒ.Audio": {
       "url": "Assets\\Sounds\\PowerUp_ate.wav",
       "idResource": "Audio|2023-07-21T20:56:24.240Z|65750",
-      "name": "Assets\\Sounds\\PowerUp_ate.wav",
+      "name": "PowerUp-ate-Sound",
       "type": "Audio"
     }
   },
@@ -5033,68 +5011,13 @@
       }
     }
   },
-  "TextureImage|2024-07-05T14:23:16.271Z|33334": {
+  "TextureImage|2024-07-08T16:34:48.822Z|76943": {
     "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000x4.png",
+      "url": "Assets\\Textures\\rock2000x4_oil2.png",
       "type": "TextureImage",
       "Texture": {
-        "idResource": "TextureImage|2024-07-05T14:23:16.271Z|33334",
-        "name": "rock-Texture",
-        "mipmap": "CRISP"
-      }
-    }
-  },
-  "TextureImage|2024-07-05T14:41:32.387Z|46679": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000x4_oil.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2024-07-05T14:41:32.387Z|46679",
-        "name": "oil-rock-Texture",
-        "mipmap": "CRISP"
-      }
-    }
-  },
-  "TextureImage|2024-07-05T15:34:48.509Z|04207": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000x4_oil3.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2024-07-05T15:34:48.509Z|04207",
-        "name": "Assets\\Textures\\rock2000x4_oil3.png",
-        "mipmap": "CRISP"
-      }
-    }
-  },
-  "TextureImage|2024-07-05T16:03:56.500Z|38271": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000x4_cubism4.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2024-07-05T16:03:56.500Z|38271",
-        "name": "Assets\\Textures\\rock2000x4_cubism4.png",
-        "mipmap": "CRISP"
-      }
-    }
-  },
-  "TextureImage|2024-07-05T16:03:58.846Z|40883": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000x4_oil4.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2024-07-05T16:03:58.846Z|40883",
-        "name": "Assets\\Textures\\rock2000x4_oil4.png",
-        "mipmap": "CRISP"
-      }
-    }
-  },
-  "TextureImage|2024-07-08T15:36:13.526Z|82461": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\rock2000x4_oil6.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2024-07-08T15:36:13.526Z|82461",
-        "name": "Assets\\Textures\\rock2000x4_oil6.png",
+        "idResource": "TextureImage|2024-07-08T16:34:48.822Z|76943",
+        "name": "ground-rock-oil-Texture",
         "mipmap": "CRISP"
       }
     }
