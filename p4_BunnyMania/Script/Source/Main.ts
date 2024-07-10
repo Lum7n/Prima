@@ -1,6 +1,7 @@
 namespace Script {
   import ƒ = FudgeCore;
   import Vector3 = FudgeCore.Vector3;
+  console.log(Vector3);
 
   let viewport: ƒ.Viewport;
   let graph: ƒ.Node;
@@ -68,7 +69,7 @@ namespace Script {
     cmpRigidbody.mass = 3000;
     cmpRigidbody.friction = 2;
     cmpRigidbody.dampTranslation = 5;
-
+    cmpRigidbody.effectRotation.y = 0;
     cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, collision);
   }
 
@@ -97,7 +98,7 @@ namespace Script {
         itemAte.play(true)
         break;
       case "Lives":
-        window.alert("Live Added!")
+        console.error("Live Added!");
         itemAte.play(true)
         break;
       case "AdditionalTime":
@@ -130,7 +131,18 @@ namespace Script {
       velocity.z = moveSpeed;
     }
 
-    cmpRigidbody.setVelocity(velocity);
+    velocity.y = 0;
+
+    //check if character stays still
+    if (velocity.x == 0 && velocity.z == 0) {
+      console.log("x: " + velocity.x + ", z: " + velocity.z);
+    } else {
+      // console.log("x: " + velocity.x + ", z: " + velocity.z);
+      cmpRigidbody.setVelocity(velocity);
+    }
+
+    cmpRigidbody.setRotation(ƒ.Vector3.ZERO())
+
   }
 
 }

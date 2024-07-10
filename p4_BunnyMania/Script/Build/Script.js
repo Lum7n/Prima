@@ -81,6 +81,8 @@ var Script;
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;
+    var Vector3 = FudgeCore.Vector3;
+    console.log(Vector3);
     let viewport;
     let graph;
     let maze;
@@ -127,6 +129,7 @@ var Script;
         cmpRigidbody.mass = 3000;
         cmpRigidbody.friction = 2;
         cmpRigidbody.dampTranslation = 5;
+        cmpRigidbody.effectRotation.y = 0;
         cmpRigidbody.addEventListener("TriggerEnteredCollision" /* ƒ.EVENT_PHYSICS.TRIGGER_ENTER */, collision);
     }
     function collision(_event) {
@@ -150,7 +153,7 @@ var Script;
                 itemAte.play(true);
                 break;
             case "Lives":
-                window.alert("Live Added!");
+                console.error("Live Added!");
                 itemAte.play(true);
                 break;
             case "AdditionalTime":
@@ -174,7 +177,16 @@ var Script;
         if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
             velocity.z = moveSpeed;
         }
-        cmpRigidbody.setVelocity(velocity);
+        velocity.y = 0;
+        //check if character stays still
+        if (velocity.x == 0 && velocity.z == 0) {
+            console.log("x: " + velocity.x + ", z: " + velocity.z);
+        }
+        else {
+            // console.log("x: " + velocity.x + ", z: " + velocity.z);
+            cmpRigidbody.setVelocity(velocity);
+        }
+        cmpRigidbody.setRotation(ƒ.Vector3.ZERO());
     }
 })(Script || (Script = {}));
 var Script;
