@@ -3,11 +3,19 @@ html, body {
   margin: 0px;
   width: 100%;
   height: 100%;
- overflow: hidden;
+  overflow: hidden;
+  background-color: #f7f6cf;
+  background-image: url(Assets/flowerBackground-min.png);
+  background-size: contain;
+  
 }
 
 dialog { 
   text-align: center; 
+  background-color: #4b7617;
+  color: #dddcdc;
+  border-width: 6px;
+  border-style: double;
 }
 
 canvas.fullscreen { 
