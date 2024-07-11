@@ -60,23 +60,27 @@ var Script;
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;
-    class Lives extends ƒ.Node {
-        static meshCube = new ƒ.MeshCube("Lives");
-        static mtrCube = new ƒ.Material("Lives", ƒ.ShaderFlat, new ƒ.CoatRemissive());
+    class Lifes extends ƒ.Node {
+        // static meshCube: ƒ.MeshCube = new ƒ.MeshCube("Lifes");
+        // static mtrCube: ƒ.Material = new ƒ.Material("Lifes", ƒ.ShaderFlat, new ƒ.CoatRemissive());
         constructor(_position, _scale) {
-            super("Lives");
-            this.addComponent(new ƒ.ComponentMesh(Lives.meshCube));
-            let cmpMaterial = new ƒ.ComponentMaterial(Lives.mtrCube);
-            cmpMaterial.clrPrimary = ƒ.Color.CSS("LawnGreen");
-            this.addComponent(cmpMaterial);
+            super("Lifes");
+            this.appendChild(Script.life);
+            // this.addComponent(new ƒ.ComponentMesh(Lifes.meshCube));
+            // let cmpMaterial: ƒ.ComponentMaterial = new ƒ.ComponentMaterial(Lifes.mtrCube);
+            // cmpMaterial.clrPrimary = ƒ.Color.CSS("LawnGreen");
+            // this.addComponent(cmpMaterial);
+            console.log(_position);
+            // let cmpTransform: ƒ.ComponentTransform = 
+            // cmpTransform.transform.
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
-            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
+            // this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);
         }
     }
-    Script.Lives = Lives;
+    Script.Lifes = Lifes;
 })(Script || (Script = {}));
 var Script;
 (function (Script) {
@@ -101,6 +105,7 @@ var Script;
         console.log(graph);
         maze = graph.getChildrenByName("Maze")[0];
         Script.items = maze.getChildrenByName("Items")[0];
+        Script.life = Script.items.getChildrenByName("Life")[0];
         const myMaze = new Script.Maze(16, 16);
         // Add stars and power-ups to the maze where there are no cubes
         myMaze.addItems();
@@ -126,7 +131,7 @@ var Script;
     }
     function setUpCharacter() {
         cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
-        cmpRigidbody.mass = 3000;
+        cmpRigidbody.mass = 2500;
         cmpRigidbody.friction = 2;
         cmpRigidbody.dampTranslation = 5;
         cmpRigidbody.effectRotation.y = 0;
@@ -152,8 +157,8 @@ var Script;
                 score += 20;
                 itemAte.play(true);
                 break;
-            case "Lives":
-                console.error("Live Added!");
+            case "Lifes":
+                console.error("Life Added!");
                 itemAte.play(true);
                 break;
             case "AdditionalTime":
@@ -196,7 +201,7 @@ var Script;
     (function (ItemType) {
         ItemType[ItemType["Star"] = 0] = "Star";
         ItemType[ItemType["PowerUp"] = 1] = "PowerUp";
-        ItemType[ItemType["Lives"] = 2] = "Lives";
+        ItemType[ItemType["Lifes"] = 2] = "Lifes";
         ItemType[ItemType["AdditionalTime"] = 3] = "AdditionalTime";
         ItemType[ItemType["Empty"] = 4] = "Empty";
     })(ItemType || (ItemType = {}));
@@ -240,7 +245,7 @@ var Script;
                         let randomNumber = Math.random();
                         let itemType;
                         if (randomNumber <= 0.01) { // 1%
-                            itemType = ItemType.Lives;
+                            itemType = ItemType.Lifes;
                         }
                         else if (randomNumber <= 0.05) { // 4%
                             itemType = ItemType.PowerUp;
@@ -279,8 +284,8 @@ var Script;
                             case ItemType.PowerUp:
                                 this.addPowerUp(x, z);
                                 break;
-                            case ItemType.Lives:
-                                this.addLives(x, z);
+                            case ItemType.Lifes:
+                                this.addLifes(x, z);
                                 break;
                             case ItemType.AdditionalTime:
                                 this.addAdditionalTime(x, z);
@@ -298,9 +303,9 @@ var Script;
             const powerUp = new Script.PowerUp(new Vector3(x, 0.5, z), itemScale);
             Script.items.addChild(powerUp);
         }
-        addLives(x, z) {
-            const lives = new Script.Lives(new Vector3(x, 0.5, z), itemScale);
-            Script.items.addChild(lives);
+        addLifes(x, z) {
+            const lifes = new Script.Lifes(new Vector3(x, 0, z), itemScale);
+            Script.items.addChild(lifes);
         }
         addAdditionalTime(x, z) {
             const additionalTime = new Script.AdditionalTime(new Vector3(x, 0.5, z), itemScale);

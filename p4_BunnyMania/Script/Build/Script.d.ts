@@ -17,15 +17,16 @@ declare namespace Script {
 }
 declare namespace Script {
     import ƒ = FudgeCore;
-    class Lives extends ƒ.Node {
-        static meshCube: ƒ.MeshCube;
-        static mtrCube: ƒ.Material;
+    class Lifes extends ƒ.Node {
         constructor(_position: ƒ.Vector3, _scale: number);
     }
 }
 declare namespace Script {
     import ƒ = FudgeCore;
     let items: ƒ.Node;
+    let life: ƒ.Node;
+    let life2: ƒ.Node;
+    let lifeCopy: ƒ.Node;
 }
 declare namespace Script {
     class Maze {
@@ -37,7 +38,7 @@ declare namespace Script {
         addItems(): void;
         protected addStar(x: number, z: number): void;
         protected addPowerUp(x: number, z: number): void;
-        protected addLives(x: number, z: number): void;
+        protected addLifes(x: number, z: number): void;
         protected addAdditionalTime(x: number, z: number): void;
     }
 }

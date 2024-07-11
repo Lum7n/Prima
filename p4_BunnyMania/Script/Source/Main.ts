@@ -10,6 +10,9 @@ namespace Script {
   let cmpRigidbody: ƒ.ComponentRigidbody;
   export let items: ƒ.Node;
   let sound: ƒ.Node;
+  export let life: ƒ.Node;
+  export let life2: ƒ.Node;
+  export let lifeCopy: ƒ.Node;
 
 
   let objectAte: number = 0;
@@ -28,6 +31,8 @@ namespace Script {
 
     maze = graph.getChildrenByName("Maze")[0];
     items = maze.getChildrenByName("Items")[0];
+    life = items.getChildrenByName("Life")[0];
+
 
     const myMaze: Maze = new Maze(16, 16);
         // Add stars and power-ups to the maze where there are no cubes
@@ -66,7 +71,7 @@ namespace Script {
   function setUpCharacter(): void {
 
     cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
-    cmpRigidbody.mass = 3000;
+    cmpRigidbody.mass = 2500;
     cmpRigidbody.friction = 2;
     cmpRigidbody.dampTranslation = 5;
     cmpRigidbody.effectRotation.y = 0;
@@ -97,8 +102,8 @@ namespace Script {
         score += 20;
         itemAte.play(true)
         break;
-      case "Lives":
-        console.error("Live Added!");
+      case "Lifes":
+        console.error("Life Added!");
         itemAte.play(true)
         break;
       case "AdditionalTime":

@@ -14,7 +14,7 @@
       "coat": {
         "ƒ.CoatTextured": {
           "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2024-07-08T17:03:37.369Z|23184"
+          "idTexture": "TextureImage|2023-07-21T18:01:37.066Z|77921"
         }
       }
     }
@@ -189,7 +189,7 @@
   },
   "Material|2023-07-21T22:19:11.906Z|34442": {
     "ƒ.Material": {
-      "name": "Item-ShaderFlatTextured",
+      "name": "LifeItem-ShaderFlatTextured",
       "idResource": "Material|2023-07-21T22:19:11.906Z|34442",
       "shader": "ShaderFlatTextured",
       "coat": {
@@ -202,10 +202,21 @@
       }
     }
   },
+  "TextureImage|2024-07-10T01:21:30.213Z|00118": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\torus_grey.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-10T01:21:30.213Z|00118",
+        "name": "item-Texture",
+        "mipmap": "CRISP"
+      }
+    }
+  },
   "Animation|2023-07-21T22:24:47.000Z|55709": {
     "ƒ.Animation": {
       "idResource": "Animation|2023-07-21T22:24:47.000Z|55709",
-      "name": "LevelUp-Animation",
+      "name": "Item-Animation",
       "labels": {},
       "events": {},
       "framesPerSecond": 60,
@@ -4451,16 +4462,14 @@
                   "children": [
                     {
                       "ƒ.Node": {
-                        "name": "LevelUp",
+                        "name": "Life",
                         "active": true,
                         "components": {
-                          "ComponentMesh": [],
-                          "ComponentMaterial": [],
                           "ComponentAnimator": [
                             {
                               "ƒ.ComponentAnimator": {
                                 "Component": {
-                                  "active": false
+                                  "active": true
                                 },
                                 "idAnimation": "Animation|2023-07-21T22:24:47.000Z|55709",
                                 "playmode": "loop",
@@ -4484,7 +4493,7 @@
                                       "idMesh": "MeshTorus|2023-07-21T22:18:47.000Z|43491",
                                       "pivot": {
                                         "translation": "[0, 0.5, 0]",
-                                        "rotation": "[90, 56.171875, 0]",
+                                        "rotation": "[90, 0, 0]",
                                         "scaling": "[1.7000000476837158, 1.7000000476837158, 1.7000000476837158]"
                                       },
                                       "Component": {
@@ -4526,7 +4535,7 @@
                                       "idMesh": "MeshTorus|2023-07-21T22:18:47.000Z|43491",
                                       "pivot": {
                                         "translation": "[0, 0.5, 0]",
-                                        "rotation": "[90, 146.24844360351562, 0]",
+                                        "rotation": "[90, 90, 0]",
                                         "scaling": "[1.7000000476837158, 1.7000000476837158, 1.7000000476837158]"
                                       },
                                       "Component": {
@@ -4562,7 +4571,6 @@
                               "name": "Charakter",
                               "active": true,
                               "components": {
-                                "ComponentAnimator": [],
                                 "ComponentTransform": [
                                   {
                                     "ƒ.ComponentTransform": {
@@ -5412,17 +5420,6 @@
       "Texture": {
         "idResource": "TextureImage|2023-07-21T18:01:37.066Z|77921",
         "name": "bush-transparent-Texture",
-        "mipmap": "CRISP"
-      }
-    }
-  },
-  "TextureImage|2024-07-10T01:21:30.213Z|00118": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\torus_grey.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2024-07-10T01:21:30.213Z|00118",
-        "name": "item-Texture",
         "mipmap": "CRISP"
       }
     }

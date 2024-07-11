@@ -4,7 +4,7 @@ namespace Script {
     enum ItemType {
         Star,
         PowerUp,
-        Lives,
+        Lifes,
         AdditionalTime,
         Empty, // Add Empty as a value
     }
@@ -57,7 +57,7 @@ namespace Script {
                         let itemType: ItemType;
 
                         if (randomNumber <= 0.01) { // 1%
-                            itemType = ItemType.Lives;
+                            itemType = ItemType.Lifes;
                         } else if (randomNumber <= 0.05) { // 4%
                             itemType = ItemType.PowerUp;
                         } else if (randomNumber <= 0.12) { // 7%
@@ -99,8 +99,8 @@ namespace Script {
                             case ItemType.PowerUp:
                                 this.addPowerUp(x, z);
                                 break;
-                            case ItemType.Lives:
-                                this.addLives(x, z);
+                            case ItemType.Lifes:
+                                this.addLifes(x, z);
                                 break;
                             case ItemType.AdditionalTime:
                                 this.addAdditionalTime(x, z);
@@ -121,9 +121,9 @@ namespace Script {
             items.addChild(powerUp);
         }
 
-        protected addLives(x: number, z: number): void {
-            const lives: Lives = new Lives(new Vector3(x, 0.5, z), itemScale);
-            items.addChild(lives);
+        protected addLifes(x: number, z: number): void {
+            const lifes: Lifes = new Lifes(new Vector3(x, 0, z), itemScale);
+            items.addChild(lifes);
         }
 
         protected addAdditionalTime(x: number, z: number): void {
