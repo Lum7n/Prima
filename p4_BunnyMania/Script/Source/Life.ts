@@ -1,21 +1,17 @@
 namespace Script {
     import ƒ = FudgeCore;
-
-    export class PowerUp extends ƒ.Node {
+    
+    export class Life extends ƒ.Node {
 
         constructor(_position: ƒ.Vector3, _index: number) {
-            super("PowerUp");
+            super("Life");
 
-            console.log("PowerUp " + _index);
-            powerUpArray[_index].activate(true);
+            console.log("Life " + _index);
+            lifeArray[_index].activate(true);
             
-            this.appendChild(powerUpArray[_index]);
+            this.appendChild(lifeArray[_index]);
 
-            // let cmpTransform: ƒ.ComponentTransform = new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position));
-            // cmpTransform.mtxLocal.rotateX(90, false)
-            // this.addComponent(cmpTransform);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
-
 
             let cmpRigidbody: ƒ.ComponentRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true; 

@@ -60,27 +60,19 @@ var Script;
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;
-    class Lifes extends ƒ.Node {
-        // static meshCube: ƒ.MeshCube = new ƒ.MeshCube("Lifes");
-        // static mtrCube: ƒ.Material = new ƒ.Material("Lifes", ƒ.ShaderFlat, new ƒ.CoatRemissive());
-        constructor(_position, _scale) {
-            super("Lifes");
-            this.appendChild(Script.life);
-            // this.addComponent(new ƒ.ComponentMesh(Lifes.meshCube));
-            // let cmpMaterial: ƒ.ComponentMaterial = new ƒ.ComponentMaterial(Lifes.mtrCube);
-            // cmpMaterial.clrPrimary = ƒ.Color.CSS("LawnGreen");
-            // this.addComponent(cmpMaterial);
-            console.log(_position);
-            // let cmpTransform: ƒ.ComponentTransform = 
-            // cmpTransform.transform.
+    class Life extends ƒ.Node {
+        constructor(_position, _index) {
+            super("Life");
+            console.log("Life " + _index);
+            Script.lifeArray[_index].activate(true);
+            this.appendChild(Script.lifeArray[_index]);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
-            // this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);
         }
     }
-    Script.Lifes = Lifes;
+    Script.Life = Life;
 })(Script || (Script = {}));
 var Script;
 (function (Script) {
@@ -93,6 +85,15 @@ var Script;
     let character;
     let cmpRigidbody;
     let sound;
+    Script.itemAnimation = new ƒ.Animation;
+    let life1;
+    let life2;
+    Script.lifeArray = [];
+    let powerUp1;
+    let powerUp2;
+    let powerUp3;
+    let powerUp4;
+    Script.powerUpArray = [];
     let objectAte = 0;
     let score = 0;
     let starPling;
@@ -105,7 +106,22 @@ var Script;
         console.log(graph);
         maze = graph.getChildrenByName("Maze")[0];
         Script.items = maze.getChildrenByName("Items")[0];
-        Script.life = Script.items.getChildrenByName("Life")[0];
+        life1 = Script.items.getChildrenByName("Life1")[0];
+        life2 = Script.items.getChildrenByName("Life2")[0];
+        Script.lifeArray[1] = (life1);
+        Script.lifeArray[2] = (life2);
+        console.log(Script.lifeArray);
+        powerUp1 = Script.items.getChildrenByName("PowerUp1")[0];
+        powerUp2 = Script.items.getChildrenByName("PowerUp2")[0];
+        powerUp3 = Script.items.getChildrenByName("PowerUp3")[0];
+        powerUp4 = Script.items.getChildrenByName("PowerUp4")[0];
+        Script.powerUpArray[1] = (powerUp1);
+        Script.powerUpArray[2] = (powerUp2);
+        Script.powerUpArray[3] = (powerUp3);
+        Script.powerUpArray[4] = (powerUp4);
+        console.log(Script.powerUpArray);
+        // itemAnimation.idResource = "Animation|2023-07-21T22:24:47.000Z|55709";
+        // console.log(itemAnimation);
         const myMaze = new Script.Maze(16, 16);
         // Add stars and power-ups to the maze where there are no cubes
         myMaze.addItems();
@@ -153,16 +169,18 @@ var Script;
                 starPling.play(true);
                 console.log(score);
                 break;
+            case "AdditionalTime":
+                // console.error("Added Time!");
+                score += 10;
+                itemAte.play(true);
+                break;
             case "PowerUp":
+                console.error("PowerUp Added!");
                 score += 20;
                 itemAte.play(true);
                 break;
-            case "Lifes":
+            case "Life":
                 console.error("Life Added!");
-                itemAte.play(true);
-                break;
-            case "AdditionalTime":
-                score += 10;
                 itemAte.play(true);
                 break;
         }
@@ -201,7 +219,7 @@ var Script;
     (function (ItemType) {
         ItemType[ItemType["Star"] = 0] = "Star";
         ItemType[ItemType["PowerUp"] = 1] = "PowerUp";
-        ItemType[ItemType["Lifes"] = 2] = "Lifes";
+        ItemType[ItemType["Life"] = 2] = "Life";
         ItemType[ItemType["AdditionalTime"] = 3] = "AdditionalTime";
         ItemType[ItemType["Empty"] = 4] = "Empty";
     })(ItemType || (ItemType = {}));
@@ -218,6 +236,9 @@ var Script;
     let previousItem = 0;
     let lastItem = ItemType.Empty;
     let itemScale = 0.5;
+    let indexLife = 1;
+    let indexPowerUp = 1;
+    let indexAddTime = 1;
     class Maze {
         width;
         height;
@@ -244,26 +265,23 @@ var Script;
                     if (this.grid[z][x] === TileType.Empty) {
                         let randomNumber = Math.random();
                         let itemType;
-                        if (randomNumber <= 0.01) { // 1%
-                            itemType = ItemType.Lifes;
+                        if (randomNumber <= 0.008 && indexLife <= 2) { // 0,8%
+                            itemType = ItemType.Life;
                         }
-                        else if (randomNumber <= 0.05) { // 4%
+                        else if (randomNumber <= 0.017 && indexPowerUp <= 4) { // 1,7%
                             itemType = ItemType.PowerUp;
                         }
-                        else if (randomNumber <= 0.12) { // 7%
+                        else if (randomNumber <= 0.049 && indexAddTime <= 12) { // 4,8%
                             itemType = ItemType.AdditionalTime;
                         }
                         else {
                             itemType = ItemType.Star;
                         }
-                        // Checks for Vertical Duplicates
+                        // Checks for vertical Duplicates
                         previousItem++;
                         if (itemNumber >= 17) {
                             if (itemType == itemTypeArray[previousItem]) {
                                 itemType = ItemType.Star;
-                            }
-                            else {
-                                //console.log("type:" + itemType);
                             }
                         }
                         itemTypeArray[previousItem] = itemType;
@@ -271,8 +289,13 @@ var Script;
                             previousItem = 0;
                         }
                         itemNumber++;
-                        // Checks for Horizontal Duplicates
+                        // Checks for horizontal Duplicates
                         if (lastItem == itemType) {
+                            itemType = ItemType.Star;
+                        }
+                        lastItem = itemType;
+                        // Checks if the last Item is Type Life
+                        if (itemNumber == 256 && itemType == ItemType.Life) {
                             itemType = ItemType.Star;
                         }
                         lastItem = itemType;
@@ -281,14 +304,14 @@ var Script;
                             case ItemType.Star:
                                 this.addStar(x, z);
                                 break;
+                            case ItemType.AdditionalTime:
+                                this.addAdditionalTime(x, z);
+                                break;
                             case ItemType.PowerUp:
                                 this.addPowerUp(x, z);
                                 break;
-                            case ItemType.Lifes:
+                            case ItemType.Life:
                                 this.addLifes(x, z);
-                                break;
-                            case ItemType.AdditionalTime:
-                                this.addAdditionalTime(x, z);
                                 break;
                         }
                     }
@@ -299,17 +322,20 @@ var Script;
             const star = new Script.Star(new Vector3(x, 0.5, z), itemScale);
             Script.items.addChild(star);
         }
+        addAdditionalTime(x, z) {
+            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0.5, z), itemScale);
+            indexAddTime++;
+            Script.items.addChild(additionalTime);
+        }
         addPowerUp(x, z) {
-            const powerUp = new Script.PowerUp(new Vector3(x, 0.5, z), itemScale);
+            const powerUp = new Script.PowerUp(new Vector3(x, 0, z), indexPowerUp);
+            indexPowerUp++;
             Script.items.addChild(powerUp);
         }
         addLifes(x, z) {
-            const lifes = new Script.Lifes(new Vector3(x, 0, z), itemScale);
-            Script.items.addChild(lifes);
-        }
-        addAdditionalTime(x, z) {
-            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0.5, z), itemScale);
-            Script.items.addChild(additionalTime);
+            const life = new Script.Life(new Vector3(x, 0, z), indexLife);
+            indexLife++;
+            Script.items.addChild(life);
         }
     }
     Script.Maze = Maze;
@@ -318,18 +344,15 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     class PowerUp extends ƒ.Node {
-        static meshTorus = new ƒ.MeshTorus("PowerUp");
-        static mtrTorus = new ƒ.Material("PowerUp", ƒ.ShaderFlat, new ƒ.CoatRemissive());
-        constructor(_position, _scale) {
+        constructor(_position, _index) {
             super("PowerUp");
-            this.addComponent(new ƒ.ComponentMesh(PowerUp.meshTorus));
-            let cmpMaterial = new ƒ.ComponentMaterial(PowerUp.mtrTorus);
-            cmpMaterial.clrPrimary = ƒ.Color.CSS("CornflowerBlue");
-            this.addComponent(cmpMaterial);
-            let cmpTransform = new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position));
-            cmpTransform.mtxLocal.rotateX(90, false);
-            this.addComponent(cmpTransform);
-            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
+            console.log("PowerUp " + _index);
+            Script.powerUpArray[_index].activate(true);
+            this.appendChild(Script.powerUpArray[_index]);
+            // let cmpTransform: ƒ.ComponentTransform = new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position));
+            // cmpTransform.mtxLocal.rotateX(90, false)
+            // this.addComponent(cmpTransform);
+            this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);

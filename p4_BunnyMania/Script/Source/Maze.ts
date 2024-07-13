@@ -4,7 +4,7 @@ namespace Script {
     enum ItemType {
         Star,
         PowerUp,
-        Lifes,
+        Life,
         AdditionalTime,
         Empty, // Add Empty as a value
     }
@@ -23,6 +23,10 @@ namespace Script {
     let lastItem: ItemType = ItemType.Empty;
 
     let itemScale: number = 0.5;
+
+    let indexLife: number = 1;
+    let indexPowerUp: number = 1;
+    let indexAddTime: number = 1;
 
     export class Maze {
         private readonly width: number;
@@ -56,24 +60,22 @@ namespace Script {
                         let randomNumber: number = Math.random();
                         let itemType: ItemType;
 
-                        if (randomNumber <= 0.01) { // 1%
-                            itemType = ItemType.Lifes;
-                        } else if (randomNumber <= 0.05) { // 4%
+                        if (randomNumber <= 0.008 && indexLife <= 2) { // 0,8%
+                            itemType = ItemType.Life;
+                        } else if (randomNumber <= 0.017 && indexPowerUp <= 4) { // 1,7%
                             itemType = ItemType.PowerUp;
-                        } else if (randomNumber <= 0.12) { // 7%
+                        } else if (randomNumber <= 0.049 && indexAddTime <= 12) { // 4,8%
                             itemType = ItemType.AdditionalTime;
                         } else {
                             itemType = ItemType.Star;
                         }
 
-                        // Checks for Vertical Duplicates
+                        // Checks for vertical Duplicates
                         previousItem++;
 
                         if (itemNumber >= 17) {
                             if (itemType == itemTypeArray[previousItem]) {
                                 itemType = ItemType.Star;
-                            } else {
-                                //console.log("type:" + itemType);
                             }
                         }
                         itemTypeArray[previousItem] = itemType;
@@ -84,8 +86,14 @@ namespace Script {
 
                         itemNumber++;
 
-                        // Checks for Horizontal Duplicates
+                        // Checks for horizontal Duplicates
                         if (lastItem == itemType) {
+                            itemType = ItemType.Star;
+                        }
+                        lastItem = itemType;
+
+                        // Checks if the last Item is Type Life
+                        if (itemNumber == 256 && itemType == ItemType.Life) {
                             itemType = ItemType.Star;
                         }
                         lastItem = itemType;
@@ -96,14 +104,14 @@ namespace Script {
                             case ItemType.Star:
                                 this.addStar(x, z);
                                 break;
+                            case ItemType.AdditionalTime:
+                                this.addAdditionalTime(x, z);
+                                break;
                             case ItemType.PowerUp:
                                 this.addPowerUp(x, z);
                                 break;
-                            case ItemType.Lifes:
+                            case ItemType.Life:
                                 this.addLifes(x, z);
-                                break;
-                            case ItemType.AdditionalTime:
-                                this.addAdditionalTime(x, z);
                                 break;
                         }
                     }
@@ -116,19 +124,22 @@ namespace Script {
             items.addChild(star);
         }
 
+        protected addAdditionalTime(x: number, z: number): void {
+            const additionalTime: AdditionalTime = new AdditionalTime(new Vector3(x, 0.5, z), itemScale);
+            indexAddTime++;
+            items.addChild(additionalTime);
+        }
+
         protected addPowerUp(x: number, z: number): void {
-            const powerUp: PowerUp = new PowerUp(new Vector3(x, 0.5, z), itemScale);
+            const powerUp: PowerUp = new PowerUp(new Vector3(x, 0, z), indexPowerUp);
+            indexPowerUp++;
             items.addChild(powerUp);
         }
 
         protected addLifes(x: number, z: number): void {
-            const lifes: Lifes = new Lifes(new Vector3(x, 0, z), itemScale);
-            items.addChild(lifes);
-        }
-
-        protected addAdditionalTime(x: number, z: number): void {
-            const additionalTime: AdditionalTime = new AdditionalTime(new Vector3(x, 0.5, z), itemScale);
-            items.addChild(additionalTime);
+            const life: Life = new Life(new Vector3(x, 0, z), indexLife);
+            indexLife++;
+            items.addChild(life);
         }
     }
 }

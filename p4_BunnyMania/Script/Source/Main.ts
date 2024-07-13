@@ -8,12 +8,20 @@ namespace Script {
   let maze: ƒ.Node;
   let character: ƒ.Node;
   let cmpRigidbody: ƒ.ComponentRigidbody;
-  export let items: ƒ.Node;
   let sound: ƒ.Node;
-  export let life: ƒ.Node;
-  export let life2: ƒ.Node;
-  export let lifeCopy: ƒ.Node;
 
+  export let items: ƒ.Node;
+  export let itemAnimation: ƒ.Animation = new ƒ.Animation;
+
+  let life1: ƒ.Node;
+  let life2: ƒ.Node;
+  export let lifeArray: ƒ.Node[] = [];
+
+  let powerUp1: ƒ.Node;
+  let powerUp2: ƒ.Node;
+  let powerUp3: ƒ.Node;
+  let powerUp4: ƒ.Node;
+  export let powerUpArray: ƒ.Node[] = [];
 
   let objectAte: number = 0;
   let score: number = 0;
@@ -31,11 +39,28 @@ namespace Script {
 
     maze = graph.getChildrenByName("Maze")[0];
     items = maze.getChildrenByName("Items")[0];
-    life = items.getChildrenByName("Life")[0];
 
+    life1 = items.getChildrenByName("Life1")[0];
+    life2 = items.getChildrenByName("Life2")[0];
+    lifeArray[1] = (life1);
+    lifeArray[2] = (life2);
+    console.log(lifeArray);
+
+    powerUp1 = items.getChildrenByName("PowerUp1")[0];
+    powerUp2 = items.getChildrenByName("PowerUp2")[0];
+    powerUp3 = items.getChildrenByName("PowerUp3")[0];
+    powerUp4 = items.getChildrenByName("PowerUp4")[0];
+    powerUpArray[1] = (powerUp1);
+    powerUpArray[2] = (powerUp2);
+    powerUpArray[3] = (powerUp3);
+    powerUpArray[4] = (powerUp4);
+    console.log(powerUpArray);
+
+    // itemAnimation.idResource = "Animation|2023-07-21T22:24:47.000Z|55709";
+    // console.log(itemAnimation);
 
     const myMaze: Maze = new Maze(16, 16);
-        // Add stars and power-ups to the maze where there are no cubes
+    // Add stars and power-ups to the maze where there are no cubes
     myMaze.addItems();
 
     character = graph.getChildrenByName("Character")[0];
@@ -98,20 +123,21 @@ namespace Script {
         starPling.play(true);
         console.log(score);
         break;
-      case "PowerUp":
-        score += 20;
-        itemAte.play(true)
-        break;
-      case "Lifes":
-        console.error("Life Added!");
-        itemAte.play(true)
-        break;
       case "AdditionalTime":
+        // console.error("Added Time!");
         score += 10;
         itemAte.play(true)
         break;
+      case "PowerUp":
+        console.error("PowerUp Added!");
+        score += 20;
+        itemAte.play(true)
+        break;
+      case "Life":
+        console.error("Life Added!");
+        itemAte.play(true)
+        break;
     }
-
   }
 
   function characterMovement(): void {
