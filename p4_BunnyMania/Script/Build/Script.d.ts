@@ -3,7 +3,7 @@ declare namespace Script {
     class AdditionalTime extends ƒ.Node {
         static meshPyramid: ƒ.MeshPyramid;
         static mtrPyramid: ƒ.Material;
-        constructor(_position: ƒ.Vector3, _scale: number);
+        constructor(_position: ƒ.Vector3, _index: number);
     }
 }
 declare namespace Script {
@@ -27,6 +27,7 @@ declare namespace Script {
     let itemAnimation: ƒ.Animation;
     let lifeArray: ƒ.Node[];
     let powerUpArray: ƒ.Node[];
+    let addTimeArray: ƒ.Node[];
 }
 declare namespace Script {
     class Maze {
@@ -51,9 +52,12 @@ declare namespace Script {
 declare namespace Script {
     import ƒ = FudgeCore;
     class Star extends ƒ.Node {
-        static meshSphere: ƒ.MeshSphere;
-        static mtrSphere: ƒ.Material;
-        constructor(_position: ƒ.Vector3, _scale: number);
+        static spike: ƒ.Node;
+        static meshSpike: ƒ.MeshPyramid;
+        static mtrSpike: ƒ.Material;
+        static spikeAmount: number;
+        static degree: number[];
+        constructor(_position: ƒ.Vector3, _index: number);
     }
 }
 declare namespace Script {

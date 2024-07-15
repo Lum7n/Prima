@@ -14,7 +14,7 @@
       "coat": {
         "ƒ.CoatTextured": {
           "color": "[1, 1, 1, 1]",
-          "idTexture": "TextureImage|2023-07-21T18:01:37.066Z|77921"
+          "idTexture": "TextureImage|2024-07-08T17:03:37.369Z|23184"
         }
       }
     }
@@ -439,6 +439,159 @@
             }
           ]
         }
+      }
+    }
+  },
+  "MeshPyramid|2024-07-12T22:56:48.007Z|25326": {
+    "ƒ.MeshPyramid": {
+      "idResource": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+      "name": "Item-Pyramid",
+      "type": "MeshPyramid"
+    }
+  },
+  "Animation|2024-07-14T14:55:11.538Z|40150": {
+    "ƒ.Animation": {
+      "idResource": "Animation|2024-07-14T14:55:11.538Z|40150",
+      "name": "Pyramid2-Animation",
+      "labels": {},
+      "events": {},
+      "framesPerSecond": 120,
+      "animationStructure": {
+        "components": {
+          "ComponentMesh": [
+            {
+              "mtxPivot": {
+                "rotation": {
+                  "y": {
+                    "keys": [
+                      {
+                        "time": 0,
+                        "value": 0,
+                        "slopeIn": 0.35,
+                        "slopeOut": 0.35,
+                        "constant": false
+                      },
+                      {
+                        "time": 250,
+                        "value": 90,
+                        "slopeIn": 0.35,
+                        "slopeOut": 0.35,
+                        "constant": false
+                      },
+                      {
+                        "time": 500,
+                        "value": 180,
+                        "slopeIn": 0.35,
+                        "slopeOut": 0.35,
+                        "constant": false
+                      },
+                      {
+                        "time": 750,
+                        "value": 270,
+                        "slopeIn": 0.35,
+                        "slopeOut": 0.35,
+                        "constant": false
+                      },
+                      {
+                        "time": 1000,
+                        "value": 360,
+                        "slopeIn": 0.35,
+                        "slopeOut": 0.35,
+                        "constant": false
+                      }
+                    ],
+                    "animationSequence": true
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Animation|2024-07-14T16:12:43.164Z|05331": {
+    "ƒ.Animation": {
+      "idResource": "Animation|2024-07-14T16:12:43.164Z|05331",
+      "name": "Pyramid1-Animation",
+      "labels": {},
+      "events": {},
+      "framesPerSecond": 120,
+      "animationStructure": {
+        "components": {
+          "ComponentMesh": [
+            {
+              "mtxPivot": {
+                "rotation": {
+                  "y": {
+                    "keys": [
+                      {
+                        "time": 0,
+                        "value": 360,
+                        "slopeIn": -0.35,
+                        "slopeOut": -0.35,
+                        "constant": false
+                      },
+                      {
+                        "time": 250,
+                        "value": 270,
+                        "slopeIn": -0.35,
+                        "slopeOut": -0.35,
+                        "constant": false
+                      },
+                      {
+                        "time": 500,
+                        "value": 180,
+                        "slopeIn": -0.35,
+                        "slopeOut": -0.35,
+                        "constant": false
+                      },
+                      {
+                        "time": 750,
+                        "value": 90,
+                        "slopeIn": -0.35,
+                        "slopeOut": -0.35,
+                        "constant": false
+                      },
+                      {
+                        "time": 1000,
+                        "value": 0,
+                        "slopeIn": -0.35,
+                        "slopeOut": -0.35,
+                        "constant": false
+                      }
+                    ],
+                    "animationSequence": true
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Material|2024-07-14T22:10:53.811Z|35275": {
+    "ƒ.Material": {
+      "name": "ItemLit-ShaderLitTextured",
+      "idResource": "Material|2024-07-14T22:10:53.811Z|35275",
+      "shader": "ShaderLitTextured",
+      "coat": {
+        "ƒ.CoatTextured": {
+          "color": "[1, 1, 1, 1]",
+          "idTexture": "TextureImage|2024-07-14T22:15:17.801Z|83820"
+        }
+      }
+    }
+  },
+  "TextureImage|2024-07-14T22:15:17.801Z|83820": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\torus_grey1.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2024-07-14T22:15:17.801Z|83820",
+        "name": "item-lit-Texture",
+        "mipmap": "CRISP"
       }
     }
   },
@@ -5363,7 +5516,7 @@
                                       "idMesh": "MeshTorus|2023-07-21T22:18:47.000Z|43491",
                                       "pivot": {
                                         "translation": "[0, 0.5, 0]",
-                                        "rotation": "[90, 82.68119812011719, 0]",
+                                        "rotation": "[90, 0, 0]",
                                         "scaling": "[1.7000000476837158, 1.7000000476837158, 1.7000000476837158]"
                                       },
                                       "Component": {
@@ -5420,7 +5573,7 @@
                                       "idMesh": "MeshTorus|2023-07-21T22:18:47.000Z|43491",
                                       "pivot": {
                                         "translation": "[0, 0.5, 0]",
-                                        "rotation": "[90, 90, 0]",
+                                        "rotation": "[90, 117.39779663085938, 0]",
                                         "scaling": "[1.7000000476837158, 1.7000000476837158, 1.7000000476837158]"
                                       },
                                       "Component": {
@@ -5451,7 +5604,7 @@
                                   {
                                     "ƒ.ComponentAnimator": {
                                       "Component": {
-                                        "active": false
+                                        "active": true
                                       },
                                       "idAnimation": "Animation|2024-07-12T20:31:02.804Z|99992",
                                       "playmode": "loop",
@@ -6545,6 +6698,1743 @@
                           }
                         ]
                       }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime1",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 143.48587036132812, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime2",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime3",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime4",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime5",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime6",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime7",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime8",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime9",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime10",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime11",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "AddTime12",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid1",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.3764705882352941, 0.3333333333333333, 0.6392156862745098, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.7500001192092896, 0]",
+                                        "rotation": "[0, 360, 180]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T16:12:43.164Z|05331",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Pyramid2",
+                              "active": true,
+                              "components": {
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[0.2823529411764706, 0.23921568627450981, 0.5450980392156862, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2023-07-21T22:19:11.906Z|34442"
+                                    }
+                                  }
+                                ],
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.2500000298023224, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.3500000238418579, 0.3500000238418579, 0.20000000298023224]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentAnimator": [
+                                  {
+                                    "ƒ.ComponentAnimator": {
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idAnimation": "Animation|2024-07-14T14:55:11.538Z|40150",
+                                      "playmode": "loop",
+                                      "quantization": "continous",
+                                      "scale": 1,
+                                      "scaleWithGameTime": true,
+                                      "animateInEditor": false
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "Star",
+                        "active": false,
+                        "components": {},
+                        "children": [
+                          {
+                            "ƒ.Node": {
+                              "name": "Spike1",
+                              "active": true,
+                              "components": {
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.44999995827674866, 0]",
+                                        "rotation": "[0, 0, 0]",
+                                        "scaling": "[0.1399998962879181, 0.3199999928474426, 0.11999990791082382]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[1, 0.8941176470588236, 0.3607843137254902, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2024-07-14T22:10:53.811Z|35275"
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Spike2",
+                              "active": true,
+                              "components": {
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.45000001788139343, 0]",
+                                        "rotation": "[0, 0, 60]",
+                                        "scaling": "[0.14000001549720764, 0.31999996304512024, 0.11999992281198502]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[1, 0.8941176470588236, 0.3607843137254902, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2024-07-14T22:10:53.811Z|35275"
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Spike3",
+                              "active": true,
+                              "components": {
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.44999998807907104, 0]",
+                                        "rotation": "[0, 0, 120]",
+                                        "scaling": "[0.13999991118907928, 0.31999996304512024, 0.11999992281198502]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[1, 0.8941176470588236, 0.3607843137254902, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2024-07-14T22:10:53.811Z|35275"
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Spike4",
+                              "active": true,
+                              "components": {
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.44999998807907104, 0]",
+                                        "rotation": "[0, 0, 180]",
+                                        "scaling": "[0.13999991118907928, 0.31999996304512024, 0.11999992281198502]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[1, 0.8941176470588236, 0.3607843137254902, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2024-07-14T22:10:53.811Z|35275"
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Spike5",
+                              "active": true,
+                              "components": {
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.45000001788139343, 0]",
+                                        "rotation": "[0, 0, 240]",
+                                        "scaling": "[0.13999992609024048, 0.31999990344047546, 0.11999992281198502]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[1, 0.8941176470588236, 0.3607843137254902, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2024-07-14T22:10:53.811Z|35275"
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          },
+                          {
+                            "ƒ.Node": {
+                              "name": "Spike6",
+                              "active": true,
+                              "components": {
+                                "ComponentMesh": [
+                                  {
+                                    "ƒ.ComponentMesh": {
+                                      "idMesh": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
+                                      "pivot": {
+                                        "translation": "[0, 0.44999998807907104, 0]",
+                                        "rotation": "[0, 0, 300]",
+                                        "scaling": "[0.13999992609024048, 0.31999990344047546, 0.11999989300966263]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      }
+                                    }
+                                  }
+                                ],
+                                "ComponentMaterial": [
+                                  {
+                                    "ƒ.ComponentMaterial": {
+                                      "sortForAlpha": false,
+                                      "clrPrimary": "[1, 0.8941176470588236, 0.3607843137254902, 1]",
+                                      "clrSecondary": "[1, 1, 1, 1]",
+                                      "pivot": {
+                                        "translation": "[0, 0]",
+                                        "rotation": 0,
+                                        "scaling": "[1, 1]"
+                                      },
+                                      "Component": {
+                                        "active": true
+                                      },
+                                      "idMaterial": "Material|2024-07-14T22:10:53.811Z|35275"
+                                    }
+                                  }
+                                ]
+                              },
+                              "children": []
+                            }
+                          }
+                        ]
+                      }
                     }
                   ]
                 }
@@ -6561,7 +8451,7 @@
                 {
                   "ƒ.ComponentTransform": {
                     "local": {
-                      "translation": "[0, 0, 0]",
+                      "translation": "[9, 0, 8]",
                       "rotation": "[0, 0, 0]",
                       "scaling": "[1, 1, 1]"
                     },
@@ -6698,7 +8588,7 @@
                                 "idMesh": "MeshCube|2023-07-20T20:55:45.174Z|39627",
                                 "pivot": {
                                   "translation": "[0.11999999731779099, 0.5, 0.11999999731779099]",
-                                  "rotation": "[4.622152328491211, 0, 0]",
+                                  "rotation": "[10, 0, 0]",
                                   "scaling": "[0.14999999105930328, 0.6999999284744263, 0.09999997168779373]"
                                 },
                                 "Component": {
@@ -6740,7 +8630,7 @@
                                 "idMesh": "MeshCube|2023-07-20T20:55:45.174Z|39627",
                                 "pivot": {
                                   "translation": "[-0.11999999731779099, 0.5000000596046448, 0.11999999731779099]",
-                                  "rotation": "[-4.622152328491211, 0, 0]",
+                                  "rotation": "[-10, 0, 0]",
                                   "scaling": "[0.14999999105930328, 0.6999999284744263, 0.09999997168779373]"
                                 },
                                 "Component": {
@@ -7070,13 +8960,6 @@
       ],
       "idResource": "Graph|2023-07-19T17:29:49.783Z|51214",
       "type": "Graph"
-    }
-  },
-  "MeshPyramid|2024-07-12T22:56:48.007Z|25326": {
-    "ƒ.MeshPyramid": {
-      "idResource": "MeshPyramid|2024-07-12T22:56:48.007Z|25326",
-      "name": "Carrot-Pyramid",
-      "type": "MeshPyramid"
     }
   }
 }

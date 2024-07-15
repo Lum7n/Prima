@@ -11,16 +11,11 @@ namespace Script {
             
             this.appendChild(powerUpArray[_index]);
 
-            // let cmpTransform: ƒ.ComponentTransform = new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position));
-            // cmpTransform.mtxLocal.rotateX(90, false)
-            // this.addComponent(cmpTransform);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
-
 
             let cmpRigidbody: ƒ.ComponentRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true; 
             this.addComponent(cmpRigidbody)
-
         }
     }
 }

@@ -4,15 +4,13 @@ var Script;
     var ƒ = FudgeCore;
     class AdditionalTime extends ƒ.Node {
         static meshPyramid = new ƒ.MeshPyramid("AdditionalTime");
-        static mtrPyramid = new ƒ.Material("AdditionalTime", ƒ.ShaderFlat, new ƒ.CoatRemissive());
-        constructor(_position, _scale) {
+        static mtrPyramid = new ƒ.Material("AdditionalTime", ƒ.ShaderFlatTextured, new ƒ.CoatRemissiveTextured(ƒ.Color.CSS("White"), new ƒ.TextureImage("Assets/Textures/torus_grey.png"), 1, 0));
+        constructor(_position, _index) {
             super("AdditionalTime");
-            this.addComponent(new ƒ.ComponentMesh(AdditionalTime.meshPyramid));
-            let cmpMaterial = new ƒ.ComponentMaterial(AdditionalTime.mtrPyramid);
-            cmpMaterial.clrPrimary = ƒ.Color.CSS("DarkSlateBlue");
-            this.addComponent(cmpMaterial);
+            console.log("AddTime " + _index);
+            Script.addTimeArray[_index].activate(true);
+            this.appendChild(Script.addTimeArray[_index]);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
-            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);
@@ -94,6 +92,19 @@ var Script;
     let powerUp3;
     let powerUp4;
     Script.powerUpArray = [];
+    let addTime1;
+    let addTime2;
+    let addTime3;
+    let addTime4;
+    let addTime5;
+    let addTime6;
+    let addTime7;
+    let addTime8;
+    let addTime9;
+    let addTime10;
+    let addTime11;
+    let addTime12;
+    Script.addTimeArray = [];
     let objectAte = 0;
     let score = 0;
     let starPling;
@@ -108,18 +119,43 @@ var Script;
         Script.items = maze.getChildrenByName("Items")[0];
         life1 = Script.items.getChildrenByName("Life1")[0];
         life2 = Script.items.getChildrenByName("Life2")[0];
-        Script.lifeArray[1] = (life1);
-        Script.lifeArray[2] = (life2);
+        Script.lifeArray[1] = life1;
+        Script.lifeArray[2] = life2;
         console.log(Script.lifeArray);
         powerUp1 = Script.items.getChildrenByName("PowerUp1")[0];
         powerUp2 = Script.items.getChildrenByName("PowerUp2")[0];
         powerUp3 = Script.items.getChildrenByName("PowerUp3")[0];
         powerUp4 = Script.items.getChildrenByName("PowerUp4")[0];
-        Script.powerUpArray[1] = (powerUp1);
-        Script.powerUpArray[2] = (powerUp2);
-        Script.powerUpArray[3] = (powerUp3);
-        Script.powerUpArray[4] = (powerUp4);
+        Script.powerUpArray[1] = powerUp1;
+        Script.powerUpArray[2] = powerUp2;
+        Script.powerUpArray[3] = powerUp3;
+        Script.powerUpArray[4] = powerUp4;
         console.log(Script.powerUpArray);
+        addTime1 = Script.items.getChildrenByName("AddTime1")[0];
+        addTime2 = Script.items.getChildrenByName("AddTime2")[0];
+        addTime3 = Script.items.getChildrenByName("AddTime3")[0];
+        addTime4 = Script.items.getChildrenByName("AddTime4")[0];
+        addTime5 = Script.items.getChildrenByName("AddTime5")[0];
+        addTime6 = Script.items.getChildrenByName("AddTime6")[0];
+        addTime7 = Script.items.getChildrenByName("AddTime7")[0];
+        addTime8 = Script.items.getChildrenByName("AddTime8")[0];
+        addTime9 = Script.items.getChildrenByName("AddTime9")[0];
+        addTime10 = Script.items.getChildrenByName("AddTime10")[0];
+        addTime11 = Script.items.getChildrenByName("AddTime11")[0];
+        addTime12 = Script.items.getChildrenByName("AddTime12")[0];
+        Script.addTimeArray[1] = addTime1;
+        Script.addTimeArray[2] = addTime2;
+        Script.addTimeArray[3] = addTime3;
+        Script.addTimeArray[4] = addTime4;
+        Script.addTimeArray[5] = addTime5;
+        Script.addTimeArray[6] = addTime6;
+        Script.addTimeArray[7] = addTime7;
+        Script.addTimeArray[8] = addTime8;
+        Script.addTimeArray[9] = addTime9;
+        Script.addTimeArray[10] = addTime10;
+        Script.addTimeArray[11] = addTime11;
+        Script.addTimeArray[12] = addTime12;
+        console.log(Script.addTimeArray);
         // itemAnimation.idResource = "Animation|2023-07-21T22:24:47.000Z|55709";
         // console.log(itemAnimation);
         const myMaze = new Script.Maze(16, 16);
@@ -235,10 +271,10 @@ var Script;
     let itemNumber = 1;
     let previousItem = 0;
     let lastItem = ItemType.Empty;
-    let itemScale = 0.5;
     let indexLife = 1;
     let indexPowerUp = 1;
     let indexAddTime = 1;
+    let indexStar = 1;
     class Maze {
         width;
         height;
@@ -319,11 +355,12 @@ var Script;
             }
         }
         addStar(x, z) {
-            const star = new Script.Star(new Vector3(x, 0.5, z), itemScale);
+            const star = new Script.Star(new Vector3(x, 0.5, z), indexStar);
+            indexStar++;
             Script.items.addChild(star);
         }
         addAdditionalTime(x, z) {
-            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0.5, z), itemScale);
+            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0, z), indexAddTime);
             indexAddTime++;
             Script.items.addChild(additionalTime);
         }
@@ -349,9 +386,6 @@ var Script;
             console.log("PowerUp " + _index);
             Script.powerUpArray[_index].activate(true);
             this.appendChild(Script.powerUpArray[_index]);
-            // let cmpTransform: ƒ.ComponentTransform = new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position));
-            // cmpTransform.mtxLocal.rotateX(90, false)
-            // this.addComponent(cmpTransform);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
@@ -364,16 +398,28 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     class Star extends ƒ.Node {
-        static meshSphere = new ƒ.MeshSphere("Star");
-        static mtrSphere = new ƒ.Material("Star", ƒ.ShaderFlat, new ƒ.CoatRemissive());
-        constructor(_position, _scale) {
+        static spike;
+        static meshSpike = new ƒ.MeshPyramid("Spike");
+        static mtrSpike = new ƒ.Material("StarShader", ƒ.ShaderLitTextured, new ƒ.CoatRemissiveTextured(ƒ.Color.CSS("White"), new ƒ.TextureImage("Assets/Textures/torus_grey1.png"), 1, 0));
+        static spikeAmount = 6;
+        static degree = [0, 0, 60, 120, 180, 240, 300];
+        constructor(_position, _index) {
             super("Star");
-            this.addComponent(new ƒ.ComponentMesh(Star.meshSphere));
-            let cmpMaterial = new ƒ.ComponentMaterial(Star.mtrSphere);
-            cmpMaterial.clrPrimary = ƒ.Color.CSS("Gold");
-            this.addComponent(cmpMaterial);
+            for (let index = 1; index <= Star.spikeAmount; index++) {
+                Star.spike = new ƒ.Node("Spike" + index);
+                let meshComponent = new ƒ.ComponentMesh(new ƒ.MeshPyramid("Spike" + index));
+                meshComponent.mtxPivot.translation.y = 0.8;
+                meshComponent.mtxPivot.rotation.z = Star.degree[index];
+                meshComponent.mtxPivot.scaling = new ƒ.Vector3(0.12, 0.28, 0.16);
+                Star.spike.addComponent(meshComponent);
+                Star.spike.addComponent(new ƒ.ComponentMaterial(Star.mtrSpike));
+                Star.spike.getComponent(ƒ.ComponentMaterial).clrPrimary = ƒ.Color.CSS("#FFE45C");
+                this.addChild(Star.spike);
+            }
+            console.log("Star " + _index);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
-            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(ƒ.Vector3.ONE(_scale));
+            this.getComponent(ƒ.ComponentTransform).mtxLocal.rotateX(-12);
+            this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(new ƒ.Vector3(0.8, 0.8, 0.8));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);

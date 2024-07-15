@@ -22,11 +22,10 @@ namespace Script {
     let previousItem: number = 0;
     let lastItem: ItemType = ItemType.Empty;
 
-    let itemScale: number = 0.5;
-
     let indexLife: number = 1;
     let indexPowerUp: number = 1;
     let indexAddTime: number = 1;
+    let indexStar: number = 1;
 
     export class Maze {
         private readonly width: number;
@@ -120,12 +119,13 @@ namespace Script {
         }
 
         protected addStar(x: number, z: number): void {
-            const star: Star = new Star(new Vector3(x, 0.5, z), itemScale);
+            const star: Star = new Star(new Vector3(x, 0.5, z), indexStar);
+            indexStar++;
             items.addChild(star);
         }
 
         protected addAdditionalTime(x: number, z: number): void {
-            const additionalTime: AdditionalTime = new AdditionalTime(new Vector3(x, 0.5, z), itemScale);
+            const additionalTime: AdditionalTime = new AdditionalTime(new Vector3(x, 0, z), indexAddTime);
             indexAddTime++;
             items.addChild(additionalTime);
         }
