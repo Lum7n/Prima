@@ -58,6 +58,86 @@ var Script;
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;
+    var ƒUI = FudgeUserInterface;
+    class GameInterface extends ƒ.Mutable {
+        points = 0;
+        lives = 0;
+        time = 0;
+        static visualUIdiv;
+        static lastLifeAmount = 3;
+        constructor(_initialLives) {
+            super();
+            GameInterface.visualUIdiv = document.querySelector("div#visualUI");
+            GameInterface.visualUIdiv.style.display = "block";
+            let visualUIController = new ƒUI.Controller(this, GameInterface.visualUIdiv);
+            console.log(visualUIController);
+            // this.time = _time;
+            this.lives = _initialLives;
+            for (let index = 0; index < _initialLives; index++) {
+                this.addLifeImg();
+            }
+        }
+        reduceMutator(_mutator) { }
+        updateUserInterface() {
+            // points
+            let pointsSpan = GameInterface.visualUIdiv.querySelector("#points");
+            pointsSpan.innerHTML = "" + this.points + "";
+            // lives
+            if (this.lives != GameInterface.lastLifeAmount) {
+                console.log("life added");
+                this.addLifeImg();
+            }
+            // time
+            let timeSpan = GameInterface.visualUIdiv.querySelector("#time");
+            if (this.time > 0) {
+                timeSpan.innerHTML = this.displayTime(this.time);
+            }
+            else {
+                timeSpan.innerHTML = "00:00";
+            }
+        }
+        addLifeImg() {
+            let randomNumber = 0;
+            while (randomNumber == 0) {
+                randomNumber = Math.round(Math.random() * 6);
+            }
+            let newLifeImg = document.createElement("img");
+            newLifeImg.src = "Assets/life" + randomNumber + ".png";
+            console.log(newLifeImg.src);
+            let livesSpan = GameInterface.visualUIdiv.querySelector("#lives");
+            livesSpan.appendChild(newLifeImg);
+            GameInterface.lastLifeAmount = this.lives;
+        }
+        displayTime(_time) {
+            let seconds = Math.floor(_time) % 60;
+            // console.log("s " + seconds);
+            let minutes = Math.floor(_time / 60) % 60;
+            // console.log("m " + minutes);
+            return this.pad(minutes) + ":" + this.pad(seconds); // format display time
+        }
+        pad(number) {
+            // adds a zero if the number is less than 10
+            return (number < 10 ? "0" : "") + number;
+        }
+        showEndscreen(_finalPoints, _finalTime) {
+            let endScreenDiv = document.querySelector("div#endScreen");
+            endScreenDiv.style.display = "block";
+            let finalPointsSpan = endScreenDiv.querySelector("#finalPoints");
+            finalPointsSpan.innerHTML = "" + _finalPoints;
+            let finalTimeSpan = endScreenDiv.querySelector("#finalTime");
+            if (this.time > 0) {
+                finalTimeSpan.innerHTML = this.displayTime(_finalTime);
+            }
+            else {
+                finalTimeSpan.innerHTML = "00:00";
+            }
+        }
+    }
+    Script.GameInterface = GameInterface;
+})(Script || (Script = {}));
+var Script;
+(function (Script) {
+    var ƒ = FudgeCore;
     class Life extends ƒ.Node {
         constructor(_position, _index) {
             super("Life");
@@ -75,6 +155,7 @@ var Script;
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;
+    // import ƒAid = FudgeAid;
     var Vector3 = FudgeCore.Vector3;
     console.log(Vector3);
     let viewport;
@@ -105,18 +186,62 @@ var Script;
     let addTime11;
     let addTime12;
     Script.addTimeArray = [];
+    let externalConfig;
+    // export let gameState: GameState;
     let objectAte = 0;
-    let score = 0;
+    let gameInterface;
     let starPling;
     let itemAte;
+    let won = false;
+    let gameTime;
+    let timer;
     //@ts-ignore
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
         viewport = _event.detail;
         graph = viewport.getBranch();
         console.log(graph);
+        await getExternalData();
         maze = graph.getChildrenByName("Maze")[0];
         Script.items = maze.getChildrenByName("Items")[0];
+        getItemNodes();
+        // itemAnimation.idResource = "Animation|2023-07-21T22:24:47.000Z|55709";
+        // console.log(itemAnimation);
+        const myMaze = new Script.Maze(16, 16);
+        // Add stars and power-ups to the maze where there are no cubes
+        myMaze.addItems();
+        character = graph.getChildrenByName("Character")[0];
+        console.log(character);
+        let cameraNode = character.getChildrenByName("Camera")[0];
+        console.log(cameraNode);
+        let camera = cameraNode.getComponent(ƒ.ComponentCamera);
+        console.log(camera);
+        viewport.camera = camera;
+        sound = graph.getChildrenByName("Audio")[0];
+        starPling = sound.getChildrenByName("Star")[0].getComponent(ƒ.ComponentAudio);
+        itemAte = sound.getChildrenByName("otherItem")[0].getComponent(ƒ.ComponentAudio);
+        gameTime = new ƒ.Time();
+        timer = new ƒ.Timer(gameTime, 1000, 0, updateTimer);
+        ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
+        ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics
+        setUpCharacter();
+        gameInterface = new Script.GameInterface(Script.initialLivesAmount);
+    }
+    function update(_event) {
+        characterMovement();
+        gameInterface.updateUserInterface();
+        ƒ.Physics.simulate(); // if physics is included and used
+        viewport.draw();
+        ƒ.AudioManager.default.update();
+    }
+    async function getExternalData() {
+        let response = await fetch("External.json");
+        externalConfig = await response.json();
+        Script.initialLivesAmount = externalConfig["initialLivesAmount"];
+        console.log(Script.initialLivesAmount);
+        // gameState = new GameState(gameDuration);
+    }
+    function getItemNodes() {
         life1 = Script.items.getChildrenByName("Life1")[0];
         life2 = Script.items.getChildrenByName("Life2")[0];
         Script.lifeArray[1] = life1;
@@ -156,35 +281,11 @@ var Script;
         Script.addTimeArray[11] = addTime11;
         Script.addTimeArray[12] = addTime12;
         console.log(Script.addTimeArray);
-        // itemAnimation.idResource = "Animation|2023-07-21T22:24:47.000Z|55709";
-        // console.log(itemAnimation);
-        const myMaze = new Script.Maze(16, 16);
-        // Add stars and power-ups to the maze where there are no cubes
-        myMaze.addItems();
-        character = graph.getChildrenByName("Character")[0];
-        console.log(character);
-        let cameraNode = character.getChildrenByName("Camera")[0];
-        console.log(cameraNode);
-        let camera = cameraNode.getComponent(ƒ.ComponentCamera);
-        console.log(camera);
-        viewport.camera = camera;
-        sound = graph.getChildrenByName("Audio")[0];
-        starPling = sound.getChildrenByName("Star")[0].getComponent(ƒ.ComponentAudio);
-        itemAte = sound.getChildrenByName("otherItem")[0].getComponent(ƒ.ComponentAudio);
-        ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
-        ƒ.Loop.start();
-        setUpCharacter();
-    }
-    function update(_event) {
-        characterMovement();
-        ƒ.Physics.simulate(); // if physics is included and used
-        viewport.draw();
-        ƒ.AudioManager.default.update();
     }
     function setUpCharacter() {
         cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
-        cmpRigidbody.mass = 2500;
-        cmpRigidbody.friction = 2;
+        cmpRigidbody.mass = 8000;
+        cmpRigidbody.friction = 10;
         cmpRigidbody.dampTranslation = 5;
         cmpRigidbody.effectRotation.y = 0;
         cmpRigidbody.addEventListener("TriggerEnteredCollision" /* ƒ.EVENT_PHYSICS.TRIGGER_ENTER */, collision);
@@ -196,56 +297,72 @@ var Script;
         objectParent.removeChild(collidedWithObject);
         objectAte++;
         console.log(objectAte);
-        if (objectAte == 169) {
-            window.alert("You Won!");
+        if (objectAte == 10) { //170
+            let finalPoints = gameInterface.points;
+            let finalTime = gameInterface.time;
+            console.log("final: " + finalPoints + " and " + finalTime);
+            gameInterface.showEndscreen(finalPoints, finalTime);
+            won = true;
+            timer.active = false;
         }
+        character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
+        character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
+        cmpRigidbody.dampRotation = 0;
+        console.log("Local " + character.mtxLocal.rotation);
+        console.log("World " + character.mtxWorld.rotation);
+        //check the object and adds points, lives, sounds
         switch (collidedWithObject.name) {
             case "Star":
-                score += 50;
+                gameInterface.points += 20;
                 starPling.play(true);
-                console.log(score);
                 break;
             case "AdditionalTime":
-                // console.error("Added Time!");
-                score += 10;
+                gameInterface.points += 5;
+                gameInterface.time -= 5;
                 itemAte.play(true);
                 break;
             case "PowerUp":
                 console.error("PowerUp Added!");
-                score += 20;
+                gameInterface.points += 10;
                 itemAte.play(true);
                 break;
             case "Life":
                 console.error("Life Added!");
+                gameInterface.lives += 1;
                 itemAte.play(true);
                 break;
         }
     }
     function characterMovement() {
-        const moveSpeed = 5;
+        const moveSpeed = 8;
         let velocity = ƒ.Vector3.ZERO();
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
-            velocity.x = moveSpeed;
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
-            velocity.x = -moveSpeed;
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.W])) {
-            velocity.z = -moveSpeed;
-        }
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
-            velocity.z = moveSpeed;
+        while (won != true) {
+            if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
+                velocity.x = moveSpeed;
+            }
+            if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
+                velocity.x = -moveSpeed;
+            }
+            if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.W])) {
+                velocity.z = -moveSpeed;
+            }
+            if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
+                velocity.z = moveSpeed;
+            }
         }
         velocity.y = 0;
         //check if character stays still
         if (velocity.x == 0 && velocity.z == 0) {
-            console.log("x: " + velocity.x + ", z: " + velocity.z);
+            // console.log("x: " + velocity.x + ", z: " + velocity.z);
         }
         else {
             // console.log("x: " + velocity.x + ", z: " + velocity.z);
             cmpRigidbody.setVelocity(velocity);
         }
         cmpRigidbody.setRotation(ƒ.Vector3.ZERO());
+    }
+    function updateTimer() {
+        gameInterface.time += 1;
     }
 })(Script || (Script = {}));
 var Script;
@@ -271,10 +388,10 @@ var Script;
     let itemNumber = 1;
     let previousItem = 0;
     let lastItem = ItemType.Empty;
-    let indexLife = 1;
-    let indexPowerUp = 1;
-    let indexAddTime = 1;
-    let indexStar = 1;
+    Script.indexLife = 1;
+    Script.indexPowerUp = 1;
+    Script.indexAddTime = 1;
+    Script.indexStar = 1;
     class Maze {
         width;
         height;
@@ -301,13 +418,13 @@ var Script;
                     if (this.grid[z][x] === TileType.Empty) {
                         let randomNumber = Math.random();
                         let itemType;
-                        if (randomNumber <= 0.008 && indexLife <= 2) { // 0,8%
+                        if (randomNumber <= 0.008 && Script.indexLife <= 2) { // 0,8%
                             itemType = ItemType.Life;
                         }
-                        else if (randomNumber <= 0.017 && indexPowerUp <= 4) { // 1,7%
+                        else if (randomNumber <= 0.017 && Script.indexPowerUp <= 4) { // 1,7%
                             itemType = ItemType.PowerUp;
                         }
-                        else if (randomNumber <= 0.049 && indexAddTime <= 12) { // 4,8%
+                        else if (randomNumber <= 0.049 && Script.indexAddTime <= 12) { // 4,8%
                             itemType = ItemType.AdditionalTime;
                         }
                         else {
@@ -355,23 +472,23 @@ var Script;
             }
         }
         addStar(x, z) {
-            const star = new Script.Star(new Vector3(x, 0.5, z), indexStar);
-            indexStar++;
+            const star = new Script.Star(new Vector3(x, 0.5, z), Script.indexStar);
+            Script.indexStar++;
             Script.items.addChild(star);
         }
         addAdditionalTime(x, z) {
-            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0, z), indexAddTime);
-            indexAddTime++;
+            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0, z), Script.indexAddTime);
+            Script.indexAddTime++;
             Script.items.addChild(additionalTime);
         }
         addPowerUp(x, z) {
-            const powerUp = new Script.PowerUp(new Vector3(x, 0, z), indexPowerUp);
-            indexPowerUp++;
+            const powerUp = new Script.PowerUp(new Vector3(x, 0, z), Script.indexPowerUp);
+            Script.indexPowerUp++;
             Script.items.addChild(powerUp);
         }
         addLifes(x, z) {
-            const life = new Script.Life(new Vector3(x, 0, z), indexLife);
-            indexLife++;
+            const life = new Script.Life(new Vector3(x, 0, z), Script.indexLife);
+            Script.indexLife++;
             Script.items.addChild(life);
         }
     }
@@ -416,7 +533,7 @@ var Script;
                 Star.spike.getComponent(ƒ.ComponentMaterial).clrPrimary = ƒ.Color.CSS("#FFE45C");
                 this.addChild(Star.spike);
             }
-            console.log("Star " + _index);
+            // console.log("Star " + _index);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             this.getComponent(ƒ.ComponentTransform).mtxLocal.rotateX(-12);
             this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(new ƒ.Vector3(0.8, 0.8, 0.8));

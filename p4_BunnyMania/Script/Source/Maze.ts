@@ -22,10 +22,10 @@ namespace Script {
     let previousItem: number = 0;
     let lastItem: ItemType = ItemType.Empty;
 
-    let indexLife: number = 1;
-    let indexPowerUp: number = 1;
-    let indexAddTime: number = 1;
-    let indexStar: number = 1;
+    export let indexLife: number = 1;
+    export let indexPowerUp: number = 1;
+    export let indexAddTime: number = 1;
+    export let indexStar: number = 1;
 
     export class Maze {
         private readonly width: number;

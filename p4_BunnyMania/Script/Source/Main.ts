@@ -1,5 +1,6 @@
 namespace Script {
   import ƒ = FudgeCore;
+  // import ƒAid = FudgeAid;
   import Vector3 = FudgeCore.Vector3;
   console.log(Vector3);
 
@@ -37,10 +38,23 @@ namespace Script {
   let addTime12: ƒ.Node;
   export let addTimeArray: ƒ.Node[] = [];
 
+  interface ExternalData {
+    [name: string]: number;
+  }
+  let externalConfig: ExternalData;
+  export let initialLivesAmount: number;
+
+  // export let gameState: GameState;
+
   let objectAte: number = 0;
-  let score: number = 0;
+  let gameInterface: GameInterface;
   let starPling: ƒ.ComponentAudio;
   let itemAte: ƒ.ComponentAudio;
+
+  let won: boolean = false;
+
+  let gameTime: ƒ.Time;
+  let timer: ƒ.Timer;
 
   //@ts-ignore
   document.addEventListener("interactiveViewportStarted", start);
@@ -51,8 +65,68 @@ namespace Script {
     graph = viewport.getBranch();
     console.log(graph);
 
+    await getExternalData();
+
     maze = graph.getChildrenByName("Maze")[0];
     items = maze.getChildrenByName("Items")[0];
+
+    getItemNodes();
+
+    // itemAnimation.idResource = "Animation|2023-07-21T22:24:47.000Z|55709";
+    // console.log(itemAnimation);
+
+    const myMaze: Maze = new Maze(16, 16);
+    // Add stars and power-ups to the maze where there are no cubes
+    myMaze.addItems();
+
+    character = graph.getChildrenByName("Character")[0];
+    console.log(character);
+
+    let cameraNode: ƒ.Node = character.getChildrenByName("Camera")[0];
+    console.log(cameraNode);
+    let camera: ƒ.ComponentCamera = cameraNode.getComponent(ƒ.ComponentCamera);
+    console.log(camera);
+
+    viewport.camera = camera;
+
+    sound = graph.getChildrenByName("Audio")[0];
+    starPling = sound.getChildrenByName("Star")[0].getComponent(ƒ.ComponentAudio);
+    itemAte = sound.getChildrenByName("otherItem")[0].getComponent(ƒ.ComponentAudio);
+
+    gameTime = new ƒ.Time();
+    timer = new ƒ.Timer(gameTime, 1000, 0, updateTimer);
+
+    ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
+    ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics
+
+    setUpCharacter();
+
+    gameInterface = new GameInterface(initialLivesAmount);
+
+  }
+
+  function update(_event: Event): void {
+
+    characterMovement();
+
+    gameInterface.updateUserInterface();
+
+    ƒ.Physics.simulate();  // if physics is included and used
+    viewport.draw();
+    ƒ.AudioManager.default.update();
+
+  }
+
+  async function getExternalData(): Promise<void> {
+    let response: Response = await fetch("External.json");
+    externalConfig = await response.json();
+    initialLivesAmount = externalConfig["initialLivesAmount"];
+    console.log(initialLivesAmount);
+
+    // gameState = new GameState(gameDuration);
+  }
+
+  function getItemNodes(): void {
 
     life1 = items.getChildrenByName("Life1")[0];
     life2 = items.getChildrenByName("Life2")[0];
@@ -95,49 +169,13 @@ namespace Script {
     addTimeArray[11] = addTime11;
     addTimeArray[12] = addTime12;
     console.log(addTimeArray);
-
-    // itemAnimation.idResource = "Animation|2023-07-21T22:24:47.000Z|55709";
-    // console.log(itemAnimation);
-
-    const myMaze: Maze = new Maze(16, 16);
-    // Add stars and power-ups to the maze where there are no cubes
-    myMaze.addItems();
-
-    character = graph.getChildrenByName("Character")[0];
-    console.log(character);
-
-    let cameraNode: ƒ.Node = character.getChildrenByName("Camera")[0];
-    console.log(cameraNode);
-    let camera: ƒ.ComponentCamera = cameraNode.getComponent(ƒ.ComponentCamera);
-    console.log(camera);
-
-    viewport.camera = camera;
-
-    sound = graph.getChildrenByName("Audio")[0];
-    starPling = sound.getChildrenByName("Star")[0].getComponent(ƒ.ComponentAudio);
-    itemAte = sound.getChildrenByName("otherItem")[0].getComponent(ƒ.ComponentAudio);
-
-    ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
-    ƒ.Loop.start();
-
-    setUpCharacter();
-
-  }
-
-  function update(_event: Event): void {
-
-    characterMovement();
-
-    ƒ.Physics.simulate();  // if physics is included and used
-    viewport.draw();
-    ƒ.AudioManager.default.update();
   }
 
   function setUpCharacter(): void {
 
     cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
-    cmpRigidbody.mass = 2500;
-    cmpRigidbody.friction = 2;
+    cmpRigidbody.mass = 8000;
+    cmpRigidbody.friction = 10;
     cmpRigidbody.dampTranslation = 5;
     cmpRigidbody.effectRotation.y = 0;
     cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, collision);
@@ -152,68 +190,86 @@ namespace Script {
     objectParent.removeChild(collidedWithObject);
     objectAte++;
     console.log(objectAte);
-    if (objectAte == 169) {
-      window.alert("You Won!");
+    if (objectAte == 10) { //170
+      let finalPoints: number = gameInterface.points;
+      let finalTime: number = gameInterface.time;
+      console.log("final: " + finalPoints + " and " + finalTime);
+      gameInterface.showEndscreen(finalPoints, finalTime);
+      won = true;
+      timer.active = false;
     }
 
+    character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
+    character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
+    cmpRigidbody.dampRotation = 0;
+
+    console.log("Local " + character.mtxLocal.rotation);
+    console.log("World " + character.mtxWorld.rotation);
+
+    //check the object and adds points, lives, sounds
     switch (collidedWithObject.name) {
 
       case "Star":
-        score += 50;
+        gameInterface.points += 20;
         starPling.play(true);
-        console.log(score);
         break;
       case "AdditionalTime":
-        // console.error("Added Time!");
-        score += 10;
-        itemAte.play(true)
+        gameInterface.points += 5;
+        gameInterface.time -= 5;
+        itemAte.play(true);
         break;
       case "PowerUp":
         console.error("PowerUp Added!");
-        score += 20;
-        itemAte.play(true)
+        gameInterface.points += 10;
+        itemAte.play(true);
         break;
       case "Life":
         console.error("Life Added!");
-        itemAte.play(true)
+        gameInterface.lives += 1;
+        itemAte.play(true);
         break;
     }
   }
 
   function characterMovement(): void {
 
-    const moveSpeed: number = 5;
+    const moveSpeed: number = 8;
 
     let velocity: ƒ.Vector3 = ƒ.Vector3.ZERO();
 
-    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
-      velocity.x = moveSpeed;
-    }
-
-    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
-      velocity.x = -moveSpeed;
-    }
-
-    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.W])) {
-      velocity.z = -moveSpeed;
-    }
-
-    if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
-      velocity.z = moveSpeed;
+    while (won != true) {
+      if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
+        velocity.x = moveSpeed;
+      }
+  
+      if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
+        velocity.x = -moveSpeed;
+      }
+  
+      if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.W])) {
+        velocity.z = -moveSpeed;
+      }
+  
+      if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
+        velocity.z = moveSpeed;
+      }
     }
 
     velocity.y = 0;
 
     //check if character stays still
     if (velocity.x == 0 && velocity.z == 0) {
-      console.log("x: " + velocity.x + ", z: " + velocity.z);
+      // console.log("x: " + velocity.x + ", z: " + velocity.z);
     } else {
       // console.log("x: " + velocity.x + ", z: " + velocity.z);
       cmpRigidbody.setVelocity(velocity);
     }
 
     cmpRigidbody.setRotation(ƒ.Vector3.ZERO())
+  }
 
+  function updateTimer(): void {
+    gameInterface.time += 1;
   }
 
 }

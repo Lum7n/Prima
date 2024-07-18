@@ -84,7 +84,7 @@ var Script;
         Script.viewport.camera = character.getChild(0).getComponent(ƒ.ComponentCamera);
         cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
         cmpRigidbody.effectRotation = ƒ.Vector3.Y();
-        cmpRigidbody.addEventListener("ColliderEnteredCollision" /* ƒ.EVENT_PHYSICS.COLLISION_ENTER */, characterCollides);
+        // cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.COLLISION_ENTER, characterCollides);
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
         ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
     }

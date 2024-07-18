@@ -19,17 +19,6 @@
       }
     }
   },
-  "TextureImage|2023-07-21T18:01:37.066Z|77921": {
-    "ƒ.TextureImage": {
-      "url": "Assets\\Textures\\bush_1000_transparent.png",
-      "type": "TextureImage",
-      "Texture": {
-        "idResource": "TextureImage|2023-07-21T18:01:37.066Z|77921",
-        "name": "bush-transparent-Texture",
-        "mipmap": "CRISP"
-      }
-    }
-  },
   "TextureImage|2024-07-08T17:03:37.369Z|23184": {
     "ƒ.TextureImage": {
       "url": "Assets\\Textures\\bush_1000_oil2.png",
@@ -37,6 +26,17 @@
       "Texture": {
         "idResource": "TextureImage|2024-07-08T17:03:37.369Z|23184",
         "name": "bush-oil2-Texture",
+        "mipmap": "CRISP"
+      }
+    }
+  },
+  "TextureImage|2023-07-21T18:01:37.066Z|77921": {
+    "ƒ.TextureImage": {
+      "url": "Assets\\Textures\\bush_1000_transparent.png",
+      "type": "TextureImage",
+      "Texture": {
+        "idResource": "TextureImage|2023-07-21T18:01:37.066Z|77921",
+        "name": "bush-transparent-Texture",
         "mipmap": "CRISP"
       }
     }
@@ -1186,8 +1186,8 @@
                                 "clrSecondary": "[1, 1, 1, 1]",
                                 "pivot": {
                                   "translation": "[0, 0]",
-                                  "rotation": 0,
-                                  "scaling": "[4, 1]"
+                                  "rotation": 90,
+                                  "scaling": "[4, 0.6999999284744263]"
                                 },
                                 "Component": {
                                   "active": true
@@ -8850,7 +8850,7 @@
                           "projection": "central",
                           "fieldOfView": 75,
                           "direction": "diagonal",
-                          "aspect": 1.492007104795737,
+                          "aspect": 1.5833333333333333,
                           "pivot": {
                             "translation": "[0, 0, 0]",
                             "rotation": "[0, 0, 0]",
@@ -8866,7 +8866,7 @@
                       {
                         "ƒ.ComponentTransform": {
                           "local": {
-                            "translation": "[0, 6, 5]",
+                            "translation": "[0, 4.800002098083496, 3.8000011444091797]",
                             "rotation": "[50, 180, 0]",
                             "scaling": "[1, 1, 1]"
                           },

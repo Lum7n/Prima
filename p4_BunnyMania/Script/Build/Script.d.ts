@@ -17,6 +17,23 @@ declare namespace Script {
 }
 declare namespace Script {
     import ƒ = FudgeCore;
+    class GameInterface extends ƒ.Mutable {
+        points: number;
+        lives: number;
+        time: number;
+        static visualUIdiv: HTMLDivElement;
+        static lastLifeAmount: number;
+        constructor(_initialLives: number);
+        protected reduceMutator(_mutator: ƒ.Mutator): void;
+        updateUserInterface(): void;
+        addLifeImg(): void;
+        displayTime(_time: number): string;
+        pad(number: number): string;
+        showEndscreen(_finalPoints: number, _finalTime: number): void;
+    }
+}
+declare namespace Script {
+    import ƒ = FudgeCore;
     class Life extends ƒ.Node {
         constructor(_position: ƒ.Vector3, _index: number);
     }
@@ -28,8 +45,13 @@ declare namespace Script {
     let lifeArray: ƒ.Node[];
     let powerUpArray: ƒ.Node[];
     let addTimeArray: ƒ.Node[];
+    let initialLivesAmount: number;
 }
 declare namespace Script {
+    let indexLife: number;
+    let indexPowerUp: number;
+    let indexAddTime: number;
+    let indexStar: number;
     class Maze {
         private readonly width;
         private readonly height;
@@ -59,6 +81,4 @@ declare namespace Script {
         static degree: number[];
         constructor(_position: ƒ.Vector3, _index: number);
     }
-}
-declare namespace Script {
 }

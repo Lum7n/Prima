@@ -27,7 +27,7 @@ namespace Script {
                 this.addChild(Star.spike);
             }
 
-            console.log("Star " + _index);
+            // console.log("Star " + _index);
 
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             this.getComponent(ƒ.ComponentTransform).mtxLocal.rotateX(-12);
