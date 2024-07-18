@@ -45,7 +45,6 @@ declare namespace Script {
     let lifeArray: ƒ.Node[];
     let powerUpArray: ƒ.Node[];
     let addTimeArray: ƒ.Node[];
-    let initialLivesAmount: number;
 }
 declare namespace Script {
     let indexLife: number;

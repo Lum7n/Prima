@@ -38,11 +38,11 @@ namespace Script {
   let addTime12: ƒ.Node;
   export let addTimeArray: ƒ.Node[] = [];
 
-  interface ExternalData {
-    [name: string]: number;
-  }
-  let externalConfig: ExternalData;
-  export let initialLivesAmount: number;
+  // interface ExternalData {
+  //   [name: string]: number;
+  // }
+  // let externalConfig: ExternalData;
+  // export let initialLivesAmount: number;
 
   // export let gameState: GameState;
 
@@ -65,7 +65,7 @@ namespace Script {
     graph = viewport.getBranch();
     console.log(graph);
 
-    await getExternalData();
+    // await getExternalData();
 
     maze = graph.getChildrenByName("Maze")[0];
     items = maze.getChildrenByName("Items")[0];
@@ -101,7 +101,9 @@ namespace Script {
 
     setUpCharacter();
 
-    gameInterface = new GameInterface(initialLivesAmount);
+    console.log("yes");
+
+    // gameInterface = new GameInterface(initialLivesAmount);
 
   }
 
@@ -117,14 +119,14 @@ namespace Script {
 
   }
 
-  async function getExternalData(): Promise<void> {
-    let response: Response = await fetch("External.json");
-    externalConfig = await response.json();
-    initialLivesAmount = externalConfig["initialLivesAmount"];
-    console.log(initialLivesAmount);
+  // async function getExternalData(): Promise<void> {
+  //   let response: Response = await fetch("External.json");
+  //   externalConfig = await response.json();
+  //   initialLivesAmount = externalConfig["initialLivesAmount"];
+  //   console.log("initial:" + initialLivesAmount);
 
-    // gameState = new GameState(gameDuration);
-  }
+  //   // gameState = new GameState(gameDuration);
+  // }
 
   function getItemNodes(): void {
 

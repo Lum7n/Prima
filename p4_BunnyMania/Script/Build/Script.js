@@ -186,7 +186,11 @@ var Script;
     let addTime11;
     let addTime12;
     Script.addTimeArray = [];
-    let externalConfig;
+    // interface ExternalData {
+    //   [name: string]: number;
+    // }
+    // let externalConfig: ExternalData;
+    // export let initialLivesAmount: number;
     // export let gameState: GameState;
     let objectAte = 0;
     let gameInterface;
@@ -201,7 +205,7 @@ var Script;
         viewport = _event.detail;
         graph = viewport.getBranch();
         console.log(graph);
-        await getExternalData();
+        // await getExternalData();
         maze = graph.getChildrenByName("Maze")[0];
         Script.items = maze.getChildrenByName("Items")[0];
         getItemNodes();
@@ -225,7 +229,8 @@ var Script;
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
         ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics
         setUpCharacter();
-        gameInterface = new Script.GameInterface(Script.initialLivesAmount);
+        console.log("yes");
+        // gameInterface = new GameInterface(initialLivesAmount);
     }
     function update(_event) {
         characterMovement();
@@ -234,13 +239,13 @@ var Script;
         viewport.draw();
         ƒ.AudioManager.default.update();
     }
-    async function getExternalData() {
-        let response = await fetch("External.json");
-        externalConfig = await response.json();
-        Script.initialLivesAmount = externalConfig["initialLivesAmount"];
-        console.log(Script.initialLivesAmount);
-        // gameState = new GameState(gameDuration);
-    }
+    // async function getExternalData(): Promise<void> {
+    //   let response: Response = await fetch("External.json");
+    //   externalConfig = await response.json();
+    //   initialLivesAmount = externalConfig["initialLivesAmount"];
+    //   console.log("initial:" + initialLivesAmount);
+    //   // gameState = new GameState(gameDuration);
+    // }
     function getItemNodes() {
         life1 = Script.items.getChildrenByName("Life1")[0];
         life2 = Script.items.getChildrenByName("Life2")[0];
