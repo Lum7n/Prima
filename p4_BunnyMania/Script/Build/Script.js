@@ -186,11 +186,7 @@ var Script;
     let addTime11;
     let addTime12;
     Script.addTimeArray = [];
-    // interface ExternalData {
-    //   [name: string]: number;
-    // }
-    // let externalConfig: ExternalData;
-    // export let initialLivesAmount: number;
+    let externalConfig;
     // export let gameState: GameState;
     let objectAte = 0;
     let gameInterface;
@@ -205,12 +201,10 @@ var Script;
         viewport = _event.detail;
         graph = viewport.getBranch();
         console.log(graph);
-        // await getExternalData();
+        await getExternalData();
         maze = graph.getChildrenByName("Maze")[0];
         Script.items = maze.getChildrenByName("Items")[0];
         getItemNodes();
-        // itemAnimation.idResource = "Animation|2023-07-21T22:24:47.000Z|55709";
-        // console.log(itemAnimation);
         const myMaze = new Script.Maze(16, 16);
         // Add stars and power-ups to the maze where there are no cubes
         myMaze.addItems();
@@ -226,26 +220,25 @@ var Script;
         itemAte = sound.getChildrenByName("otherItem")[0].getComponent(ƒ.ComponentAudio);
         gameTime = new ƒ.Time();
         timer = new ƒ.Timer(gameTime, 1000, 0, updateTimer);
+        setUpCharacter();
+        gameInterface = new Script.GameInterface(Script.initialLivesAmount);
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
         ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics
-        setUpCharacter();
-        console.log("yes");
-        // gameInterface = new GameInterface(initialLivesAmount);
     }
     function update(_event) {
-        characterMovement();
         gameInterface.updateUserInterface();
+        characterMovement();
         ƒ.Physics.simulate(); // if physics is included and used
         viewport.draw();
         ƒ.AudioManager.default.update();
     }
-    // async function getExternalData(): Promise<void> {
-    //   let response: Response = await fetch("External.json");
-    //   externalConfig = await response.json();
-    //   initialLivesAmount = externalConfig["initialLivesAmount"];
-    //   console.log("initial:" + initialLivesAmount);
-    //   // gameState = new GameState(gameDuration);
-    // }
+    async function getExternalData() {
+        let response = await fetch("External.json");
+        externalConfig = await response.json();
+        Script.initialLivesAmount = externalConfig["initialLivesAmount"];
+        console.log("initial:" + Script.initialLivesAmount);
+        // gameState = new GameState(gameDuration);
+    }
     function getItemNodes() {
         life1 = Script.items.getChildrenByName("Life1")[0];
         life2 = Script.items.getChildrenByName("Life2")[0];
@@ -302,14 +295,7 @@ var Script;
         objectParent.removeChild(collidedWithObject);
         objectAte++;
         console.log(objectAte);
-        if (objectAte == 10) { //170
-            let finalPoints = gameInterface.points;
-            let finalTime = gameInterface.time;
-            console.log("final: " + finalPoints + " and " + finalTime);
-            gameInterface.showEndscreen(finalPoints, finalTime);
-            won = true;
-            timer.active = false;
-        }
+        // try to fix the rotation
         character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
         character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
         cmpRigidbody.dampRotation = 0;
@@ -337,11 +323,20 @@ var Script;
                 itemAte.play(true);
                 break;
         }
+        // won?
+        if (objectAte == 10) { //170
+            let finalPoints = gameInterface.points;
+            let finalTime = gameInterface.time;
+            console.log("final: " + finalPoints + " and " + finalTime);
+            gameInterface.showEndscreen(finalPoints, finalTime);
+            won = true;
+            timer.active = false;
+        }
     }
     function characterMovement() {
         const moveSpeed = 8;
         let velocity = ƒ.Vector3.ZERO();
-        while (won != true) {
+        if (won != true) {
             if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
                 velocity.x = moveSpeed;
             }
@@ -415,6 +410,7 @@ var Script;
                 }
                 grid.push(row);
             }
+            console.log(grid[0]);
             return grid;
         }
         addItems() {

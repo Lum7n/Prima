@@ -10,10 +10,10 @@ namespace Script {
     }
 
     enum TileType {
-        Ground,
-        Border,
-        Cube,
-        Empty,
+        Ground, // 0
+        Border, // 1
+        Cube,   // 2
+        Empty,  // 3
     }
 
     let itemTypeArray: ItemType[] = [];
@@ -45,10 +45,11 @@ namespace Script {
                 const row: TileType[] = [];
                 for (let x = 0; x < this.height; x++) {
                     row.push(TileType.Empty);
+
                 }
                 grid.push(row);
             }
-
+            console.log(grid[0]);
             return grid;
         }
 

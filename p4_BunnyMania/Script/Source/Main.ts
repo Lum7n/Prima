@@ -38,11 +38,11 @@ namespace Script {
   let addTime12: ƒ.Node;
   export let addTimeArray: ƒ.Node[] = [];
 
-  // interface ExternalData {
-  //   [name: string]: number;
-  // }
-  // let externalConfig: ExternalData;
-  // export let initialLivesAmount: number;
+  interface ExternalData {
+    [name: string]: number;
+  }
+  let externalConfig: ExternalData;
+  export let initialLivesAmount: number;
 
   // export let gameState: GameState;
 
@@ -65,15 +65,12 @@ namespace Script {
     graph = viewport.getBranch();
     console.log(graph);
 
-    // await getExternalData();
+    await getExternalData();
 
     maze = graph.getChildrenByName("Maze")[0];
     items = maze.getChildrenByName("Items")[0];
 
     getItemNodes();
-
-    // itemAnimation.idResource = "Animation|2023-07-21T22:24:47.000Z|55709";
-    // console.log(itemAnimation);
 
     const myMaze: Maze = new Maze(16, 16);
     // Add stars and power-ups to the maze where there are no cubes
@@ -88,7 +85,6 @@ namespace Script {
     console.log(camera);
 
     viewport.camera = camera;
-
     sound = graph.getChildrenByName("Audio")[0];
     starPling = sound.getChildrenByName("Star")[0].getComponent(ƒ.ComponentAudio);
     itemAte = sound.getChildrenByName("otherItem")[0].getComponent(ƒ.ComponentAudio);
@@ -96,37 +92,34 @@ namespace Script {
     gameTime = new ƒ.Time();
     timer = new ƒ.Timer(gameTime, 1000, 0, updateTimer);
 
-    ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
-    ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics
-
     setUpCharacter();
 
-    console.log("yes");
+    gameInterface = new GameInterface(initialLivesAmount);
 
-    // gameInterface = new GameInterface(initialLivesAmount);
-
+    ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
+    ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics
   }
 
   function update(_event: Event): void {
 
-    characterMovement();
-
     gameInterface.updateUserInterface();
+
+    characterMovement();
 
     ƒ.Physics.simulate();  // if physics is included and used
     viewport.draw();
-    ƒ.AudioManager.default.update();
 
+    ƒ.AudioManager.default.update();
   }
 
-  // async function getExternalData(): Promise<void> {
-  //   let response: Response = await fetch("External.json");
-  //   externalConfig = await response.json();
-  //   initialLivesAmount = externalConfig["initialLivesAmount"];
-  //   console.log("initial:" + initialLivesAmount);
+  async function getExternalData(): Promise<void> {
+    let response: Response = await fetch("External.json");
+    externalConfig = await response.json();
+    initialLivesAmount = externalConfig["initialLivesAmount"];
+    console.log("initial:" + initialLivesAmount);
 
-  //   // gameState = new GameState(gameDuration);
-  // }
+    // gameState = new GameState(gameDuration);
+  }
 
   function getItemNodes(): void {
 
@@ -192,19 +185,11 @@ namespace Script {
     objectParent.removeChild(collidedWithObject);
     objectAte++;
     console.log(objectAte);
-    if (objectAte == 10) { //170
-      let finalPoints: number = gameInterface.points;
-      let finalTime: number = gameInterface.time;
-      console.log("final: " + finalPoints + " and " + finalTime);
-      gameInterface.showEndscreen(finalPoints, finalTime);
-      won = true;
-      timer.active = false;
-    }
 
+    // try to fix the rotation
     character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
     character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
     cmpRigidbody.dampRotation = 0;
-
     console.log("Local " + character.mtxLocal.rotation);
     console.log("World " + character.mtxWorld.rotation);
 
@@ -231,6 +216,15 @@ namespace Script {
         itemAte.play(true);
         break;
     }
+    // won?
+    if (objectAte == 10) { //170
+      let finalPoints: number = gameInterface.points;
+      let finalTime: number = gameInterface.time;
+      console.log("final: " + finalPoints + " and " + finalTime);
+      gameInterface.showEndscreen(finalPoints, finalTime);
+      won = true;
+      timer.active = false;
+    }
   }
 
   function characterMovement(): void {
@@ -239,7 +233,7 @@ namespace Script {
 
     let velocity: ƒ.Vector3 = ƒ.Vector3.ZERO();
 
-    while (won != true) {
+    if (won != true) {
       if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
         velocity.x = moveSpeed;
       }
