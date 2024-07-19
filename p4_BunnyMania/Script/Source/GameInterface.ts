@@ -75,6 +75,13 @@ namespace Script {
             let endScreenDiv: HTMLDivElement = document.querySelector("div#endScreen");
             endScreenDiv.style.display = "block";
 
+            if (won != true) {
+                let titelH1: HTMLHeadingElement = endScreenDiv.querySelector("h1");
+                titelH1.innerHTML = "Game Over"
+                let titelH2: HTMLHeadingElement = endScreenDiv.querySelector("h2");
+                titelH2.innerHTML = "You lost!"
+            }
+
             let finalPointsSpan: HTMLSpanElement = endScreenDiv.querySelector("#finalPoints");
             finalPointsSpan.innerHTML = "" + _finalPoints;
             

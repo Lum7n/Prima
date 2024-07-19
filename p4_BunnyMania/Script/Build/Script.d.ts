@@ -46,6 +46,7 @@ declare namespace Script {
     let powerUpArray: ƒ.Node[];
     let addTimeArray: ƒ.Node[];
     let initialLivesAmount: number;
+    let won: boolean;
 }
 declare namespace Script {
     let indexLife: number;
@@ -81,4 +82,6 @@ declare namespace Script {
         static degree: number[];
         constructor(_position: ƒ.Vector3, _index: number);
     }
+}
+declare namespace Script {
 }

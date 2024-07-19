@@ -51,7 +51,7 @@ namespace Script {
   let starPling: ƒ.ComponentAudio;
   let itemAte: ƒ.ComponentAudio;
 
-  let won: boolean = false;
+  export let won: boolean = false;
 
   let gameTime: ƒ.Time;
   let timer: ƒ.Timer;
@@ -217,7 +217,7 @@ namespace Script {
         break;
     }
     // won?
-    if (objectAte == 10) { //170
+    if (objectAte == 170) { //170
       let finalPoints: number = gameInterface.points;
       let finalTime: number = gameInterface.time;
       console.log("final: " + finalPoints + " and " + finalTime);
@@ -229,7 +229,7 @@ namespace Script {
 
   function characterMovement(): void {
 
-    const moveSpeed: number = 8;
+    const moveSpeed: number = 10;
 
     let velocity: ƒ.Vector3 = ƒ.Vector3.ZERO();
 

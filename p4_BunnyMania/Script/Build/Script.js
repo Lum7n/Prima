@@ -122,6 +122,12 @@ var Script;
         showEndscreen(_finalPoints, _finalTime) {
             let endScreenDiv = document.querySelector("div#endScreen");
             endScreenDiv.style.display = "block";
+            if (Script.won != true) {
+                let titelH1 = endScreenDiv.querySelector("h1");
+                titelH1.innerHTML = "Game Over";
+                let titelH2 = endScreenDiv.querySelector("h2");
+                titelH2.innerHTML = "You lost!";
+            }
             let finalPointsSpan = endScreenDiv.querySelector("#finalPoints");
             finalPointsSpan.innerHTML = "" + _finalPoints;
             let finalTimeSpan = endScreenDiv.querySelector("#finalTime");
@@ -192,7 +198,7 @@ var Script;
     let gameInterface;
     let starPling;
     let itemAte;
-    let won = false;
+    Script.won = false;
     let gameTime;
     let timer;
     //@ts-ignore
@@ -324,19 +330,19 @@ var Script;
                 break;
         }
         // won?
-        if (objectAte == 10) { //170
+        if (objectAte == 170) { //170
             let finalPoints = gameInterface.points;
             let finalTime = gameInterface.time;
             console.log("final: " + finalPoints + " and " + finalTime);
             gameInterface.showEndscreen(finalPoints, finalTime);
-            won = true;
+            Script.won = true;
             timer.active = false;
         }
     }
     function characterMovement() {
-        const moveSpeed = 8;
+        const moveSpeed = 10;
         let velocity = ƒ.Vector3.ZERO();
-        if (won != true) {
+        if (Script.won != true) {
             if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
                 velocity.x = moveSpeed;
             }
@@ -545,4 +551,86 @@ var Script;
     }
     Script.Star = Star;
 })(Script || (Script = {}));
+//   export enum JOB {
+//       NORMAL, POWER, VULNERABLE, STAR, KEY,
+//     IDLE, FLY, SHINE
+//   }
+//   export class StarMachine extends ƒAid.ComponentStateMachine<JOB> {
+//     private static instructions: ƒAid.StateMachineInstructions<JOB> = StarMachine.get();
+//     public constructor() {
+//       super();
+//       this.instructions = StarMachine.instructions;
+//       // Don't start when running in editor
+//       if (ƒ.Project.mode == ƒ.MODE.EDITOR)
+//         return;
+//       this.addEventListener(ƒ.EVENT.COMPONENT_ADD, this.hndEvent);
+//       this.addEventListener(ƒ.EVENT.COMPONENT_REMOVE, this.hndEvent);
+//     }
+//     public static get(): ƒAid.StateMachineInstructions<JOB> {
+//       let setup: ƒAid.StateMachineInstructions<JOB> = new ƒAid.StateMachineInstructions();
+//       setup.transitDefault = StarMachine.transitDefault;
+//       setup.actDefault = StarMachine.actDefault;
+//       setup.setAction(JOB.IDLE, <ƒ.General>this.actIdle);
+//       setup.setAction(JOB.FLY, <ƒ.General>this.actFly);
+//       setup.setAction(JOB.SHINE, <ƒ.General>this.actShine);
+//       return setup;
+//     }
+//     private static transitDefault(_machine: StarMachine): void {
+//       //console.log(_machine, `Default Transition   ${JOB[_machine.stateCurrent]} -> ${JOB[_machine.stateNext]}`);
+//     }
+//     private static async actDefault(_machine: StarMachine): Promise<void> {
+//       //console.log(_machine, `Default Action       ${JOB[_machine.stateCurrent]}`);
+//     }
+//     private static actIdle(_machine: StarMachine): void {
+//       //
+//     }
+//     private static actFly(_machine: StarMachine): void {
+//       let star: Star = <Star>_machine.node;
+//       star.removeComponent(star.rigidbody);
+//       star.animate();
+//       star.starAudio.play(true);
+//     } //actFly
+//     private static actShine(_machine: StarMachine): void {
+//       let star: Star = <Star>_machine.node;
+//       star.removeComponent(star.stateMachine);
+//       stars.splice(stars.indexOf(star));
+//       collectables.removeChild(star);
+//       gameState.stars += 1;
+//       switch (gameState.stars) {
+//         case 1: {
+//           let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star1");
+//           starImage.style.display = "block";
+//           break;
+//         }
+//         case 2: {
+//           let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star2");
+//           starImage.style.display = "block";
+//           break;
+//         }
+//         case 3: {
+//           let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star3");
+//           starImage.style.display = "block";
+//           break;
+//         }
+//         default:
+//           break;
+//       }
+//     } //actShine
+//     public hndEvent = (_event: Event): void => {
+//       switch (_event.type) {
+//         case ƒ.EVENT.COMPONENT_ADD:
+//           ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, this.update);
+//           break;
+//         case ƒ.EVENT.COMPONENT_REMOVE:
+//           ƒ.Loop.removeEventListener(ƒ.EVENT.LOOP_FRAME, this.update);
+//           this.removeEventListener(ƒ.EVENT.COMPONENT_ADD, this.hndEvent);
+//           this.removeEventListener(ƒ.EVENT.COMPONENT_REMOVE, this.hndEvent);
+//           break;
+//       }
+//     } //hndEvent
+//     public update = (_event: Event): void => {
+//       this.act();
+//     } //update
+//   }
+// }
 //# sourceMappingURL=Script.js.map
