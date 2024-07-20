@@ -3,9 +3,11 @@ namespace Script {
 
     enum ItemType {
         Star,
+        AdditionalTime,
         PowerUp,
         Life,
-        AdditionalTime,
+        Key,
+        Fox,
         Empty, // Add Empty as a value
     }
 
@@ -26,6 +28,7 @@ namespace Script {
     export let indexPowerUp: number = 1;
     export let indexAddTime: number = 1;
     export let indexStar: number = 1;
+    export let indexFox: number = 1;
 
     export class Maze {
         private readonly width: number;
@@ -141,6 +144,16 @@ namespace Script {
             const life: Life = new Life(new Vector3(x, 0, z), indexLife);
             indexLife++;
             items.addChild(life);
+        }
+
+        public addFoes(): void {
+            const fox: Foe = new Foe(indexFox);
+            indexFox++;
+            foes.addChild(fox);
+        }
+
+        public showKey(): void {
+
         }
     }
 }

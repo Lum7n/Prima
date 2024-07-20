@@ -1,8 +1,8 @@
 declare namespace Script {
     import ƒ = FudgeCore;
     class AdditionalTime extends ƒ.Node {
-        static meshPyramid: ƒ.MeshPyramid;
-        static mtrPyramid: ƒ.Material;
+        static addTime: ƒ.Node;
+        static addTimeName: string;
         constructor(_position: ƒ.Vector3, _index: number);
     }
 }
@@ -13,6 +13,14 @@ declare namespace Script {
         message: string;
         constructor();
         hndEvent: (_event: Event) => void;
+    }
+}
+declare namespace Script {
+    import ƒ = FudgeCore;
+    class Foe extends ƒ.Node {
+        static fox: ƒ.Node;
+        static foxName: string;
+        constructor(_index: number);
     }
 }
 declare namespace Script {
@@ -35,16 +43,15 @@ declare namespace Script {
 declare namespace Script {
     import ƒ = FudgeCore;
     class Life extends ƒ.Node {
+        static life: ƒ.Node;
+        static lifeName: string;
         constructor(_position: ƒ.Vector3, _index: number);
     }
 }
 declare namespace Script {
     import ƒ = FudgeCore;
     let items: ƒ.Node;
-    let itemAnimation: ƒ.Animation;
-    let lifeArray: ƒ.Node[];
-    let powerUpArray: ƒ.Node[];
-    let addTimeArray: ƒ.Node[];
+    let foes: ƒ.Node;
     let initialLivesAmount: number;
     let won: boolean;
 }
@@ -53,6 +60,7 @@ declare namespace Script {
     let indexPowerUp: number;
     let indexAddTime: number;
     let indexStar: number;
+    let indexFox: number;
     class Maze {
         private readonly width;
         private readonly height;
@@ -64,11 +72,15 @@ declare namespace Script {
         protected addAdditionalTime(x: number, z: number): void;
         protected addPowerUp(x: number, z: number): void;
         protected addLifes(x: number, z: number): void;
+        addFoes(): void;
+        showKey(): void;
     }
 }
 declare namespace Script {
     import ƒ = FudgeCore;
     class PowerUp extends ƒ.Node {
+        static powerUp: ƒ.Node;
+        static powerUpName: string;
         constructor(_position: ƒ.Vector3, _index: number);
     }
 }
@@ -81,7 +93,28 @@ declare namespace Script {
         static spikeAmount: number;
         static degree: number[];
         constructor(_position: ƒ.Vector3, _index: number);
+        showKey(): void;
     }
 }
 declare namespace Script {
+    import ƒAid = FudgeAid;
+    enum JOB {
+        NORMAL = 0,
+        POWER = 1,
+        VULNERABLE = 2,
+        STAR = 3,
+        KEY = 4
+    }
+    class StarMachine extends ƒAid.ComponentStateMachine<JOB> {
+        private static instructions;
+        constructor();
+        static get(): ƒAid.StateMachineInstructions<JOB>;
+        private static transitDefault;
+        private static actDefault;
+        private static actNormal;
+        private static actPower;
+        private static actVulnerable;
+        handleEvent: (_event: Event) => void;
+        update: (_event: Event) => void;
+    }
 }

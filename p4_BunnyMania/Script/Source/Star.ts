@@ -4,7 +4,7 @@ namespace Script {
     export class Star extends ƒ.Node {
         static spike: ƒ.Node;
         static meshSpike: ƒ.MeshPyramid = new ƒ.MeshPyramid("Spike");
-        static mtrSpike: ƒ.Material = new ƒ.Material("StarShader", ƒ.ShaderLitTextured, new ƒ.CoatRemissiveTextured(ƒ.Color.CSS("White"), new ƒ.TextureImage("Assets/Textures/torus_grey1.png"), 1, 0));
+        static mtrSpike: ƒ.Material = new ƒ.Material("StarShader", ƒ.ShaderLitTextured, new ƒ.CoatRemissiveTextured(ƒ.Color.CSS("#FFE45C"), new ƒ.TextureImage("Assets/Textures/torus_grey1.png"), 1, 0));
         static spikeAmount: number = 6;
         static degree: number[] = [0, 0, 60, 120, 180, 240, 300];
 
@@ -27,8 +27,6 @@ namespace Script {
                 this.addChild(Star.spike);
             }
 
-            // console.log("Star " + _index);
-
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             this.getComponent(ƒ.ComponentTransform).mtxLocal.rotateX(-12);
             this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(new ƒ.Vector3(0.8, 0.8, 0.8))
@@ -36,6 +34,11 @@ namespace Script {
             let cmpRigidbody: ƒ.ComponentRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody)
+        }
+
+        showKey(): void {
+            let meshComponent: ƒ.ComponentMesh = new ƒ.ComponentMesh(new ƒ.MeshTorus("Keyring"));
+
         }
     }
 }

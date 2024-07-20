@@ -7,36 +7,11 @@ namespace Script {
   let viewport: ƒ.Viewport;
   let graph: ƒ.Node;
   let maze: ƒ.Node;
+  export let items: ƒ.Node;
+  export let foes: ƒ.Node;
   let character: ƒ.Node;
   let cmpRigidbody: ƒ.ComponentRigidbody;
   let sound: ƒ.Node;
-
-  export let items: ƒ.Node;
-  export let itemAnimation: ƒ.Animation = new ƒ.Animation;
-
-  let life1: ƒ.Node;
-  let life2: ƒ.Node;
-  export let lifeArray: ƒ.Node[] = [];
-
-  let powerUp1: ƒ.Node;
-  let powerUp2: ƒ.Node;
-  let powerUp3: ƒ.Node;
-  let powerUp4: ƒ.Node;
-  export let powerUpArray: ƒ.Node[] = [];
-
-  let addTime1: ƒ.Node;
-  let addTime2: ƒ.Node;
-  let addTime3: ƒ.Node;
-  let addTime4: ƒ.Node;
-  let addTime5: ƒ.Node;
-  let addTime6: ƒ.Node;
-  let addTime7: ƒ.Node;
-  let addTime8: ƒ.Node;
-  let addTime9: ƒ.Node;
-  let addTime10: ƒ.Node;
-  let addTime11: ƒ.Node;
-  let addTime12: ƒ.Node;
-  export let addTimeArray: ƒ.Node[] = [];
 
   interface ExternalData {
     [name: string]: number;
@@ -47,6 +22,7 @@ namespace Script {
   // export let gameState: GameState;
 
   let objectAte: number = 0;
+  let star: Star;
   let gameInterface: GameInterface;
   let starPling: ƒ.ComponentAudio;
   let itemAte: ƒ.ComponentAudio;
@@ -69,12 +45,14 @@ namespace Script {
 
     maze = graph.getChildrenByName("Maze")[0];
     items = maze.getChildrenByName("Items")[0];
-
-    getItemNodes();
+    foes = maze.getChildrenByName("Foes")[0];
 
     const myMaze: Maze = new Maze(16, 16);
     // Add stars and power-ups to the maze where there are no cubes
     myMaze.addItems();
+    for (let index = 0; index < 5; index++) {
+      myMaze.addFoes();
+  }
 
     character = graph.getChildrenByName("Character")[0];
     console.log(character);
@@ -121,51 +99,6 @@ namespace Script {
     // gameState = new GameState(gameDuration);
   }
 
-  function getItemNodes(): void {
-
-    life1 = items.getChildrenByName("Life1")[0];
-    life2 = items.getChildrenByName("Life2")[0];
-    lifeArray[1] = life1;
-    lifeArray[2] = life2;
-    console.log(lifeArray);
-
-    powerUp1 = items.getChildrenByName("PowerUp1")[0];
-    powerUp2 = items.getChildrenByName("PowerUp2")[0];
-    powerUp3 = items.getChildrenByName("PowerUp3")[0];
-    powerUp4 = items.getChildrenByName("PowerUp4")[0];
-    powerUpArray[1] = powerUp1;
-    powerUpArray[2] = powerUp2;
-    powerUpArray[3] = powerUp3;
-    powerUpArray[4] = powerUp4;
-    console.log(powerUpArray);
-
-    addTime1 = items.getChildrenByName("AddTime1")[0];
-    addTime2 = items.getChildrenByName("AddTime2")[0];
-    addTime3 = items.getChildrenByName("AddTime3")[0];
-    addTime4 = items.getChildrenByName("AddTime4")[0];
-    addTime5 = items.getChildrenByName("AddTime5")[0];
-    addTime6 = items.getChildrenByName("AddTime6")[0];
-    addTime7 = items.getChildrenByName("AddTime7")[0];
-    addTime8 = items.getChildrenByName("AddTime8")[0];
-    addTime9 = items.getChildrenByName("AddTime9")[0];
-    addTime10 = items.getChildrenByName("AddTime10")[0];
-    addTime11 = items.getChildrenByName("AddTime11")[0];
-    addTime12 = items.getChildrenByName("AddTime12")[0];
-    addTimeArray[1] = addTime1;
-    addTimeArray[2] = addTime2;
-    addTimeArray[3] = addTime3;
-    addTimeArray[4] = addTime4;
-    addTimeArray[5] = addTime5;
-    addTimeArray[6] = addTime6;
-    addTimeArray[7] = addTime7;
-    addTimeArray[8] = addTime8;
-    addTimeArray[9] = addTime9;
-    addTimeArray[10] = addTime10;
-    addTimeArray[11] = addTime11;
-    addTimeArray[12] = addTime12;
-    console.log(addTimeArray);
-  }
-
   function setUpCharacter(): void {
 
     cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
@@ -175,6 +108,11 @@ namespace Script {
     cmpRigidbody.effectRotation.y = 0;
     cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, collision);
   }
+
+  // function test(_event: ƒ.EventPhysics): void {
+  //   console.log("test");
+  //   console.log(_event);
+  // }
 
   function collision(_event: ƒ.EventPhysics): void {
 
@@ -215,9 +153,15 @@ namespace Script {
         gameInterface.lives += 1;
         itemAte.play(true);
         break;
+        case "Fox":
+          console.log("Fox");
+          // gameInterface.lives += 1;
+          // itemAte.play(true);
+          break;
     }
     // won?
     if (objectAte == 170) { //170
+      star.showKey();
       let finalPoints: number = gameInterface.points;
       let finalTime: number = gameInterface.time;
       console.log("final: " + finalPoints + " and " + finalTime);

@@ -3,17 +3,20 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     class AdditionalTime extends ƒ.Node {
-        static meshPyramid = new ƒ.MeshPyramid("AdditionalTime");
-        static mtrPyramid = new ƒ.Material("AdditionalTime", ƒ.ShaderFlatTextured, new ƒ.CoatRemissiveTextured(ƒ.Color.CSS("White"), new ƒ.TextureImage("Assets/Textures/torus_grey.png"), 1, 0));
+        static addTime;
+        static addTimeName = "AddTime";
         constructor(_position, _index) {
             super("AdditionalTime");
-            console.log("AddTime " + _index);
-            Script.addTimeArray[_index].activate(true);
-            this.appendChild(Script.addTimeArray[_index]);
+            AdditionalTime.addTimeName = AdditionalTime.addTimeName + _index;
+            console.log(AdditionalTime.addTimeName);
+            AdditionalTime.addTime = Script.items.getChildrenByName(AdditionalTime.addTimeName)[0];
+            AdditionalTime.addTime.activate(true);
+            this.appendChild(AdditionalTime.addTime);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);
+            AdditionalTime.addTimeName = "AddTime";
         }
     }
     Script.AdditionalTime = AdditionalTime;
@@ -54,6 +57,28 @@ var Script;
         };
     }
     Script.CustomComponentScript = CustomComponentScript;
+})(Script || (Script = {}));
+var Script;
+(function (Script) {
+    var ƒ = FudgeCore;
+    class Foe extends ƒ.Node {
+        static fox;
+        static foxName = "Fox";
+        constructor(_index) {
+            super("Foe");
+            Foe.foxName = Foe.foxName + _index;
+            console.log(Foe.foxName);
+            Foe.fox = Script.foes.getChildrenByName(Foe.foxName)[0];
+            Foe.fox.activate(true);
+            this.appendChild(Foe.fox);
+            this.addComponent(new ƒ.ComponentTransform());
+            let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
+            cmpRigidbody.isTrigger = true;
+            this.addComponent(cmpRigidbody);
+            Foe.foxName = "Fox";
+        }
+    }
+    Script.Foe = Foe;
 })(Script || (Script = {}));
 var Script;
 (function (Script) {
@@ -145,15 +170,20 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     class Life extends ƒ.Node {
+        static life;
+        static lifeName = "Life";
         constructor(_position, _index) {
             super("Life");
-            console.log("Life " + _index);
-            Script.lifeArray[_index].activate(true);
-            this.appendChild(Script.lifeArray[_index]);
+            Life.lifeName = Life.lifeName + _index;
+            console.log(Life.lifeName);
+            Life.life = Script.items.getChildrenByName(Life.lifeName)[0];
+            Life.life.activate(true);
+            this.appendChild(Life.life);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);
+            Life.lifeName = "Life";
         }
     }
     Script.Life = Life;
@@ -170,31 +200,10 @@ var Script;
     let character;
     let cmpRigidbody;
     let sound;
-    Script.itemAnimation = new ƒ.Animation;
-    let life1;
-    let life2;
-    Script.lifeArray = [];
-    let powerUp1;
-    let powerUp2;
-    let powerUp3;
-    let powerUp4;
-    Script.powerUpArray = [];
-    let addTime1;
-    let addTime2;
-    let addTime3;
-    let addTime4;
-    let addTime5;
-    let addTime6;
-    let addTime7;
-    let addTime8;
-    let addTime9;
-    let addTime10;
-    let addTime11;
-    let addTime12;
-    Script.addTimeArray = [];
     let externalConfig;
     // export let gameState: GameState;
     let objectAte = 0;
+    let star;
     let gameInterface;
     let starPling;
     let itemAte;
@@ -210,10 +219,13 @@ var Script;
         await getExternalData();
         maze = graph.getChildrenByName("Maze")[0];
         Script.items = maze.getChildrenByName("Items")[0];
-        getItemNodes();
+        Script.foes = maze.getChildrenByName("Foes")[0];
         const myMaze = new Script.Maze(16, 16);
         // Add stars and power-ups to the maze where there are no cubes
         myMaze.addItems();
+        for (let index = 0; index < 5; index++) {
+            myMaze.addFoes();
+        }
         character = graph.getChildrenByName("Character")[0];
         console.log(character);
         let cameraNode = character.getChildrenByName("Camera")[0];
@@ -245,47 +257,6 @@ var Script;
         console.log("initial:" + Script.initialLivesAmount);
         // gameState = new GameState(gameDuration);
     }
-    function getItemNodes() {
-        life1 = Script.items.getChildrenByName("Life1")[0];
-        life2 = Script.items.getChildrenByName("Life2")[0];
-        Script.lifeArray[1] = life1;
-        Script.lifeArray[2] = life2;
-        console.log(Script.lifeArray);
-        powerUp1 = Script.items.getChildrenByName("PowerUp1")[0];
-        powerUp2 = Script.items.getChildrenByName("PowerUp2")[0];
-        powerUp3 = Script.items.getChildrenByName("PowerUp3")[0];
-        powerUp4 = Script.items.getChildrenByName("PowerUp4")[0];
-        Script.powerUpArray[1] = powerUp1;
-        Script.powerUpArray[2] = powerUp2;
-        Script.powerUpArray[3] = powerUp3;
-        Script.powerUpArray[4] = powerUp4;
-        console.log(Script.powerUpArray);
-        addTime1 = Script.items.getChildrenByName("AddTime1")[0];
-        addTime2 = Script.items.getChildrenByName("AddTime2")[0];
-        addTime3 = Script.items.getChildrenByName("AddTime3")[0];
-        addTime4 = Script.items.getChildrenByName("AddTime4")[0];
-        addTime5 = Script.items.getChildrenByName("AddTime5")[0];
-        addTime6 = Script.items.getChildrenByName("AddTime6")[0];
-        addTime7 = Script.items.getChildrenByName("AddTime7")[0];
-        addTime8 = Script.items.getChildrenByName("AddTime8")[0];
-        addTime9 = Script.items.getChildrenByName("AddTime9")[0];
-        addTime10 = Script.items.getChildrenByName("AddTime10")[0];
-        addTime11 = Script.items.getChildrenByName("AddTime11")[0];
-        addTime12 = Script.items.getChildrenByName("AddTime12")[0];
-        Script.addTimeArray[1] = addTime1;
-        Script.addTimeArray[2] = addTime2;
-        Script.addTimeArray[3] = addTime3;
-        Script.addTimeArray[4] = addTime4;
-        Script.addTimeArray[5] = addTime5;
-        Script.addTimeArray[6] = addTime6;
-        Script.addTimeArray[7] = addTime7;
-        Script.addTimeArray[8] = addTime8;
-        Script.addTimeArray[9] = addTime9;
-        Script.addTimeArray[10] = addTime10;
-        Script.addTimeArray[11] = addTime11;
-        Script.addTimeArray[12] = addTime12;
-        console.log(Script.addTimeArray);
-    }
     function setUpCharacter() {
         cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
         cmpRigidbody.mass = 8000;
@@ -294,6 +265,10 @@ var Script;
         cmpRigidbody.effectRotation.y = 0;
         cmpRigidbody.addEventListener("TriggerEnteredCollision" /* ƒ.EVENT_PHYSICS.TRIGGER_ENTER */, collision);
     }
+    // function test(_event: ƒ.EventPhysics): void {
+    //   console.log("test");
+    //   console.log(_event);
+    // }
     function collision(_event) {
         console.log(_event.cmpRigidbody.node);
         let collidedWithObject = _event.cmpRigidbody.node;
@@ -328,9 +303,15 @@ var Script;
                 gameInterface.lives += 1;
                 itemAte.play(true);
                 break;
+            case "Fox":
+                console.log("Fox");
+                // gameInterface.lives += 1;
+                // itemAte.play(true);
+                break;
         }
         // won?
         if (objectAte == 170) { //170
+            star.showKey();
             let finalPoints = gameInterface.points;
             let finalTime = gameInterface.time;
             console.log("final: " + finalPoints + " and " + finalTime);
@@ -377,10 +358,12 @@ var Script;
     let ItemType;
     (function (ItemType) {
         ItemType[ItemType["Star"] = 0] = "Star";
-        ItemType[ItemType["PowerUp"] = 1] = "PowerUp";
-        ItemType[ItemType["Life"] = 2] = "Life";
-        ItemType[ItemType["AdditionalTime"] = 3] = "AdditionalTime";
-        ItemType[ItemType["Empty"] = 4] = "Empty";
+        ItemType[ItemType["AdditionalTime"] = 1] = "AdditionalTime";
+        ItemType[ItemType["PowerUp"] = 2] = "PowerUp";
+        ItemType[ItemType["Life"] = 3] = "Life";
+        ItemType[ItemType["Key"] = 4] = "Key";
+        ItemType[ItemType["Fox"] = 5] = "Fox";
+        ItemType[ItemType["Empty"] = 6] = "Empty";
     })(ItemType || (ItemType = {}));
     let TileType;
     (function (TileType) {
@@ -398,6 +381,7 @@ var Script;
     Script.indexPowerUp = 1;
     Script.indexAddTime = 1;
     Script.indexStar = 1;
+    Script.indexFox = 1;
     class Maze {
         width;
         height;
@@ -498,6 +482,13 @@ var Script;
             Script.indexLife++;
             Script.items.addChild(life);
         }
+        addFoes() {
+            const fox = new Script.Foe(Script.indexFox);
+            Script.indexFox++;
+            Script.foes.addChild(fox);
+        }
+        showKey() {
+        }
     }
     Script.Maze = Maze;
 })(Script || (Script = {}));
@@ -505,15 +496,20 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     class PowerUp extends ƒ.Node {
+        static powerUp;
+        static powerUpName = "PowerUp";
         constructor(_position, _index) {
             super("PowerUp");
-            console.log("PowerUp " + _index);
-            Script.powerUpArray[_index].activate(true);
-            this.appendChild(Script.powerUpArray[_index]);
+            PowerUp.powerUpName = PowerUp.powerUpName + _index;
+            console.log(PowerUp.powerUpName);
+            PowerUp.powerUp = Script.items.getChildrenByName(PowerUp.powerUpName)[0];
+            PowerUp.powerUp.activate(true);
+            this.appendChild(PowerUp.powerUp);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);
+            PowerUp.powerUpName = "PowerUp";
         }
     }
     Script.PowerUp = PowerUp;
@@ -524,7 +520,7 @@ var Script;
     class Star extends ƒ.Node {
         static spike;
         static meshSpike = new ƒ.MeshPyramid("Spike");
-        static mtrSpike = new ƒ.Material("StarShader", ƒ.ShaderLitTextured, new ƒ.CoatRemissiveTextured(ƒ.Color.CSS("White"), new ƒ.TextureImage("Assets/Textures/torus_grey1.png"), 1, 0));
+        static mtrSpike = new ƒ.Material("StarShader", ƒ.ShaderLitTextured, new ƒ.CoatRemissiveTextured(ƒ.Color.CSS("#FFE45C"), new ƒ.TextureImage("Assets/Textures/torus_grey1.png"), 1, 0));
         static spikeAmount = 6;
         static degree = [0, 0, 60, 120, 180, 240, 300];
         constructor(_position, _index) {
@@ -540,7 +536,6 @@ var Script;
                 Star.spike.getComponent(ƒ.ComponentMaterial).clrPrimary = ƒ.Color.CSS("#FFE45C");
                 this.addChild(Star.spike);
             }
-            // console.log("Star " + _index);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(_position)));
             this.getComponent(ƒ.ComponentTransform).mtxLocal.rotateX(-12);
             this.getComponent(ƒ.ComponentTransform).mtxLocal.scale(new ƒ.Vector3(0.8, 0.8, 0.8));
@@ -548,89 +543,119 @@ var Script;
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);
         }
+        showKey() {
+            let meshComponent = new ƒ.ComponentMesh(new ƒ.MeshTorus("Keyring"));
+        }
     }
     Script.Star = Star;
 })(Script || (Script = {}));
-//   export enum JOB {
-//       NORMAL, POWER, VULNERABLE, STAR, KEY,
-//     IDLE, FLY, SHINE
-//   }
-//   export class StarMachine extends ƒAid.ComponentStateMachine<JOB> {
-//     private static instructions: ƒAid.StateMachineInstructions<JOB> = StarMachine.get();
-//     public constructor() {
-//       super();
-//       this.instructions = StarMachine.instructions;
-//       // Don't start when running in editor
-//       if (ƒ.Project.mode == ƒ.MODE.EDITOR)
-//         return;
-//       this.addEventListener(ƒ.EVENT.COMPONENT_ADD, this.hndEvent);
-//       this.addEventListener(ƒ.EVENT.COMPONENT_REMOVE, this.hndEvent);
-//     }
-//     public static get(): ƒAid.StateMachineInstructions<JOB> {
-//       let setup: ƒAid.StateMachineInstructions<JOB> = new ƒAid.StateMachineInstructions();
-//       setup.transitDefault = StarMachine.transitDefault;
-//       setup.actDefault = StarMachine.actDefault;
-//       setup.setAction(JOB.IDLE, <ƒ.General>this.actIdle);
-//       setup.setAction(JOB.FLY, <ƒ.General>this.actFly);
-//       setup.setAction(JOB.SHINE, <ƒ.General>this.actShine);
-//       return setup;
-//     }
-//     private static transitDefault(_machine: StarMachine): void {
-//       //console.log(_machine, `Default Transition   ${JOB[_machine.stateCurrent]} -> ${JOB[_machine.stateNext]}`);
-//     }
-//     private static async actDefault(_machine: StarMachine): Promise<void> {
-//       //console.log(_machine, `Default Action       ${JOB[_machine.stateCurrent]}`);
-//     }
-//     private static actIdle(_machine: StarMachine): void {
-//       //
-//     }
-//     private static actFly(_machine: StarMachine): void {
-//       let star: Star = <Star>_machine.node;
-//       star.removeComponent(star.rigidbody);
-//       star.animate();
-//       star.starAudio.play(true);
-//     } //actFly
-//     private static actShine(_machine: StarMachine): void {
-//       let star: Star = <Star>_machine.node;
-//       star.removeComponent(star.stateMachine);
-//       stars.splice(stars.indexOf(star));
-//       collectables.removeChild(star);
-//       gameState.stars += 1;
-//       switch (gameState.stars) {
-//         case 1: {
-//           let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star1");
-//           starImage.style.display = "block";
-//           break;
-//         }
-//         case 2: {
-//           let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star2");
-//           starImage.style.display = "block";
-//           break;
-//         }
-//         case 3: {
-//           let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star3");
-//           starImage.style.display = "block";
-//           break;
-//         }
-//         default:
-//           break;
-//       }
-//     } //actShine
-//     public hndEvent = (_event: Event): void => {
-//       switch (_event.type) {
-//         case ƒ.EVENT.COMPONENT_ADD:
-//           ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, this.update);
-//           break;
-//         case ƒ.EVENT.COMPONENT_REMOVE:
-//           ƒ.Loop.removeEventListener(ƒ.EVENT.LOOP_FRAME, this.update);
-//           this.removeEventListener(ƒ.EVENT.COMPONENT_ADD, this.hndEvent);
-//           this.removeEventListener(ƒ.EVENT.COMPONENT_REMOVE, this.hndEvent);
-//           break;
-//       }
-//     } //hndEvent
-//     public update = (_event: Event): void => {
-//       this.act();
-//     } //update
-//   }
-// }
+var Script;
+(function (Script) {
+    var ƒ = FudgeCore;
+    var ƒAid = FudgeAid;
+    let JOB;
+    (function (JOB) {
+        JOB[JOB["NORMAL"] = 0] = "NORMAL";
+        JOB[JOB["POWER"] = 1] = "POWER";
+        JOB[JOB["VULNERABLE"] = 2] = "VULNERABLE";
+        JOB[JOB["STAR"] = 3] = "STAR";
+        JOB[JOB["KEY"] = 4] = "KEY";
+    })(JOB = Script.JOB || (Script.JOB = {}));
+    class StarMachine extends ƒAid.ComponentStateMachine {
+        static instructions = StarMachine.get();
+        constructor() {
+            super();
+            this.instructions = StarMachine.instructions; // setup instructions with the static set
+            // Don't start when running in editor
+            if (ƒ.Project.mode == ƒ.MODE.EDITOR)
+                return;
+            // Listen to this component being added to or removed from a node
+            this.addEventListener("componentAdd" /* ƒ.EVENT.COMPONENT_ADD */, this.handleEvent);
+            this.addEventListener("componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */, this.handleEvent);
+            // this.addEventListener(ƒ.EVENT.NODE_DESERIALIZED, this.handleEvent);
+        }
+        static get() {
+            let setup = new ƒAid.StateMachineInstructions();
+            setup.transitDefault = StarMachine.transitDefault;
+            setup.actDefault = StarMachine.actDefault;
+            setup.setAction(JOB.NORMAL, this.actNormal);
+            setup.setAction(JOB.POWER, this.actPower);
+            setup.setAction(JOB.VULNERABLE, this.actVulnerable);
+            setup.setAction(JOB.STAR, this.actStar);
+            setup.setAction(JOB.KEY, this.actKey);
+            return setup;
+        }
+        static transitDefault(_machine) {
+            console.log("Transit to", _machine.stateNext);
+        }
+        static async actDefault(_machine) {
+            console.log(JOB[_machine.stateCurrent]);
+        }
+        static actNormal(_machine) {
+            //
+        }
+        static actPower(_machine) {
+            let star = _machine.node;
+            star.removeComponent(star.rigidbody);
+            star.animate();
+            star.starAudio.play(true);
+        } //actPower
+        static actVulnerable(_machine) {
+            let star = _machine.node;
+            star.removeComponent(star.stateMachine);
+            stars.splice(stars.indexOf(star));
+            collectables.removeChild(star);
+            gameState.stars += 1;
+            switch (gameState.stars) {
+                case 1: {
+                    let starImage = document.getElementById("star1");
+                    starImage.style.display = "block";
+                    break;
+                }
+                case 2: {
+                    let starImage = document.getElementById("star2");
+                    starImage.style.display = "block";
+                    break;
+                }
+                case 3: {
+                    let starImage = document.getElementById("star3");
+                    starImage.style.display = "block";
+                    break;
+                }
+                default:
+                    break;
+            }
+        } //actVulnerable
+        handleEvent = (_event) => {
+            switch (_event.type) {
+                case "componentAdd" /* ƒ.EVENT.COMPONENT_ADD */:
+                    ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, this.update);
+                    // this.transit(JOB.IDLE);
+                    break;
+                case "componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */:
+                    ƒ.Loop.removeEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, this.update); //sam
+                    this.removeEventListener("componentAdd" /* ƒ.EVENT.COMPONENT_ADD */, this.handleEvent);
+                    this.removeEventListener("componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */, this.handleEvent);
+                    // ƒ.Loop.removeEventListener(ƒ.EVENT.LOOP_FRAME, this.update); //Jirka
+                    // case ƒ.EVENT.NODE_DESERIALIZED: //jirka
+                    //   this.transit(JOB.IDLE);
+                    // let trigger: ƒ.ComponentRigidbody = this.node.getChildren()[0].getComponent(ƒ.ComponentRigidbody);
+                    // trigger.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, (_event: ƒ.EventPhysics) => {
+                    //   console.log("TriggerEnter", _event.cmpRigidbody.node.name);
+                    //   if (_event.cmpRigidbody.node.name == "Cart" && this.stateCurrent != JOB.DIE)
+                    //     this.transit(JOB.ESCAPE);
+                    // });
+                    // trigger.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_EXIT, (_event: ƒ.EventPhysics) => {
+                    //   if (this.stateCurrent == JOB.ESCAPE)
+                    //     this.transit(JOB.IDLE);
+                    // });
+                    break;
+            }
+        };
+        update = (_event) => {
+            this.act();
+        };
+    }
+    Script.StarMachine = StarMachine;
+})(Script || (Script = {}));
 //# sourceMappingURL=Script.js.map
