@@ -1003,6 +1003,26 @@
       }
     }
   },
+  "MeshTorus|2024-07-20T02:38:06.261Z|97292": {
+    "ƒ.MeshTorus": {
+      "idResource": "MeshTorus|2024-07-20T02:38:06.261Z|97292",
+      "name": "Key-Torus",
+      "type": "MeshTorus",
+      "shape": {
+        "ƒ.Vector2": [
+          "[0.25, 0]",
+          "[0.3052786588668823, 0.07608452439308167]",
+          "[0.3947213888168335, 0.04702281951904297]",
+          "[0.3947213888168335, -0.04702281951904297]",
+          "[0.3052786588668823, -0.07608452439308167]",
+          "[0.25, -1.959434864874595e-17]"
+        ]
+      },
+      "longitudes": 12,
+      "latitudes": 5,
+      "size": 0.15999999999999992
+    }
+  },
   "Graph|2023-07-19T17:29:49.783Z|51214": {
     "ƒ.Graph": {
       "name": "Game",
@@ -1111,10 +1131,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 10,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1124,7 +1144,7 @@
                                 "id": 0,
                                 "pivot": {
                                   "translation": "[0, 0, 0]",
-                                  "rotation": "[0, 89.99999237060547, 0]",
+                                  "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
@@ -1192,10 +1212,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 10,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1205,7 +1225,7 @@
                                 "id": 0,
                                 "pivot": {
                                   "translation": "[0, 0, 0]",
-                                  "rotation": "[0, 89.99999237060547, 0]",
+                                  "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
@@ -1273,10 +1293,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 10,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1286,7 +1306,7 @@
                                 "id": 0,
                                 "pivot": {
                                   "translation": "[0, 0, 0]",
-                                  "rotation": "[0, 89.99999237060547, 0]",
+                                  "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
@@ -1354,10 +1374,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 10,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1367,7 +1387,7 @@
                                 "id": 0,
                                 "pivot": {
                                   "translation": "[0, 0, 0]",
-                                  "rotation": "[0, 89.99999237060547, 0]",
+                                  "rotation": "[0, 0, 0]",
                                   "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
@@ -1459,10 +1479,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1540,10 +1560,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1621,10 +1641,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1702,10 +1722,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1783,10 +1803,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1864,10 +1884,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -1945,10 +1965,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2026,10 +2046,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2107,10 +2127,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2188,10 +2208,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2269,10 +2289,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2350,10 +2370,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2431,10 +2451,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2512,10 +2532,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2593,10 +2613,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2674,10 +2694,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2755,10 +2775,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2793,7 +2813,7 @@
                                 "pivot": {
                                   "translation": "[0, 0, 0]",
                                   "rotation": "[0, 0, 0]",
-                                  "scaling": "[3, 1, 1]"
+                                  "scaling": "[1, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2825,7 +2845,7 @@
                                 "local": {
                                   "translation": "[1.5, 0.5, -1.5]",
                                   "rotation": "[0, 90, 0]",
-                                  "scaling": "[1, 1, 1]"
+                                  "scaling": "[3, 1, 1]"
                                 },
                                 "Component": {
                                   "active": true
@@ -2836,10 +2856,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2917,10 +2937,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -2998,10 +3018,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3079,10 +3099,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3160,10 +3180,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3241,10 +3261,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3322,10 +3342,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3403,10 +3423,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3484,10 +3504,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3565,10 +3585,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3646,10 +3666,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3727,10 +3747,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3808,10 +3828,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3889,10 +3909,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
-                                "friction": 0.2,
-                                "restitution": 0.2,
-                                "mass": 1,
+                                "initialization": "TO_NODE",
+                                "friction": 0.20000000000000018,
+                                "restitution": 0.20000000000000018,
+                                "mass": 50,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -3970,10 +3990,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
-                                "friction": 0.2,
+                                "initialization": "TO_NODE",
+                                "friction": 0.1999999999999993,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4051,10 +4071,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4132,10 +4152,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4213,10 +4233,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4294,10 +4314,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4375,10 +4395,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4456,10 +4476,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4537,10 +4557,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4618,10 +4638,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4699,10 +4719,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4780,10 +4800,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4861,10 +4881,10 @@
                           "ComponentRigidbody": [
                             {
                               "ƒ.ComponentRigidbody": {
-                                "initialization": "TO_PIVOT",
+                                "initialization": "TO_NODE",
                                 "friction": 0.2,
                                 "restitution": 0.2,
-                                "mass": 1,
+                                "mass": 50000,
                                 "dampTranslation": 0,
                                 "dampRotation": 0,
                                 "effectGravity": 0,
@@ -4945,10 +4965,10 @@
                     "ComponentRigidbody": [
                       {
                         "ƒ.ComponentRigidbody": {
-                          "initialization": "TO_PIVOT",
+                          "initialization": "TO_NODE",
                           "friction": 0.2,
                           "restitution": 0.2,
-                          "mass": 1,
+                          "mass": 10,
                           "dampTranslation": 0,
                           "dampRotation": 0,
                           "effectGravity": 0,
@@ -8548,11 +8568,7 @@
                       "ƒ.Node": {
                         "name": "Key",
                         "active": false,
-                        "components": {
-                          "ComponentMesh": [],
-                          "ComponentMaterial": [],
-                          "ComponentTransform": []
-                        },
+                        "components": {},
                         "children": [
                           {
                             "ƒ.Node": {
@@ -9105,7 +9121,7 @@
                                   {
                                     "ƒ.ComponentAnimator": {
                                       "Component": {
-                                        "active": false
+                                        "active": true
                                       },
                                       "idAnimation": "Animation|2024-07-18T23:32:00.565Z|58980",
                                       "playmode": "loop",
@@ -9115,8 +9131,7 @@
                                       "animateInEditor": false
                                     }
                                   }
-                                ],
-                                "ComponentRigidbody": []
+                                ]
                               },
                               "children": [
                                 {
@@ -9613,7 +9628,7 @@
                                   {
                                     "ƒ.ComponentAnimator": {
                                       "Component": {
-                                        "active": false
+                                        "active": true
                                       },
                                       "idAnimation": "Animation|2024-07-18T23:32:00.565Z|58980",
                                       "playmode": "loop",
@@ -9623,8 +9638,7 @@
                                       "animateInEditor": false
                                     }
                                   }
-                                ],
-                                "ComponentRigidbody": []
+                                ]
                               },
                               "children": [
                                 {
@@ -10121,7 +10135,7 @@
                                   {
                                     "ƒ.ComponentAnimator": {
                                       "Component": {
-                                        "active": false
+                                        "active": true
                                       },
                                       "idAnimation": "Animation|2024-07-19T18:18:49.471Z|11161",
                                       "playmode": "loop",
@@ -10131,8 +10145,7 @@
                                       "animateInEditor": false
                                     }
                                   }
-                                ],
-                                "ComponentRigidbody": []
+                                ]
                               },
                               "children": [
                                 {
@@ -10629,7 +10642,7 @@
                                   {
                                     "ƒ.ComponentAnimator": {
                                       "Component": {
-                                        "active": false
+                                        "active": true
                                       },
                                       "idAnimation": "Animation|2024-07-19T18:52:56.840Z|62235",
                                       "playmode": "loop",
@@ -10639,8 +10652,7 @@
                                       "animateInEditor": false
                                     }
                                   }
-                                ],
-                                "ComponentRigidbody": []
+                                ]
                               },
                               "children": [
                                 {
@@ -11147,8 +11159,7 @@
                                       "animateInEditor": false
                                     }
                                   }
-                                ],
-                                "ComponentRigidbody": []
+                                ]
                               },
                               "children": [
                                 {
@@ -12182,26 +12193,6 @@
       ],
       "idResource": "Graph|2023-07-19T17:29:49.783Z|51214",
       "type": "Graph"
-    }
-  },
-  "MeshTorus|2024-07-20T02:38:06.261Z|97292": {
-    "ƒ.MeshTorus": {
-      "idResource": "MeshTorus|2024-07-20T02:38:06.261Z|97292",
-      "name": "Key-Torus",
-      "type": "MeshTorus",
-      "shape": {
-        "ƒ.Vector2": [
-          "[0.25, 0]",
-          "[0.3052786588668823, 0.07608452439308167]",
-          "[0.3947213888168335, 0.04702281951904297]",
-          "[0.3947213888168335, -0.04702281951904297]",
-          "[0.3052786588668823, -0.07608452439308167]",
-          "[0.25, -1.959434864874595e-17]"
-        ]
-      },
-      "longitudes": 12,
-      "latitudes": 5,
-      "size": 0.15999999999999992
     }
   }
 }

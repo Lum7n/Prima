@@ -13,14 +13,30 @@ namespace Script {
   let cmpRigidbody: ƒ.ComponentRigidbody;
   let sound: ƒ.Node;
 
-  interface ExternalData {
-    [name: string]: number;
+  export interface ExternalData {
+    [name: string]: TileType[];
   }
-  let externalConfig: ExternalData;
-  export let initialLivesAmount: number;
+  export let externalConfig: ExternalData;
+  export let row0: TileType[];
+  export let row1: TileType[];
+  export let row2: TileType[];
+  export let row3: TileType[];
+  export let row4: TileType[];
+  export let row5: TileType[];
+  export let row6: TileType[];
+  export let row7: TileType[];
+  export let row8: TileType[];
+  export let row9: TileType[];
+  export let row10: TileType[];
+  export let row11: TileType[];
+  export let row12: TileType[];
+  export let row13: TileType[];
+  export let row14: TileType[];
+  export let row15: TileType[];
 
   // export let gameState: GameState;
 
+  export let initialLivesAmount: number = 3;
   let objectAte: number = 0;
   let gameInterface: GameInterface;
   let starPling: ƒ.ComponentAudio;
@@ -92,10 +108,22 @@ namespace Script {
   async function getExternalData(): Promise<void> {
     let response: Response = await fetch("External.json");
     externalConfig = await response.json();
-    initialLivesAmount = externalConfig["initialLivesAmount"];
-    console.log("initial:" + initialLivesAmount);
-
-    // gameState = new GameState(gameDuration);
+    row0 = externalConfig["z0"];
+    row1 = externalConfig["z1"];
+    row2 = externalConfig["z2"];
+    row3 = externalConfig["z3"];
+    row4 = externalConfig["z4"];
+    row5 = externalConfig["z5"];
+    row6 = externalConfig["z6"];
+    row7 = externalConfig["z7"];
+    row8 = externalConfig["z8"];
+    row9 = externalConfig["z9"];
+    row10 = externalConfig["z10"];
+    row11 = externalConfig["z11"];
+    row12 = externalConfig["z12"];
+    row13 = externalConfig["z13"];
+    row14 = externalConfig["z14"];
+    row15 = externalConfig["z15"];
   }
 
   function setUpCharacter(): void {
@@ -104,29 +132,31 @@ namespace Script {
     cmpRigidbody.mass = 8000;
     cmpRigidbody.friction = 10;
     cmpRigidbody.dampTranslation = 5;
+    cmpRigidbody.dampRotation = 1000;
+    cmpRigidbody.effectRotation.x = 0;
     cmpRigidbody.effectRotation.y = 0;
+    cmpRigidbody.effectRotation.z = 0;
     cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, collision);
   }
 
   function collision(_event: ƒ.EventPhysics): void {
 
     console.log(_event.cmpRigidbody.node);
-
     let collidedWithObject: ƒ.Node = _event.cmpRigidbody.node;
-    let objectParent: ƒ.Node = collidedWithObject.getParent();
-    objectParent.removeChild(collidedWithObject);
+
     objectAte++;
     console.log(objectAte);
-    console.log(collidedWithObject.name);
 
     // try to fix the rotation
     character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
     character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
-    cmpRigidbody.dampRotation = 0;
+    cmpRigidbody.effectRotation.y = 0;
+    cmpRigidbody.dampRotation = 1000;
     console.log("Local " + character.mtxLocal.rotation);
     console.log("World " + character.mtxWorld.rotation);
 
     //check the object and adds points, lives, sounds
+    console.log(collidedWithObject.name);
     switch (collidedWithObject.name) {
 
       case "Star":
@@ -162,10 +192,12 @@ namespace Script {
         break;
     }
     // won?
-    if (objectAte == 10) { //170
-      console.log("whuu");
+    if (objectAte == 170) { //170
       showKey();
     }
+
+    let objectParent: ƒ.Node = collidedWithObject.getParent();
+    objectParent.removeChild(collidedWithObject);
   }
 
   function showKey(): void {

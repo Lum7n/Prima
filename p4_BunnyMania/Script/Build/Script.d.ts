@@ -63,10 +63,34 @@ declare namespace Script {
     import ƒ = FudgeCore;
     let items: ƒ.Node;
     let foes: ƒ.Node;
+    interface ExternalData {
+        [name: string]: TileType[];
+    }
+    let externalConfig: ExternalData;
+    let row0: TileType[];
+    let row1: TileType[];
+    let row2: TileType[];
+    let row3: TileType[];
+    let row4: TileType[];
+    let row5: TileType[];
+    let row6: TileType[];
+    let row7: TileType[];
+    let row8: TileType[];
+    let row9: TileType[];
+    let row10: TileType[];
+    let row11: TileType[];
+    let row12: TileType[];
+    let row13: TileType[];
+    let row14: TileType[];
+    let row15: TileType[];
     let initialLivesAmount: number;
     let won: boolean;
 }
 declare namespace Script {
+    enum TileType {
+        Bush = 0,
+        Empty = 1
+    }
     let indexLife: number;
     let indexPowerUp: number;
     let indexAddTime: number;

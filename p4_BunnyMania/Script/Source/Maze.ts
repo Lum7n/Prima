@@ -2,23 +2,21 @@ namespace Script {
     import Vector3 = FudgeCore.Vector3;
 
     enum ItemType {
-        Star,
-        AdditionalTime,
-        PowerUp,
-        Life,
+        Star,               //0
+        AdditionalTime,     //1
+        PowerUp,            //2
+        Life,               //3
         Empty, // Add Empty as a value
     }
 
-    enum TileType {
-        Ground, // 0
-        Border, // 1
-        Cube,   // 2
-        Empty,  // 3
+    export enum TileType {
+        Bush,   // 0
+        Empty,  // 1
     }
 
     let itemTypeArray: ItemType[] = [];
     itemTypeArray[0] = 0;
-    let itemNumber: number = 1;
+    let itemNumber: number = 0;
     let previousItem: number = 0;
     let lastItem: ItemType = ItemType.Empty;
 
@@ -42,21 +40,38 @@ namespace Script {
         private createEmptyGrid(): TileType[][] {
             const grid: TileType[][] = [];
 
-            for (let z = 0; z < this.width; z++) {
-                const row: TileType[] = [];
-                for (let x = 0; x < this.height; x++) {
-                    row.push(TileType.Empty);
+            // for (let z = 0; z < this.width; z++) {
+            // const row: TileType[] = [];
+            // for (let x = 0; x < this.height; x++) {
+            //     console.log("z: " + z + ", x: " + x);
+            //     row.push(TileType.Empty);
+            // }
+            // }
+            grid.push(row0);
+            grid.push(row1);
+            grid.push(row2);
+            grid.push(row3);
+            grid.push(row4);
+            grid.push(row5);
+            grid.push(row6);
+            grid.push(row7);
+            grid.push(row8);
+            grid.push(row9);
+            grid.push(row10);
+            grid.push(row11);
+            grid.push(row12);
+            grid.push(row13);
+            grid.push(row14);
+            grid.push(row15);
 
-                }
-                grid.push(row);
-            }
-            console.log(grid[0]);
+            console.log(grid);
             return grid;
         }
 
         public addItems() {
             for (let z = 0; z < this.height; z++) {
                 for (let x = 0; x < this.width; x++) {
+
                     if (this.grid[z][x] === TileType.Empty) {
                         let randomNumber: number = Math.random();
                         let itemType: ItemType;

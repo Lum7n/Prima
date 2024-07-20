@@ -244,8 +244,8 @@ var Script;
     let character;
     let cmpRigidbody;
     let sound;
-    let externalConfig;
     // export let gameState: GameState;
+    Script.initialLivesAmount = 3;
     let objectAte = 0;
     let gameInterface;
     let starPling;
@@ -295,34 +295,49 @@ var Script;
     }
     async function getExternalData() {
         let response = await fetch("External.json");
-        externalConfig = await response.json();
-        Script.initialLivesAmount = externalConfig["initialLivesAmount"];
-        console.log("initial:" + Script.initialLivesAmount);
-        // gameState = new GameState(gameDuration);
+        Script.externalConfig = await response.json();
+        Script.row0 = Script.externalConfig["z0"];
+        Script.row1 = Script.externalConfig["z1"];
+        Script.row2 = Script.externalConfig["z2"];
+        Script.row3 = Script.externalConfig["z3"];
+        Script.row4 = Script.externalConfig["z4"];
+        Script.row5 = Script.externalConfig["z5"];
+        Script.row6 = Script.externalConfig["z6"];
+        Script.row7 = Script.externalConfig["z7"];
+        Script.row8 = Script.externalConfig["z8"];
+        Script.row9 = Script.externalConfig["z9"];
+        Script.row10 = Script.externalConfig["z10"];
+        Script.row11 = Script.externalConfig["z11"];
+        Script.row12 = Script.externalConfig["z12"];
+        Script.row13 = Script.externalConfig["z13"];
+        Script.row14 = Script.externalConfig["z14"];
+        Script.row15 = Script.externalConfig["z15"];
     }
     function setUpCharacter() {
         cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
         cmpRigidbody.mass = 8000;
         cmpRigidbody.friction = 10;
         cmpRigidbody.dampTranslation = 5;
+        cmpRigidbody.dampRotation = 1000;
+        cmpRigidbody.effectRotation.x = 0;
         cmpRigidbody.effectRotation.y = 0;
+        cmpRigidbody.effectRotation.z = 0;
         cmpRigidbody.addEventListener("TriggerEnteredCollision" /* ƒ.EVENT_PHYSICS.TRIGGER_ENTER */, collision);
     }
     function collision(_event) {
         console.log(_event.cmpRigidbody.node);
         let collidedWithObject = _event.cmpRigidbody.node;
-        let objectParent = collidedWithObject.getParent();
-        objectParent.removeChild(collidedWithObject);
         objectAte++;
         console.log(objectAte);
-        console.log(collidedWithObject.name);
         // try to fix the rotation
         character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
         character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
-        cmpRigidbody.dampRotation = 0;
+        cmpRigidbody.effectRotation.y = 0;
+        cmpRigidbody.dampRotation = 1000;
         console.log("Local " + character.mtxLocal.rotation);
         console.log("World " + character.mtxWorld.rotation);
         //check the object and adds points, lives, sounds
+        console.log(collidedWithObject.name);
         switch (collidedWithObject.name) {
             case "Star":
                 gameInterface.points += 20;
@@ -357,10 +372,11 @@ var Script;
                 break;
         }
         // won?
-        if (objectAte == 10) { //170
-            console.log("whuu");
+        if (objectAte == 170) { //170
             showKey();
         }
+        let objectParent = collidedWithObject.getParent();
+        objectParent.removeChild(collidedWithObject);
     }
     function showKey() {
         let key = Script.items.getChildrenByName("Key")[0];
@@ -416,14 +432,12 @@ var Script;
     })(ItemType || (ItemType = {}));
     let TileType;
     (function (TileType) {
-        TileType[TileType["Ground"] = 0] = "Ground";
-        TileType[TileType["Border"] = 1] = "Border";
-        TileType[TileType["Cube"] = 2] = "Cube";
-        TileType[TileType["Empty"] = 3] = "Empty";
-    })(TileType || (TileType = {}));
+        TileType[TileType["Bush"] = 0] = "Bush";
+        TileType[TileType["Empty"] = 1] = "Empty";
+    })(TileType = Script.TileType || (Script.TileType = {}));
     let itemTypeArray = [];
     itemTypeArray[0] = 0;
-    let itemNumber = 1;
+    let itemNumber = 0;
     let previousItem = 0;
     let lastItem = ItemType.Empty;
     Script.indexLife = 1;
@@ -442,14 +456,30 @@ var Script;
         }
         createEmptyGrid() {
             const grid = [];
-            for (let z = 0; z < this.width; z++) {
-                const row = [];
-                for (let x = 0; x < this.height; x++) {
-                    row.push(TileType.Empty);
-                }
-                grid.push(row);
-            }
-            console.log(grid[0]);
+            // for (let z = 0; z < this.width; z++) {
+            // const row: TileType[] = [];
+            // for (let x = 0; x < this.height; x++) {
+            //     console.log("z: " + z + ", x: " + x);
+            //     row.push(TileType.Empty);
+            // }
+            // }
+            grid.push(Script.row0);
+            grid.push(Script.row1);
+            grid.push(Script.row2);
+            grid.push(Script.row3);
+            grid.push(Script.row4);
+            grid.push(Script.row5);
+            grid.push(Script.row6);
+            grid.push(Script.row7);
+            grid.push(Script.row8);
+            grid.push(Script.row9);
+            grid.push(Script.row10);
+            grid.push(Script.row11);
+            grid.push(Script.row12);
+            grid.push(Script.row13);
+            grid.push(Script.row14);
+            grid.push(Script.row15);
+            console.log(grid);
             return grid;
         }
         addItems() {
