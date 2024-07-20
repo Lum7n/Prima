@@ -22,7 +22,6 @@ namespace Script {
   // export let gameState: GameState;
 
   let objectAte: number = 0;
-  let star: Star;
   let gameInterface: GameInterface;
   let starPling: ƒ.ComponentAudio;
   let itemAte: ƒ.ComponentAudio;
@@ -52,7 +51,7 @@ namespace Script {
     myMaze.addItems();
     for (let index = 0; index < 5; index++) {
       myMaze.addFoes();
-  }
+    }
 
     character = graph.getChildrenByName("Character")[0];
     console.log(character);
@@ -109,11 +108,6 @@ namespace Script {
     cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, collision);
   }
 
-  // function test(_event: ƒ.EventPhysics): void {
-  //   console.log("test");
-  //   console.log(_event);
-  // }
-
   function collision(_event: ƒ.EventPhysics): void {
 
     console.log(_event.cmpRigidbody.node);
@@ -123,6 +117,7 @@ namespace Script {
     objectParent.removeChild(collidedWithObject);
     objectAte++;
     console.log(objectAte);
+    console.log(collidedWithObject.name);
 
     // try to fix the rotation
     character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
@@ -153,22 +148,38 @@ namespace Script {
         gameInterface.lives += 1;
         itemAte.play(true);
         break;
-        case "Fox":
-          console.log("Fox");
-          // gameInterface.lives += 1;
-          // itemAte.play(true);
-          break;
+      case "Fox":
+        console.log("Fox");
+        break;
+      case "Key":
+        console.log("Key");
+        won = true;
+        timer.active = false;
+        let finalPoints: number = gameInterface.points;
+        let finalTime: number = gameInterface.time;
+        console.log("final: " + finalPoints + " and " + finalTime);
+        gameInterface.showEndscreen(finalPoints, finalTime);
+        break;
     }
     // won?
-    if (objectAte == 170) { //170
-      star.showKey();
-      let finalPoints: number = gameInterface.points;
-      let finalTime: number = gameInterface.time;
-      console.log("final: " + finalPoints + " and " + finalTime);
-      gameInterface.showEndscreen(finalPoints, finalTime);
-      won = true;
-      timer.active = false;
+    if (objectAte == 10) { //170
+      console.log("whuu");
+      showKey();
     }
+  }
+
+  function showKey(): void {
+    let key: ƒ.Node = items.getChildrenByName("Key")[0];
+
+    key.activate(true);
+
+    key.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(new ƒ.Vector3(9, 0, 8))));
+
+    let cmpRigidbody: ƒ.ComponentRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
+    cmpRigidbody.isTrigger = true;
+    key.addComponent(cmpRigidbody)
+
+    items.appendChild(key);
   }
 
   function characterMovement(): void {
@@ -181,15 +192,15 @@ namespace Script {
       if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT, ƒ.KEYBOARD_CODE.D])) {
         velocity.x = moveSpeed;
       }
-  
+
       if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT, ƒ.KEYBOARD_CODE.A])) {
         velocity.x = -moveSpeed;
       }
-  
+
       if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP, ƒ.KEYBOARD_CODE.W])) {
         velocity.z = -moveSpeed;
       }
-  
+
       if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN, ƒ.KEYBOARD_CODE.S])) {
         velocity.z = moveSpeed;
       }

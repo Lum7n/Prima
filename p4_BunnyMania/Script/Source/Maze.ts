@@ -6,8 +6,6 @@ namespace Script {
         AdditionalTime,
         PowerUp,
         Life,
-        Key,
-        Fox,
         Empty, // Add Empty as a value
     }
 
@@ -147,13 +145,9 @@ namespace Script {
         }
 
         public addFoes(): void {
-            const fox: Foe = new Foe(indexFox);
+            const fox: Fox = new Fox(indexFox);
             indexFox++;
             foes.addChild(fox);
-        }
-
-        public showKey(): void {
-
         }
     }
 }

@@ -61,25 +61,69 @@ var Script;
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;
-    class Foe extends ƒ.Node {
+    ƒ.Project.registerScriptNamespace(Script); // Register the namespace to FUDGE for serialization
+    class DeterminePositions extends ƒ.ComponentScript {
+        // Register the script as component for use in the editor via drag&drop
+        static iSubclass = ƒ.Component.registerSubclass(Script.CustomComponentScript);
+        // Properties may be mutated by users in the editor via the automatically created user interface
+        message = "DeterminePositions added to ";
+        index;
+        totalAmount;
+        constructor(_index, _totalAmount) {
+            super();
+            // Don't start when running in editor
+            if (ƒ.Project.mode == ƒ.MODE.EDITOR)
+                return;
+            this.index = _index;
+            this.totalAmount = _totalAmount;
+            // Listen to this component being added to or removed from a node
+            this.addEventListener("componentAdd" /* ƒ.EVENT.COMPONENT_ADD */, this.calculatePosition);
+        }
+        // Activate the functions of this component as response to events
+        calculatePosition() {
+            //calculate the positions based on how many collectables exist, so they get spread out evenly in the game
+            let max = ((80 / this.totalAmount) * this.index);
+            let min = (80 / this.totalAmount) * (this.index - 1) + 10;
+            let position = min + Math.floor(Math.random() * (max - min));
+            //console.log(position);
+            this.node.mtxLocal.translateX(position);
+        } //calculatePosition
+    }
+    Script.DeterminePositions = DeterminePositions;
+})(Script || (Script = {}));
+var Script;
+(function (Script) {
+    var ƒ = FudgeCore;
+    class Fox extends ƒ.Node {
         static fox;
         static foxName = "Fox";
         constructor(_index) {
-            super("Foe");
-            Foe.foxName = Foe.foxName + _index;
-            console.log(Foe.foxName);
-            Foe.fox = Script.foes.getChildrenByName(Foe.foxName)[0];
-            Foe.fox.activate(true);
-            this.appendChild(Foe.fox);
-            this.addComponent(new ƒ.ComponentTransform());
+            super("Fox");
+            Fox.foxName = Fox.foxName + _index;
+            console.log(Fox.foxName);
+            Fox.fox = Script.foes.getChildrenByName(Fox.foxName)[0];
+            Fox.fox.activate(true);
+            Fox.fox.addComponent(new ƒ.ComponentTransform());
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
-            this.addComponent(cmpRigidbody);
-            Foe.foxName = "Fox";
+            cmpRigidbody.addEventListener("ColliderEnteredCollision" /* ƒ.EVENT_PHYSICS.COLLISION_ENTER */, (_event) => {
+                console.log("test");
+            });
+            Fox.fox.addComponent(cmpRigidbody);
+            this.appendChild(Fox.fox);
+            Fox.foxName = "Fox";
         }
     }
-    Script.Foe = Foe;
+    Script.Fox = Fox;
 })(Script || (Script = {}));
+// this.rigidbody.addEventListener(ƒ.EVENT_PHYSICS.COLLISION_ENTER, (_event: ƒ.EventPhysics) => {
+//     if (_event.cmpRigidbody.node.name == "Pingu") {
+//         this.stateMachine.transit(JOB.FLY);
+//         setTimeout(() => {
+//             this.stateMachine.transit(JOB.SHINE);
+//         },         2000);
+//     }
+// });
 var Script;
 (function (Script) {
     var ƒ = FudgeCore;
@@ -203,7 +247,6 @@ var Script;
     let externalConfig;
     // export let gameState: GameState;
     let objectAte = 0;
-    let star;
     let gameInterface;
     let starPling;
     let itemAte;
@@ -265,10 +308,6 @@ var Script;
         cmpRigidbody.effectRotation.y = 0;
         cmpRigidbody.addEventListener("TriggerEnteredCollision" /* ƒ.EVENT_PHYSICS.TRIGGER_ENTER */, collision);
     }
-    // function test(_event: ƒ.EventPhysics): void {
-    //   console.log("test");
-    //   console.log(_event);
-    // }
     function collision(_event) {
         console.log(_event.cmpRigidbody.node);
         let collidedWithObject = _event.cmpRigidbody.node;
@@ -276,6 +315,7 @@ var Script;
         objectParent.removeChild(collidedWithObject);
         objectAte++;
         console.log(objectAte);
+        console.log(collidedWithObject.name);
         // try to fix the rotation
         character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
         character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
@@ -305,20 +345,31 @@ var Script;
                 break;
             case "Fox":
                 console.log("Fox");
-                // gameInterface.lives += 1;
-                // itemAte.play(true);
+                break;
+            case "Key":
+                console.log("Key");
+                Script.won = true;
+                timer.active = false;
+                let finalPoints = gameInterface.points;
+                let finalTime = gameInterface.time;
+                console.log("final: " + finalPoints + " and " + finalTime);
+                gameInterface.showEndscreen(finalPoints, finalTime);
                 break;
         }
         // won?
-        if (objectAte == 170) { //170
-            star.showKey();
-            let finalPoints = gameInterface.points;
-            let finalTime = gameInterface.time;
-            console.log("final: " + finalPoints + " and " + finalTime);
-            gameInterface.showEndscreen(finalPoints, finalTime);
-            Script.won = true;
-            timer.active = false;
+        if (objectAte == 10) { //170
+            console.log("whuu");
+            showKey();
         }
+    }
+    function showKey() {
+        let key = Script.items.getChildrenByName("Key")[0];
+        key.activate(true);
+        key.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(new ƒ.Vector3(9, 0, 8))));
+        let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
+        cmpRigidbody.isTrigger = true;
+        key.addComponent(cmpRigidbody);
+        Script.items.appendChild(key);
     }
     function characterMovement() {
         const moveSpeed = 10;
@@ -361,9 +412,7 @@ var Script;
         ItemType[ItemType["AdditionalTime"] = 1] = "AdditionalTime";
         ItemType[ItemType["PowerUp"] = 2] = "PowerUp";
         ItemType[ItemType["Life"] = 3] = "Life";
-        ItemType[ItemType["Key"] = 4] = "Key";
-        ItemType[ItemType["Fox"] = 5] = "Fox";
-        ItemType[ItemType["Empty"] = 6] = "Empty";
+        ItemType[ItemType["Empty"] = 4] = "Empty";
     })(ItemType || (ItemType = {}));
     let TileType;
     (function (TileType) {
@@ -483,11 +532,9 @@ var Script;
             Script.items.addChild(life);
         }
         addFoes() {
-            const fox = new Script.Foe(Script.indexFox);
+            const fox = new Script.Fox(Script.indexFox);
             Script.indexFox++;
             Script.foes.addChild(fox);
-        }
-        showKey() {
         }
     }
     Script.Maze = Maze;
@@ -543,9 +590,6 @@ var Script;
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody);
         }
-        showKey() {
-            let meshComponent = new ƒ.ComponentMesh(new ƒ.MeshTorus("Keyring"));
-        }
     }
     Script.Star = Star;
 })(Script || (Script = {}));
@@ -595,37 +639,43 @@ var Script;
             //
         }
         static actPower(_machine) {
-            let star = _machine.node;
-            star.removeComponent(star.rigidbody);
-            star.animate();
-            star.starAudio.play(true);
+            // let star: Star = <Star>_machine.node;
+            // star.removeComponent(star.rigidbody);
+            // star.animate();
+            // star.starAudio.play(true);
         } //actPower
         static actVulnerable(_machine) {
-            let star = _machine.node;
-            star.removeComponent(star.stateMachine);
-            stars.splice(stars.indexOf(star));
-            collectables.removeChild(star);
-            gameState.stars += 1;
-            switch (gameState.stars) {
-                case 1: {
-                    let starImage = document.getElementById("star1");
-                    starImage.style.display = "block";
-                    break;
-                }
-                case 2: {
-                    let starImage = document.getElementById("star2");
-                    starImage.style.display = "block";
-                    break;
-                }
-                case 3: {
-                    let starImage = document.getElementById("star3");
-                    starImage.style.display = "block";
-                    break;
-                }
-                default:
-                    break;
-            }
+            // let star: Star = <Star>_machine.node;
+            // star.removeComponent(star.stateMachine);
+            // stars.splice(stars.indexOf(star));
+            // collectables.removeChild(star);
+            // gameState.stars += 1;
+            // switch (gameState.stars) {
+            //   case 1: {
+            //     let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star1");
+            //     starImage.style.display = "block";
+            //     break;
+            //   }
+            //   case 2: {
+            //     let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star2");
+            //     starImage.style.display = "block";
+            //     break;
+            //   }
+            //   case 3: {
+            //     let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star3");
+            //     starImage.style.display = "block";
+            //     break;
+            //   }
+            //   default:
+            //     break;
+            // }
         } //actVulnerable
+        static actStar(_machine) {
+            //
+        }
+        static actKey(_machine) {
+            //
+        }
         handleEvent = (_event) => {
             switch (_event.type) {
                 case "componentAdd" /* ƒ.EVENT.COMPONENT_ADD */:

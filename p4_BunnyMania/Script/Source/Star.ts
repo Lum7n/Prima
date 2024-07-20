@@ -35,10 +35,5 @@ namespace Script {
             cmpRigidbody.isTrigger = true;
             this.addComponent(cmpRigidbody)
         }
-
-        showKey(): void {
-            let meshComponent: ƒ.ComponentMesh = new ƒ.ComponentMesh(new ƒ.MeshTorus("Keyring"));
-
-        }
     }
 }

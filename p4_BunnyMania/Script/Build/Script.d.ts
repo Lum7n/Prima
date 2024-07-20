@@ -17,7 +17,18 @@ declare namespace Script {
 }
 declare namespace Script {
     import ƒ = FudgeCore;
-    class Foe extends ƒ.Node {
+    class DeterminePositions extends ƒ.ComponentScript {
+        static readonly iSubclass: number;
+        message: string;
+        index: number;
+        totalAmount: number;
+        constructor(_index: number, _totalAmount: number);
+        calculatePosition(): void;
+    }
+}
+declare namespace Script {
+    import ƒ = FudgeCore;
+    class Fox extends ƒ.Node {
         static fox: ƒ.Node;
         static foxName: string;
         constructor(_index: number);
@@ -73,7 +84,6 @@ declare namespace Script {
         protected addPowerUp(x: number, z: number): void;
         protected addLifes(x: number, z: number): void;
         addFoes(): void;
-        showKey(): void;
     }
 }
 declare namespace Script {
@@ -93,7 +103,6 @@ declare namespace Script {
         static spikeAmount: number;
         static degree: number[];
         constructor(_position: ƒ.Vector3, _index: number);
-        showKey(): void;
     }
 }
 declare namespace Script {
@@ -114,6 +123,8 @@ declare namespace Script {
         private static actNormal;
         private static actPower;
         private static actVulnerable;
+        private static actStar;
+        private static actKey;
         handleEvent: (_event: Event) => void;
         update: (_event: Event) => void;
     }

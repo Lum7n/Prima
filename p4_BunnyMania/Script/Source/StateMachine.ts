@@ -50,38 +50,46 @@ namespace Script {
     }
 
     private static actPower(_machine: StarMachine): void {
-      let star: Star = <Star>_machine.node;
-      star.removeComponent(star.rigidbody);
-      star.animate();
-      star.starAudio.play(true);
+      // let star: Star = <Star>_machine.node;
+      // star.removeComponent(star.rigidbody);
+      // star.animate();
+      // star.starAudio.play(true);
     } //actPower
 
     private static actVulnerable(_machine: StarMachine): void {
-      let star: Star = <Star>_machine.node;
-      star.removeComponent(star.stateMachine);
-      stars.splice(stars.indexOf(star));
-      collectables.removeChild(star);
-      gameState.stars += 1;
-      switch (gameState.stars) {
-        case 1: {
-          let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star1");
-          starImage.style.display = "block";
-          break;
-        }
-        case 2: {
-          let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star2");
-          starImage.style.display = "block";
-          break;
-        }
-        case 3: {
-          let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star3");
-          starImage.style.display = "block";
-          break;
-        }
-        default:
-          break;
-      }
+      // let star: Star = <Star>_machine.node;
+      // star.removeComponent(star.stateMachine);
+      // stars.splice(stars.indexOf(star));
+      // collectables.removeChild(star);
+      // gameState.stars += 1;
+      // switch (gameState.stars) {
+      //   case 1: {
+      //     let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star1");
+      //     starImage.style.display = "block";
+      //     break;
+      //   }
+      //   case 2: {
+      //     let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star2");
+      //     starImage.style.display = "block";
+      //     break;
+      //   }
+      //   case 3: {
+      //     let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star3");
+      //     starImage.style.display = "block";
+      //     break;
+      //   }
+      //   default:
+      //     break;
+      // }
     } //actVulnerable
+
+    private static actStar(_machine: StarMachine): void {
+      //
+    }
+
+    private static actKey(_machine: StarMachine): void {
+      //
+    }
 
     public handleEvent = (_event: Event): void => {
       switch (_event.type) {
