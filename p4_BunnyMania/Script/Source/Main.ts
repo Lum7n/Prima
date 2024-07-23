@@ -9,8 +9,9 @@ namespace Script {
   let maze: ƒ.Node;
   export let items: ƒ.Node;
   export let foes: ƒ.Node;
-  let character: ƒ.Node;
+  export let character: ƒ.Node;
   let cmpRigidbody: ƒ.ComponentRigidbody;
+  let modeMachine: ModeSwitch;
   let sound: ƒ.Node;
 
   export interface ExternalData {
@@ -34,18 +35,18 @@ namespace Script {
   export let row14: TileType[];
   export let row15: TileType[];
 
-  // export let gameState: GameState;
-
   export let initialLivesAmount: number = 3;
-  let objectAte: number = 0;
+  export let modeIndex: number = 4;
+  let starAte: number = 0;
   let gameInterface: GameInterface;
   let starPling: ƒ.ComponentAudio;
   let itemAte: ƒ.ComponentAudio;
 
   export let won: boolean = false;
+  let timeout: boolean = false;
 
   let gameTime: ƒ.Time;
-  let timer: ƒ.Timer;
+  export let timer: ƒ.Timer;
 
   //@ts-ignore
   document.addEventListener("interactiveViewportStarted", start);
@@ -137,15 +138,17 @@ namespace Script {
     cmpRigidbody.effectRotation.y = 0;
     cmpRigidbody.effectRotation.z = 0;
     cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, collision);
+
+    modeMachine = new ModeSwitch();
+    character.addComponent(modeMachine);
+    modeMachine.stateCurrent = JOB.NORMAL;
+    console.log(modeMachine.stateCurrent)
   }
 
   function collision(_event: ƒ.EventPhysics): void {
 
     console.log(_event.cmpRigidbody.node);
     let collidedWithObject: ƒ.Node = _event.cmpRigidbody.node;
-
-    objectAte++;
-    console.log(objectAte);
 
     // try to fix the rotation
     character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
@@ -160,6 +163,7 @@ namespace Script {
     switch (collidedWithObject.name) {
 
       case "Star":
+        starAte++;
         gameInterface.points += 20;
         starPling.play(true);
         break;
@@ -169,20 +173,24 @@ namespace Script {
         itemAte.play(true);
         break;
       case "PowerUp":
-        console.error("PowerUp Added!");
         gameInterface.points += 10;
         itemAte.play(true);
+        modeMachine.transit(JOB.POWER);
+
+        if (timeout == false) {
+          setTimeout(afterPowerMode, 5000);
+        } else if (timeout == true) {
+          setTimeout(afterPowerMode, 5000);
+        }
+        timeout = true;
         break;
       case "Life":
-        console.error("Life Added!");
         gameInterface.lives += 1;
         itemAte.play(true);
         break;
       case "Fox":
-        console.log("Fox");
         break;
       case "Key":
-        console.log("Key");
         won = true;
         timer.active = false;
         let finalPoints: number = gameInterface.points;
@@ -191,13 +199,32 @@ namespace Script {
         gameInterface.showEndscreen(finalPoints, finalTime);
         break;
     }
+
     // won?
-    if (objectAte == 170) { //170
+    if (starAte == indexStar) { //175
       showKey();
     }
 
-    let objectParent: ƒ.Node = collidedWithObject.getParent();
-    objectParent.removeChild(collidedWithObject);
+    // if the Fox is killable
+    if (collidedWithObject.name == "Fox") {
+      if (modeMachine.stateCurrent == 0) { // NORMAL MODE
+        console.log("Victim");
+        gameInterface.lives -= 1;
+
+      } else if (modeMachine.stateCurrent == 1) { // POWER MODE
+        console.log("Fox-Killer");
+        let objectParent: ƒ.Node = collidedWithObject.getParent();
+        objectParent.removeChild(collidedWithObject);
+      }
+    } else {
+      let objectParent: ƒ.Node = collidedWithObject.getParent();
+      objectParent.removeChild(collidedWithObject);
+    }
+  }
+
+  function afterPowerMode(): void {
+    modeMachine.transit(JOB.NORMAL);
+    timeout = false;
   }
 
   function showKey(): void {

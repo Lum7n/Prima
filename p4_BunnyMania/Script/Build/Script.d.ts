@@ -31,6 +31,7 @@ declare namespace Script {
     class Fox extends ƒ.Node {
         static fox: ƒ.Node;
         static foxName: string;
+        static positionArray: ƒ.Vector3[];
         constructor(_index: number);
     }
 }
@@ -46,6 +47,7 @@ declare namespace Script {
         protected reduceMutator(_mutator: ƒ.Mutator): void;
         updateUserInterface(): void;
         addLifeImg(): void;
+        killLifeImg(): void;
         displayTime(_time: number): string;
         pad(number: number): string;
         showEndscreen(_finalPoints: number, _finalTime: number): void;
@@ -63,6 +65,7 @@ declare namespace Script {
     import ƒ = FudgeCore;
     let items: ƒ.Node;
     let foes: ƒ.Node;
+    let character: ƒ.Node;
     interface ExternalData {
         [name: string]: TileType[];
     }
@@ -84,17 +87,19 @@ declare namespace Script {
     let row14: TileType[];
     let row15: TileType[];
     let initialLivesAmount: number;
+    let modeIndex: number;
     let won: boolean;
+    let timer: ƒ.Timer;
 }
 declare namespace Script {
     enum TileType {
         Bush = 0,
         Empty = 1
     }
-    let indexLife: number;
-    let indexPowerUp: number;
-    let indexAddTime: number;
     let indexStar: number;
+    let indexAddTime: number;
+    let indexPowerUp: number;
+    let indexLife: number;
     let indexFox: number;
     class Maze {
         private readonly width;
@@ -108,6 +113,25 @@ declare namespace Script {
         protected addPowerUp(x: number, z: number): void;
         protected addLifes(x: number, z: number): void;
         addFoes(): void;
+    }
+}
+declare namespace Script {
+    import ƒAid = FudgeAid;
+    enum JOB {
+        NORMAL = 0,
+        POWER = 1
+    }
+    class ModeSwitch extends ƒAid.ComponentStateMachine<JOB> {
+        static readonly iSubclass: number;
+        private static instructions;
+        constructor();
+        static get(): ƒAid.StateMachineInstructions<JOB>;
+        private static transitDefault;
+        private static actDefault;
+        private static actNormal;
+        private static actPower;
+        handleEvent: (_event: Event) => void;
+        update: (_event: Event) => void;
     }
 }
 declare namespace Script {
@@ -127,29 +151,5 @@ declare namespace Script {
         static spikeAmount: number;
         static degree: number[];
         constructor(_position: ƒ.Vector3, _index: number);
-    }
-}
-declare namespace Script {
-    import ƒAid = FudgeAid;
-    enum JOB {
-        NORMAL = 0,
-        POWER = 1,
-        VULNERABLE = 2,
-        STAR = 3,
-        KEY = 4
-    }
-    class StarMachine extends ƒAid.ComponentStateMachine<JOB> {
-        private static instructions;
-        constructor();
-        static get(): ƒAid.StateMachineInstructions<JOB>;
-        private static transitDefault;
-        private static actDefault;
-        private static actNormal;
-        private static actPower;
-        private static actVulnerable;
-        private static actStar;
-        private static actKey;
-        handleEvent: (_event: Event) => void;
-        update: (_event: Event) => void;
     }
 }

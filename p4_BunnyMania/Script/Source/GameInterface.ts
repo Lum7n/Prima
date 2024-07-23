@@ -32,8 +32,20 @@ namespace Script {
 
             // lives
             if (this.lives != GameInterface.lastLifeAmount) {
-                console.log("life added");
-                this.addLifeImg();
+                if (this.lives - GameInterface.lastLifeAmount > 0) {
+                    console.log("life added");
+                    this.addLifeImg();
+                    GameInterface.lastLifeAmount = this.lives;
+                } else if (this.lives - GameInterface.lastLifeAmount < 0) {
+                    console.log("life killed");
+                    this.killLifeImg();
+                    GameInterface.lastLifeAmount = this.lives;
+                    if (this.lives == 0) {
+                        timer.active = false;
+                        this.showEndscreen(this.points, this.time);
+                        won = true;
+                    }
+                }
             }
 
             // time
@@ -55,7 +67,14 @@ namespace Script {
             console.log(newLifeImg.src);
             let livesSpan: HTMLSpanElement = GameInterface.visualUIdiv.querySelector("#lives");
             livesSpan.appendChild(newLifeImg);
-            GameInterface.lastLifeAmount = this.lives;
+        }
+
+        killLifeImg(): void {
+            let livesSpan: HTMLSpanElement = GameInterface.visualUIdiv.querySelector("#lives");
+            let livesSpanChildren: HTMLCollectionOf<HTMLImageElement> = livesSpan.getElementsByTagName("img");
+            let livesSpanChild: HTMLImageElement = livesSpanChildren[0];
+            console.log(livesSpanChildren);
+            livesSpan.removeChild(livesSpanChild);
         }
 
         displayTime(_time: number) {

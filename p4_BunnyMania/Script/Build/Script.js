@@ -64,7 +64,7 @@ var Script;
     ƒ.Project.registerScriptNamespace(Script); // Register the namespace to FUDGE for serialization
     class DeterminePositions extends ƒ.ComponentScript {
         // Register the script as component for use in the editor via drag&drop
-        static iSubclass = ƒ.Component.registerSubclass(Script.CustomComponentScript);
+        static iSubclass = ƒ.Component.registerSubclass(DeterminePositions);
         // Properties may be mutated by users in the editor via the automatically created user interface
         message = "DeterminePositions added to ";
         index;
@@ -97,20 +97,24 @@ var Script;
     class Fox extends ƒ.Node {
         static fox;
         static foxName = "Fox";
+        static positionArray = [new ƒ.Vector3(0, 0, 0), new ƒ.Vector3(0, 0, 0), new ƒ.Vector3(15, 0, 0), new ƒ.Vector3(6, 0, 7), new ƒ.Vector3(8, 0, 13), new ƒ.Vector3(2, 0, 2)];
         constructor(_index) {
             super("Fox");
             Fox.foxName = Fox.foxName + _index;
             console.log(Fox.foxName);
             Fox.fox = Script.foes.getChildrenByName(Fox.foxName)[0];
             Fox.fox.activate(true);
-            Fox.fox.addComponent(new ƒ.ComponentTransform());
-            let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
+            this.appendChild(Fox.fox);
+            console.log(Fox.positionArray[_index]);
+            console.log(Fox.fox);
+            this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(Fox.positionArray[_index])));
+            let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.KINEMATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             cmpRigidbody.addEventListener("ColliderEnteredCollision" /* ƒ.EVENT_PHYSICS.COLLISION_ENTER */, (_event) => {
                 console.log("test");
             });
-            Fox.fox.addComponent(cmpRigidbody);
-            this.appendChild(Fox.fox);
+            this.addComponent(cmpRigidbody);
+            this.getChild(0).getComponent(ƒ.ComponentAnimator).activate(true);
             Fox.foxName = "Fox";
         }
     }
@@ -153,8 +157,21 @@ var Script;
             pointsSpan.innerHTML = "" + this.points + "";
             // lives
             if (this.lives != GameInterface.lastLifeAmount) {
-                console.log("life added");
-                this.addLifeImg();
+                if (this.lives - GameInterface.lastLifeAmount > 0) {
+                    console.log("life added");
+                    this.addLifeImg();
+                    GameInterface.lastLifeAmount = this.lives;
+                }
+                else if (this.lives - GameInterface.lastLifeAmount < 0) {
+                    console.log("life killed");
+                    this.killLifeImg();
+                    GameInterface.lastLifeAmount = this.lives;
+                    if (this.lives == 0) {
+                        Script.timer.active = false;
+                        this.showEndscreen(this.points, this.time);
+                        Script.won = true;
+                    }
+                }
             }
             // time
             let timeSpan = GameInterface.visualUIdiv.querySelector("#time");
@@ -175,7 +192,13 @@ var Script;
             console.log(newLifeImg.src);
             let livesSpan = GameInterface.visualUIdiv.querySelector("#lives");
             livesSpan.appendChild(newLifeImg);
-            GameInterface.lastLifeAmount = this.lives;
+        }
+        killLifeImg() {
+            let livesSpan = GameInterface.visualUIdiv.querySelector("#lives");
+            let livesSpanChildren = livesSpan.getElementsByTagName("img");
+            let livesSpanChild = livesSpanChildren[0];
+            console.log(livesSpanChildren);
+            livesSpan.removeChild(livesSpanChild);
         }
         displayTime(_time) {
             let seconds = Math.floor(_time) % 60;
@@ -241,18 +264,18 @@ var Script;
     let viewport;
     let graph;
     let maze;
-    let character;
     let cmpRigidbody;
+    let modeMachine;
     let sound;
-    // export let gameState: GameState;
     Script.initialLivesAmount = 3;
-    let objectAte = 0;
+    Script.modeIndex = 4;
+    let starAte = 0;
     let gameInterface;
     let starPling;
     let itemAte;
     Script.won = false;
+    let timeout = false;
     let gameTime;
-    let timer;
     //@ts-ignore
     document.addEventListener("interactiveViewportStarted", start);
     async function start(_event) {
@@ -269,9 +292,9 @@ var Script;
         for (let index = 0; index < 5; index++) {
             myMaze.addFoes();
         }
-        character = graph.getChildrenByName("Character")[0];
-        console.log(character);
-        let cameraNode = character.getChildrenByName("Camera")[0];
+        Script.character = graph.getChildrenByName("Character")[0];
+        console.log(Script.character);
+        let cameraNode = Script.character.getChildrenByName("Camera")[0];
         console.log(cameraNode);
         let camera = cameraNode.getComponent(ƒ.ComponentCamera);
         console.log(camera);
@@ -280,7 +303,7 @@ var Script;
         starPling = sound.getChildrenByName("Star")[0].getComponent(ƒ.ComponentAudio);
         itemAte = sound.getChildrenByName("otherItem")[0].getComponent(ƒ.ComponentAudio);
         gameTime = new ƒ.Time();
-        timer = new ƒ.Timer(gameTime, 1000, 0, updateTimer);
+        Script.timer = new ƒ.Timer(gameTime, 1000, 0, updateTimer);
         setUpCharacter();
         gameInterface = new Script.GameInterface(Script.initialLivesAmount);
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
@@ -314,7 +337,7 @@ var Script;
         Script.row15 = Script.externalConfig["z15"];
     }
     function setUpCharacter() {
-        cmpRigidbody = character.getComponent(ƒ.ComponentRigidbody);
+        cmpRigidbody = Script.character.getComponent(ƒ.ComponentRigidbody);
         cmpRigidbody.mass = 8000;
         cmpRigidbody.friction = 10;
         cmpRigidbody.dampTranslation = 5;
@@ -323,23 +346,26 @@ var Script;
         cmpRigidbody.effectRotation.y = 0;
         cmpRigidbody.effectRotation.z = 0;
         cmpRigidbody.addEventListener("TriggerEnteredCollision" /* ƒ.EVENT_PHYSICS.TRIGGER_ENTER */, collision);
+        modeMachine = new Script.ModeSwitch();
+        Script.character.addComponent(modeMachine);
+        modeMachine.stateCurrent = Script.JOB.NORMAL;
+        console.log(modeMachine.stateCurrent);
     }
     function collision(_event) {
         console.log(_event.cmpRigidbody.node);
         let collidedWithObject = _event.cmpRigidbody.node;
-        objectAte++;
-        console.log(objectAte);
         // try to fix the rotation
-        character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
-        character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
+        Script.character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
+        Script.character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
         cmpRigidbody.effectRotation.y = 0;
         cmpRigidbody.dampRotation = 1000;
-        console.log("Local " + character.mtxLocal.rotation);
-        console.log("World " + character.mtxWorld.rotation);
+        console.log("Local " + Script.character.mtxLocal.rotation);
+        console.log("World " + Script.character.mtxWorld.rotation);
         //check the object and adds points, lives, sounds
         console.log(collidedWithObject.name);
         switch (collidedWithObject.name) {
             case "Star":
+                starAte++;
                 gameInterface.points += 20;
                 starPling.play(true);
                 break;
@@ -349,22 +375,26 @@ var Script;
                 itemAte.play(true);
                 break;
             case "PowerUp":
-                console.error("PowerUp Added!");
                 gameInterface.points += 10;
                 itemAte.play(true);
+                modeMachine.transit(Script.JOB.POWER);
+                if (timeout == false) {
+                    setTimeout(afterPowerMode, 5000);
+                }
+                else if (timeout == true) {
+                    setTimeout(afterPowerMode, 5000);
+                }
+                timeout = true;
                 break;
             case "Life":
-                console.error("Life Added!");
                 gameInterface.lives += 1;
                 itemAte.play(true);
                 break;
             case "Fox":
-                console.log("Fox");
                 break;
             case "Key":
-                console.log("Key");
                 Script.won = true;
-                timer.active = false;
+                Script.timer.active = false;
                 let finalPoints = gameInterface.points;
                 let finalTime = gameInterface.time;
                 console.log("final: " + finalPoints + " and " + finalTime);
@@ -372,11 +402,29 @@ var Script;
                 break;
         }
         // won?
-        if (objectAte == 170) { //170
+        if (starAte == Script.indexStar) { //175
             showKey();
         }
-        let objectParent = collidedWithObject.getParent();
-        objectParent.removeChild(collidedWithObject);
+        // if the Fox is killable
+        if (collidedWithObject.name == "Fox") {
+            if (modeMachine.stateCurrent == 0) { // NORMAL MODE
+                console.log("Victim");
+                gameInterface.lives -= 1;
+            }
+            else if (modeMachine.stateCurrent == 1) { // POWER MODE
+                console.log("Fox-Killer");
+                let objectParent = collidedWithObject.getParent();
+                objectParent.removeChild(collidedWithObject);
+            }
+        }
+        else {
+            let objectParent = collidedWithObject.getParent();
+            objectParent.removeChild(collidedWithObject);
+        }
+    }
+    function afterPowerMode() {
+        modeMachine.transit(Script.JOB.NORMAL);
+        timeout = false;
     }
     function showKey() {
         let key = Script.items.getChildrenByName("Key")[0];
@@ -440,11 +488,11 @@ var Script;
     let itemNumber = 0;
     let previousItem = 0;
     let lastItem = ItemType.Empty;
-    Script.indexLife = 1;
-    Script.indexPowerUp = 1;
-    Script.indexAddTime = 1;
-    Script.indexStar = 1;
-    Script.indexFox = 1;
+    Script.indexStar = 0;
+    Script.indexAddTime = 0;
+    Script.indexPowerUp = 0;
+    Script.indexLife = 0;
+    Script.indexFox = 0;
     class Maze {
         width;
         height;
@@ -456,13 +504,6 @@ var Script;
         }
         createEmptyGrid() {
             const grid = [];
-            // for (let z = 0; z < this.width; z++) {
-            // const row: TileType[] = [];
-            // for (let x = 0; x < this.height; x++) {
-            //     console.log("z: " + z + ", x: " + x);
-            //     row.push(TileType.Empty);
-            // }
-            // }
             grid.push(Script.row0);
             grid.push(Script.row1);
             grid.push(Script.row2);
@@ -488,13 +529,13 @@ var Script;
                     if (this.grid[z][x] === TileType.Empty) {
                         let randomNumber = Math.random();
                         let itemType;
-                        if (randomNumber <= 0.008 && Script.indexLife <= 2) { // 0,8%
+                        if (randomNumber <= 0.012 && Script.indexLife < 2) { // 1,2%
                             itemType = ItemType.Life;
                         }
-                        else if (randomNumber <= 0.017 && Script.indexPowerUp <= 4) { // 1,7%
+                        else if (randomNumber <= 0.023 && Script.indexPowerUp < 4) { // 2,3%
                             itemType = ItemType.PowerUp;
                         }
-                        else if (randomNumber <= 0.049 && Script.indexAddTime <= 12) { // 4,8%
+                        else if (randomNumber <= 0.071 && Script.indexAddTime < 12) { // 7,1%
                             itemType = ItemType.AdditionalTime;
                         }
                         else {
@@ -542,32 +583,109 @@ var Script;
             }
         }
         addStar(x, z) {
-            const star = new Script.Star(new Vector3(x, 0.5, z), Script.indexStar);
             Script.indexStar++;
+            const star = new Script.Star(new Vector3(x, 0.5, z), Script.indexStar);
             Script.items.addChild(star);
         }
         addAdditionalTime(x, z) {
-            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0, z), Script.indexAddTime);
             Script.indexAddTime++;
+            const additionalTime = new Script.AdditionalTime(new Vector3(x, 0, z), Script.indexAddTime);
             Script.items.addChild(additionalTime);
         }
         addPowerUp(x, z) {
-            const powerUp = new Script.PowerUp(new Vector3(x, 0, z), Script.indexPowerUp);
             Script.indexPowerUp++;
+            const powerUp = new Script.PowerUp(new Vector3(x, 0, z), Script.indexPowerUp);
             Script.items.addChild(powerUp);
         }
         addLifes(x, z) {
-            const life = new Script.Life(new Vector3(x, 0, z), Script.indexLife);
             Script.indexLife++;
+            const life = new Script.Life(new Vector3(x, 0, z), Script.indexLife);
             Script.items.addChild(life);
         }
         addFoes() {
-            const fox = new Script.Fox(Script.indexFox);
             Script.indexFox++;
+            const fox = new Script.Fox(Script.indexFox);
             Script.foes.addChild(fox);
         }
     }
     Script.Maze = Maze;
+})(Script || (Script = {}));
+var Script;
+(function (Script) {
+    var ƒ = FudgeCore;
+    var ƒAid = FudgeAid;
+    let JOB;
+    (function (JOB) {
+        JOB[JOB["NORMAL"] = 0] = "NORMAL";
+        JOB[JOB["POWER"] = 1] = "POWER";
+    })(JOB = Script.JOB || (Script.JOB = {}));
+    class ModeSwitch extends ƒAid.ComponentStateMachine {
+        static iSubclass = ƒ.Component.registerSubclass(ModeSwitch);
+        static instructions = ModeSwitch.get();
+        constructor() {
+            super();
+            this.instructions = ModeSwitch.instructions; // setup instructions with the static set
+            // Don't start when running in editor
+            if (ƒ.Project.mode == ƒ.MODE.EDITOR)
+                return;
+            // Listen to this component being added to or removed from a node
+            this.addEventListener("componentAdd" /* ƒ.EVENT.COMPONENT_ADD */, this.handleEvent);
+            this.addEventListener("componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */, this.handleEvent);
+            // this.addEventListener(ƒ.EVENT.NODE_DESERIALIZED, this.handleEvent);
+        }
+        static get() {
+            let setup = new ƒAid.StateMachineInstructions();
+            setup.transitDefault = ModeSwitch.transitDefault;
+            setup.actDefault = ModeSwitch.actDefault;
+            setup.setAction(JOB.NORMAL, this.actNormal);
+            setup.setAction(JOB.POWER, this.actPower);
+            return setup;
+        }
+        static transitDefault(_machine) {
+            let stateNextName;
+            switch (_machine.stateNext) {
+                case 0:
+                    stateNextName = "NORMAL MODE";
+                    break;
+                case 1:
+                    stateNextName = "POWER MODE";
+                    Script.modeIndex--;
+                    break;
+                default:
+                    break;
+            }
+            console.log("Transit to " + stateNextName);
+        }
+        static async actDefault(_machine) {
+            console.log(JOB[_machine.stateCurrent]);
+        }
+        static actNormal(_machine) {
+            let childrenOfCharacter = Script.character.getChildrenByName("PowerMode");
+            let childPowerMode = childrenOfCharacter[0];
+            Script.character.removeChild(childPowerMode);
+        }
+        static actPower(_machine) {
+            let modeItems = Script.items.getChildrenByName("PowerMode")[Script.modeIndex];
+            modeItems.activate(true);
+            Script.character.addChild(modeItems);
+        }
+        handleEvent = (_event) => {
+            switch (_event.type) {
+                case "componentAdd" /* ƒ.EVENT.COMPONENT_ADD */:
+                    ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, this.update);
+                    break;
+                case "componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */:
+                    ƒ.Loop.removeEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, this.update); //sam
+                    this.removeEventListener("componentAdd" /* ƒ.EVENT.COMPONENT_ADD */, this.handleEvent);
+                    this.removeEventListener("componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */, this.handleEvent);
+                    break;
+            }
+        };
+        update = (_event) => {
+            this.act();
+        };
+    }
+    Script.ModeSwitch = ModeSwitch;
 })(Script || (Script = {}));
 var Script;
 (function (Script) {
@@ -622,120 +740,5 @@ var Script;
         }
     }
     Script.Star = Star;
-})(Script || (Script = {}));
-var Script;
-(function (Script) {
-    var ƒ = FudgeCore;
-    var ƒAid = FudgeAid;
-    let JOB;
-    (function (JOB) {
-        JOB[JOB["NORMAL"] = 0] = "NORMAL";
-        JOB[JOB["POWER"] = 1] = "POWER";
-        JOB[JOB["VULNERABLE"] = 2] = "VULNERABLE";
-        JOB[JOB["STAR"] = 3] = "STAR";
-        JOB[JOB["KEY"] = 4] = "KEY";
-    })(JOB = Script.JOB || (Script.JOB = {}));
-    class StarMachine extends ƒAid.ComponentStateMachine {
-        static instructions = StarMachine.get();
-        constructor() {
-            super();
-            this.instructions = StarMachine.instructions; // setup instructions with the static set
-            // Don't start when running in editor
-            if (ƒ.Project.mode == ƒ.MODE.EDITOR)
-                return;
-            // Listen to this component being added to or removed from a node
-            this.addEventListener("componentAdd" /* ƒ.EVENT.COMPONENT_ADD */, this.handleEvent);
-            this.addEventListener("componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */, this.handleEvent);
-            // this.addEventListener(ƒ.EVENT.NODE_DESERIALIZED, this.handleEvent);
-        }
-        static get() {
-            let setup = new ƒAid.StateMachineInstructions();
-            setup.transitDefault = StarMachine.transitDefault;
-            setup.actDefault = StarMachine.actDefault;
-            setup.setAction(JOB.NORMAL, this.actNormal);
-            setup.setAction(JOB.POWER, this.actPower);
-            setup.setAction(JOB.VULNERABLE, this.actVulnerable);
-            setup.setAction(JOB.STAR, this.actStar);
-            setup.setAction(JOB.KEY, this.actKey);
-            return setup;
-        }
-        static transitDefault(_machine) {
-            console.log("Transit to", _machine.stateNext);
-        }
-        static async actDefault(_machine) {
-            console.log(JOB[_machine.stateCurrent]);
-        }
-        static actNormal(_machine) {
-            //
-        }
-        static actPower(_machine) {
-            // let star: Star = <Star>_machine.node;
-            // star.removeComponent(star.rigidbody);
-            // star.animate();
-            // star.starAudio.play(true);
-        } //actPower
-        static actVulnerable(_machine) {
-            // let star: Star = <Star>_machine.node;
-            // star.removeComponent(star.stateMachine);
-            // stars.splice(stars.indexOf(star));
-            // collectables.removeChild(star);
-            // gameState.stars += 1;
-            // switch (gameState.stars) {
-            //   case 1: {
-            //     let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star1");
-            //     starImage.style.display = "block";
-            //     break;
-            //   }
-            //   case 2: {
-            //     let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star2");
-            //     starImage.style.display = "block";
-            //     break;
-            //   }
-            //   case 3: {
-            //     let starImage: HTMLImageElement = <HTMLImageElement>document.getElementById("star3");
-            //     starImage.style.display = "block";
-            //     break;
-            //   }
-            //   default:
-            //     break;
-            // }
-        } //actVulnerable
-        static actStar(_machine) {
-            //
-        }
-        static actKey(_machine) {
-            //
-        }
-        handleEvent = (_event) => {
-            switch (_event.type) {
-                case "componentAdd" /* ƒ.EVENT.COMPONENT_ADD */:
-                    ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, this.update);
-                    // this.transit(JOB.IDLE);
-                    break;
-                case "componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */:
-                    ƒ.Loop.removeEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, this.update); //sam
-                    this.removeEventListener("componentAdd" /* ƒ.EVENT.COMPONENT_ADD */, this.handleEvent);
-                    this.removeEventListener("componentRemove" /* ƒ.EVENT.COMPONENT_REMOVE */, this.handleEvent);
-                    // ƒ.Loop.removeEventListener(ƒ.EVENT.LOOP_FRAME, this.update); //Jirka
-                    // case ƒ.EVENT.NODE_DESERIALIZED: //jirka
-                    //   this.transit(JOB.IDLE);
-                    // let trigger: ƒ.ComponentRigidbody = this.node.getChildren()[0].getComponent(ƒ.ComponentRigidbody);
-                    // trigger.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_ENTER, (_event: ƒ.EventPhysics) => {
-                    //   console.log("TriggerEnter", _event.cmpRigidbody.node.name);
-                    //   if (_event.cmpRigidbody.node.name == "Cart" && this.stateCurrent != JOB.DIE)
-                    //     this.transit(JOB.ESCAPE);
-                    // });
-                    // trigger.addEventListener(ƒ.EVENT_PHYSICS.TRIGGER_EXIT, (_event: ƒ.EventPhysics) => {
-                    //   if (this.stateCurrent == JOB.ESCAPE)
-                    //     this.transit(JOB.IDLE);
-                    // });
-                    break;
-            }
-        };
-        update = (_event) => {
-            this.act();
-        };
-    }
-    Script.StarMachine = StarMachine;
 })(Script || (Script = {}));
 //# sourceMappingURL=Script.js.map

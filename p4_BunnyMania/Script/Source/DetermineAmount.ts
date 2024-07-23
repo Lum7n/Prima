@@ -4,7 +4,7 @@ namespace Script {
 
     export class DeterminePositions extends ƒ.ComponentScript {
         // Register the script as component for use in the editor via drag&drop
-        public static readonly iSubclass: number = ƒ.Component.registerSubclass(CustomComponentScript);
+        public static readonly iSubclass: number = ƒ.Component.registerSubclass(DeterminePositions);
         // Properties may be mutated by users in the editor via the automatically created user interface
         public message: string = "DeterminePositions added to ";
 

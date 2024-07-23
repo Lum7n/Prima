@@ -6,7 +6,7 @@ namespace Script {
         AdditionalTime,     //1
         PowerUp,            //2
         Life,               //3
-        Empty, // Add Empty as a value
+        Empty,
     }
 
     export enum TileType {
@@ -20,11 +20,11 @@ namespace Script {
     let previousItem: number = 0;
     let lastItem: ItemType = ItemType.Empty;
 
-    export let indexLife: number = 1;
-    export let indexPowerUp: number = 1;
-    export let indexAddTime: number = 1;
-    export let indexStar: number = 1;
-    export let indexFox: number = 1;
+    export let indexStar: number = 0;
+    export let indexAddTime: number = 0;
+    export let indexPowerUp: number = 0;
+    export let indexLife: number = 0;
+    export let indexFox: number = 0;
 
     export class Maze {
         private readonly width: number;
@@ -40,13 +40,6 @@ namespace Script {
         private createEmptyGrid(): TileType[][] {
             const grid: TileType[][] = [];
 
-            // for (let z = 0; z < this.width; z++) {
-            // const row: TileType[] = [];
-            // for (let x = 0; x < this.height; x++) {
-            //     console.log("z: " + z + ", x: " + x);
-            //     row.push(TileType.Empty);
-            // }
-            // }
             grid.push(row0);
             grid.push(row1);
             grid.push(row2);
@@ -76,11 +69,11 @@ namespace Script {
                         let randomNumber: number = Math.random();
                         let itemType: ItemType;
 
-                        if (randomNumber <= 0.008 && indexLife <= 2) { // 0,8%
+                        if (randomNumber <= 0.012 && indexLife < 2) { // 1,2%
                             itemType = ItemType.Life;
-                        } else if (randomNumber <= 0.017 && indexPowerUp <= 4) { // 1,7%
+                        } else if (randomNumber <= 0.023 && indexPowerUp < 4) { // 2,3%
                             itemType = ItemType.PowerUp;
-                        } else if (randomNumber <= 0.049 && indexAddTime <= 12) { // 4,8%
+                        } else if (randomNumber <= 0.071 && indexAddTime < 12) { // 7,1%
                             itemType = ItemType.AdditionalTime;
                         } else {
                             itemType = ItemType.Star;
@@ -136,32 +129,32 @@ namespace Script {
         }
 
         protected addStar(x: number, z: number): void {
-            const star: Star = new Star(new Vector3(x, 0.5, z), indexStar);
             indexStar++;
+            const star: Star = new Star(new Vector3(x, 0.5, z), indexStar);
             items.addChild(star);
         }
 
         protected addAdditionalTime(x: number, z: number): void {
-            const additionalTime: AdditionalTime = new AdditionalTime(new Vector3(x, 0, z), indexAddTime);
             indexAddTime++;
+            const additionalTime: AdditionalTime = new AdditionalTime(new Vector3(x, 0, z), indexAddTime);
             items.addChild(additionalTime);
         }
 
         protected addPowerUp(x: number, z: number): void {
-            const powerUp: PowerUp = new PowerUp(new Vector3(x, 0, z), indexPowerUp);
             indexPowerUp++;
+            const powerUp: PowerUp = new PowerUp(new Vector3(x, 0, z), indexPowerUp);
             items.addChild(powerUp);
         }
 
         protected addLifes(x: number, z: number): void {
-            const life: Life = new Life(new Vector3(x, 0, z), indexLife);
             indexLife++;
+            const life: Life = new Life(new Vector3(x, 0, z), indexLife);
             items.addChild(life);
         }
 
         public addFoes(): void {
-            const fox: Fox = new Fox(indexFox);
             indexFox++;
+            const fox: Fox = new Fox(indexFox);
             foes.addChild(fox);
         }
     }

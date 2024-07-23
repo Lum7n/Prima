@@ -4,6 +4,7 @@ namespace Script {
     export class Fox extends ƒ.Node {
         static fox: ƒ.Node;
         static foxName: string = "Fox";
+        static positionArray: ƒ.Vector3[] = [new ƒ.Vector3(0, 0, 0), new ƒ.Vector3(0, 0, 0), new ƒ.Vector3(15, 0, 0), new ƒ.Vector3(6, 0, 7), new ƒ.Vector3(8, 0, 13), new ƒ.Vector3(2, 0, 2)];
 
         constructor(_index: number) {
             super("Fox");
@@ -13,19 +14,22 @@ namespace Script {
             Fox.fox = foes.getChildrenByName(Fox.foxName)[0];
 
             Fox.fox.activate(true);
+            this.appendChild(Fox.fox);
 
+            console.log(Fox.positionArray[_index])
+            console.log(Fox.fox);
 
-            Fox.fox.addComponent(new ƒ.ComponentTransform());
+            this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(Fox.positionArray[_index])));
 
-            let cmpRigidbody: ƒ.ComponentRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.STATIC, ƒ.COLLIDER_TYPE.SPHERE);
+            let cmpRigidbody: ƒ.ComponentRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.KINEMATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
             cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.COLLISION_ENTER, (_event: ƒ.EventPhysics) => {
                 console.log("test");
-            }); 
+            });
 
-            Fox.fox.addComponent(cmpRigidbody);
-            this.appendChild(Fox.fox);
+            this.addComponent(cmpRigidbody);
 
+            this.getChild(0).getComponent(ƒ.ComponentAnimator).activate(true);
 
             Fox.foxName = "Fox";
         }
