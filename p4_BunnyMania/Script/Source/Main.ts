@@ -55,7 +55,7 @@ namespace Script {
     viewport = _event.detail;
 
     graph = viewport.getBranch();
-    console.log(graph);
+    // console.log("Graph: " + graph);
 
     await getExternalData();
 
@@ -70,13 +70,15 @@ namespace Script {
       myMaze.addFoes();
     }
 
+    console.log(new DeterminePositions(1, 1));
+
     character = graph.getChildrenByName("Character")[0];
-    console.log(character);
+    console.log("Character: " + character);
 
     let cameraNode: ƒ.Node = character.getChildrenByName("Camera")[0];
-    console.log(cameraNode);
+    // console.log(cameraNode);
     let camera: ƒ.ComponentCamera = cameraNode.getComponent(ƒ.ComponentCamera);
-    console.log(camera);
+    console.log("Camera: " + camera);
 
     viewport.camera = camera;
     sound = graph.getChildrenByName("Audio")[0];
@@ -142,12 +144,12 @@ namespace Script {
     modeMachine = new ModeSwitch();
     character.addComponent(modeMachine);
     modeMachine.stateCurrent = JOB.NORMAL;
-    console.log(modeMachine.stateCurrent)
+    // console.log(modeMachine.stateCurrent)
   }
 
   function collision(_event: ƒ.EventPhysics): void {
 
-    console.log(_event.cmpRigidbody.node);
+    // console.log(_event.cmpRigidbody.node);
     let collidedWithObject: ƒ.Node = _event.cmpRigidbody.node;
 
     // try to fix the rotation
@@ -155,8 +157,8 @@ namespace Script {
     character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
     cmpRigidbody.effectRotation.y = 0;
     cmpRigidbody.dampRotation = 1000;
-    console.log("Local " + character.mtxLocal.rotation);
-    console.log("World " + character.mtxWorld.rotation);
+    // console.log("Local " + character.mtxLocal.rotation);
+    // console.log("World " + character.mtxWorld.rotation);
 
     //check the object and adds points, lives, sounds
     console.log(collidedWithObject.name);

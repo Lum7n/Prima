@@ -101,18 +101,15 @@ var Script;
         constructor(_index) {
             super("Fox");
             Fox.foxName = Fox.foxName + _index;
-            console.log(Fox.foxName);
+            // console.log(Fox.foxName);
             Fox.fox = Script.foes.getChildrenByName(Fox.foxName)[0];
             Fox.fox.activate(true);
             this.appendChild(Fox.fox);
-            console.log(Fox.positionArray[_index]);
-            console.log(Fox.fox);
             this.addComponent(new ƒ.ComponentTransform(ƒ.Matrix4x4.TRANSLATION(Fox.positionArray[_index])));
             let cmpRigidbody = new ƒ.ComponentRigidbody(1, ƒ.BODY_TYPE.KINEMATIC, ƒ.COLLIDER_TYPE.SPHERE);
             cmpRigidbody.isTrigger = true;
-            cmpRigidbody.addEventListener("ColliderEnteredCollision" /* ƒ.EVENT_PHYSICS.COLLISION_ENTER */, (_event) => {
-                console.log("test");
-            });
+            // cmpRigidbody.addEventListener(ƒ.EVENT_PHYSICS.COLLISION_ENTER, (_event: ƒ.EventPhysics) => {
+            // });
             this.addComponent(cmpRigidbody);
             this.getChild(0).getComponent(ƒ.ComponentAnimator).activate(true);
             Fox.foxName = "Fox";
@@ -143,7 +140,7 @@ var Script;
             GameInterface.visualUIdiv = document.querySelector("div#visualUI");
             GameInterface.visualUIdiv.style.display = "block";
             let visualUIController = new ƒUI.Controller(this, GameInterface.visualUIdiv);
-            console.log(visualUIController);
+            console.log("UI-Controller: " + visualUIController);
             // this.time = _time;
             this.lives = _initialLives;
             for (let index = 0; index < _initialLives; index++) {
@@ -189,7 +186,6 @@ var Script;
             }
             let newLifeImg = document.createElement("img");
             newLifeImg.src = "Assets/life" + randomNumber + ".png";
-            console.log(newLifeImg.src);
             let livesSpan = GameInterface.visualUIdiv.querySelector("#lives");
             livesSpan.appendChild(newLifeImg);
         }
@@ -281,7 +277,7 @@ var Script;
     async function start(_event) {
         viewport = _event.detail;
         graph = viewport.getBranch();
-        console.log(graph);
+        // console.log("Graph: " + graph);
         await getExternalData();
         maze = graph.getChildrenByName("Maze")[0];
         Script.items = maze.getChildrenByName("Items")[0];
@@ -292,12 +288,13 @@ var Script;
         for (let index = 0; index < 5; index++) {
             myMaze.addFoes();
         }
+        console.log(new Script.DeterminePositions(1, 1));
         Script.character = graph.getChildrenByName("Character")[0];
-        console.log(Script.character);
+        console.log("Character: " + Script.character);
         let cameraNode = Script.character.getChildrenByName("Camera")[0];
-        console.log(cameraNode);
+        // console.log(cameraNode);
         let camera = cameraNode.getComponent(ƒ.ComponentCamera);
-        console.log(camera);
+        console.log("Camera: " + camera);
         viewport.camera = camera;
         sound = graph.getChildrenByName("Audio")[0];
         starPling = sound.getChildrenByName("Star")[0].getComponent(ƒ.ComponentAudio);
@@ -349,18 +346,18 @@ var Script;
         modeMachine = new Script.ModeSwitch();
         Script.character.addComponent(modeMachine);
         modeMachine.stateCurrent = Script.JOB.NORMAL;
-        console.log(modeMachine.stateCurrent);
+        // console.log(modeMachine.stateCurrent)
     }
     function collision(_event) {
-        console.log(_event.cmpRigidbody.node);
+        // console.log(_event.cmpRigidbody.node);
         let collidedWithObject = _event.cmpRigidbody.node;
         // try to fix the rotation
         Script.character.mtxLocal.rotation = new ƒ.Vector3(0, 0, 0);
         Script.character.mtxWorld.rotation = new ƒ.Vector3(0, 0, 0);
         cmpRigidbody.effectRotation.y = 0;
         cmpRigidbody.dampRotation = 1000;
-        console.log("Local " + Script.character.mtxLocal.rotation);
-        console.log("World " + Script.character.mtxWorld.rotation);
+        // console.log("Local " + character.mtxLocal.rotation);
+        // console.log("World " + character.mtxWorld.rotation);
         //check the object and adds points, lives, sounds
         console.log(collidedWithObject.name);
         switch (collidedWithObject.name) {
@@ -520,7 +517,7 @@ var Script;
             grid.push(Script.row13);
             grid.push(Script.row14);
             grid.push(Script.row15);
-            console.log(grid);
+            // console.log(grid);
             return grid;
         }
         addItems() {

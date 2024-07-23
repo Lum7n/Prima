@@ -57,7 +57,7 @@ namespace Script {
             grid.push(row14);
             grid.push(row15);
 
-            console.log(grid);
+            // console.log(grid);
             return grid;
         }
 

@@ -15,7 +15,7 @@ namespace Script {
             GameInterface.visualUIdiv = document.querySelector("div#visualUI");
             GameInterface.visualUIdiv.style.display = "block";
             let visualUIController: ƒUI.Controller = new ƒUI.Controller(this, GameInterface.visualUIdiv);
-            console.log(visualUIController)
+            console.log("UI-Controller: " + visualUIController)
             // this.time = _time;
             this.lives = _initialLives;
             for (let index = 0; index < _initialLives; index++) {
@@ -64,7 +64,6 @@ namespace Script {
             }
             let newLifeImg: HTMLImageElement = document.createElement("img");
             newLifeImg.src = "Assets/life" + randomNumber + ".png";
-            console.log(newLifeImg.src);
             let livesSpan: HTMLSpanElement = GameInterface.visualUIdiv.querySelector("#lives");
             livesSpan.appendChild(newLifeImg);
         }
