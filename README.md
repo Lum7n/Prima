@@ -36,9 +36,52 @@ The extended version of this list and explanations can be found in the Design do
         <li> Cube_bottom </li>
         <li> Cube_top </li> </ul>
     <li> Level 1 </li>
+        <ul> <li> Building 1 - Part 1 </li>
+        <li> Building 1 - Part 2 </li>
+        <li> Building 2 </li>
+        <li> … more Building- Cubes </li>
+        <li> Building 26 </li> </ul>
     <li> Ground </li>
     <li> Translucent-Roof </li>
     <li> Items </li>
+        <ul> <li> Life1 </li>
+            <ul> <li> Torus1 </li>
+            <li> Torus2 </li>
+            <li> Character (same as main Character) </li> </ul>
+        <li> Life2 </li>
+        <li> PowerUp1 </li>
+            <ul> <li> Torus1 </li>
+            <li> Torus2 </li>
+            <li> Carrot </li>
+                <ul> <li> Body </li>
+                <li> Greenery </li>
+                <li> Greenery </li>
+                <li> Greenery </li> </ul> </ul>
+        <li> PowerUp2 </li>
+        <li> PowerUp3 </li>
+        <li> PowerUp4 </li>
+        <li> AddTime1 </li>
+            <ul> <li> Pyramid1 </li>
+            <li> Pyramid2 </li> </ul>
+        <li> AddTime2 </li>
+        <li> … more AddTime-Items </li>
+        <li> AddTime12 </li>
+        <li> Key </li>
+            <ul> <li> Torus </li>
+            <li> Halm </li>
+            <li> Bart1 </li>
+            <li> Bart2 </li>
+            <li> Bart3 </li> </ul>
+        <li> PowerMode </li>
+            <ul> <li> Torus1 </li>
+            <li> Torus2 </li> </ul>
+        <li> PowerMode </li>
+        <li> PowerMode </li>
+        <li> PowerMode </li>
+        <li> Star </li>
+        <li> Star </li>
+        <li> Star </li>
+        <li> ... </li> </ul>
     <li> Foes </li>
         <ul> <li> Fox1 </li>
             <ul> <li> Body </li>
@@ -57,7 +100,6 @@ The extended version of this list and explanations can be found in the Design do
         <li> Fox4 </li>
         <li> Fox5 </li> </ul>
     </ul>
-    - Body
 <li> Character </li>
     <ul> <li> Geometry </li>
         <ul> <li> Body </li>
@@ -73,64 +115,6 @@ The extended version of this list and explanations can be found in the Design do
     <ul> <li> Star </li>
     <li> otherItem </li> </ul>
 </ul> |
-
-- Level 1
-	       - Building 1 - Part 1
-	       - Building 1 - Part 2
-	       - Building 2
-	       - Building 3 - Part 1
-	       - Building 3 - Part 2
-		… more Building- Cubes
-	       - Building 23
-	       - Building 24
-	       - Building 25 - Part 1
-	       - Building 25 - Part 2
-	       - Building 26
-- Ground
-- Translucent-Roof
-- Items
-	       - Life1
-		- Torus1
-		- Torus2
-		- Character
-			- same as main Character
-	       - Life2
-	       - PowerUp1
-		- Torus1
-		- Torus2
-		- Carrot
-			- Body
-			- Greenery
-			- Greenery
-			- Greenery
-	       - PowerUp2
-	       - PowerUp3
-	       - PowerUp4
-	       - AddTime1
-			- Pyramid1
-			- Pyramid2
-	       - AddTime2
-		… more AddTime-Items
-	       - AddTime11
-	       - AddTime12
-	       - Key
-			- Torus
-			- Halm
-			- Bart1
-			- Bart2
-			- Bart3
-	       - PowerMode
-			- Torus1
-			- Torus2
-	       - PowerMode
-	       - PowerMode
-	       - PowerMode
-       - Star
-       - Star
-       - Star
-       - Star
-          …
-
 
 
 | 3 | Editor | Visual Editor: <ul> <li> Hierarchy with all Parent Nodes for all needed elements </li> <li> Track Elements and their components, as they stay during the whole game and stay the same at any time </li> <li> Other elements that don’t need further adjustments like the background, the light and the sound nodes </li> </ul> Code: <ul> <li> Creation of the collectables that need to be deleted after collection and need different methods </li> <li> Character as there are many aspects that need to be adjusted </li> </ul> | 
