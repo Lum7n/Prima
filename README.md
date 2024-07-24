@@ -26,8 +26,7 @@ The extended version of this list and explanations can be found in the Design do
 
 | Nr | Criterion | Explanation | 
 | :---: | :---: | --- | 
-| 1 | Units and Positions | 0 = the start of the maze in the top left corner, as that is where the game starts. Placing it in the middle of the maze or somewhere else would make it so that the items would have to be generated in both positive and negative x and z directions. <br>
-1 = the measurement of one block in width and height.
+| 1 | Units and Positions | 0 = the start of the maze in the top left corner, as that is where the game starts. Placing it in the middle of the maze or somewhere else would make it so that the items would have to be generated in both positive and negative x and z directions. 1 = the measurement of one block in width and height.
 | 2 | Hierarchy | The Main-Elements are the Maze, the Character and the Audio.
 The Maze is keeping the Border, the Level-Cubes, the Ground, the Roof and the Items. The Character has its Geometry and the Camera Node. The Audio keeps the Sounds. The Hierarchy goes from the smaller Elements to the bigger ones, but actually it doesn't play that big of a role. The Building-Cubes are sorted from left to right and top to bottom. The Items are just sorted by type.  <br>
 
