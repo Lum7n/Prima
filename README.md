@@ -26,9 +26,113 @@ The extended version of this list and explanations can be found in the Design do
 
 | Nr | Criterion | Explanation | 
 | :---: | :---: | --- | 
-| 1 | Units and Positions | 0 = the start of the maze in the top left corner, as that is where the game starts. Placing it in the middle of the maze or somewhere else would make it so that the items would have to be generated in both positive and negative x and z directions. <br> 1 = the measurement of one block in width and height.
-| 2 | Hierarchy | The Main-Elements are the Maze, the Character and the Audio. The Maze is keeping the Border, the Level-Cubes, the Ground, the Roof and the Items. The Character has its Geometry and the Camera Node. The Audio keeps the Sounds. The Hierarchy goes from the smaller Elements to the bigger ones, but actually it doesn't play that big of a role. The Building-Cubes are sorted from left to right and top to bottom. The Items are just sorted by type. <br> Blue = star nodes are added via code, the amount is random decided  <br> Green = nodes are added via editor but disabled and then via code enabled, but not all of them, just a random decided percentage. <br>
-<br> <ul> <li> Game </li> <ul> <li> Track </li> <ul> <li> Bottom Track </li> <li> Top Track </li> <li> Bridge </li> </ul> <li> Collectables </li> <ul> <li> Star </li> <li> Coin </li> <li> … </li> </ul> <li> Character </li> <ul> <li> Pingu (components via code) </li> <li> Camera </li> </ul> <li> Light </li> <li> Background </li> <li> Sound </li> <li> Igloo </li> </ul> </ul> |
+| 1 | Units and Positions | 0 = the start of the maze in the top left corner, as that is where the game starts. Placing it in the middle of the maze or somewhere else would make it so that the items would have to be generated in both positive and negative x and z directions. <br> 1 = the measurement of one block in width and height. |
+| 2 | Hierarchy | The Main-Elements are the Maze, the Character and the Audio. The Maze is keeping the Border, the Level-Cubes, the Ground, the Roof and the Items. The Character has its Geometry and the Camera Node. The Audio keeps the Sounds. The Hierarchy goes from the smaller Elements to the bigger ones, but actually it doesn't play that big of a role. The Building-Cubes are sorted from left to right and top to bottom. The Items are just sorted by type. <br> Blue = star nodes are added via code, the amount is random decided  <br> Green = nodes are added via editor but disabled and then via code enabled, but not all of them, just a random decided percentage.
+<br> <ul> <li> Game </li>
+<ul> <li> Maze </li>
+    <ul> <li> Border </li>
+        <ul> <li> Cube_left </li>
+        <li> Cube_right </li>
+        <li> Cube_bottom </li>
+        <li> Cube_top </li> </ul>
+    <li> Level 1 </li>
+    <li> Ground </li>
+    <li> Translucent-Roof </li>
+    <li> Items </li>
+    <li> Foes </li>
+        <ul> <li> Fox1 </li>
+            <ul> <li> Body </li>
+            <li> EarRight </li>
+            <li> EarLeft </li>
+            <li> Tail </li>
+                <ul> <li> Part1 </li>
+                <li> Part2 </li>
+                <li> Part3 </li> </ul>
+            <li> EyeRight </li>
+            <li> EyeLeft </li>
+            <li> Snout </li>
+            <li> Nose </li> </ul>
+        <li> Fox2 </li>
+        <li> Fox3 </li>
+        <li> Fox4 </li>
+        <li> Fox5 </li> </ul>
+    </ul>
+    - Body
+<li> Character </li>
+    <ul> <li> Geometry </li>
+        <ul> <li> Body </li>
+        <li> EarRight </li>
+        <li> EarLeft </li>
+        <li> Tuft </li>
+        <li> EyeRight </li>
+        <li> EyeLeft </li>
+        <li> Snout </li>
+        <li> Nose </li> </ul>
+    <li> Camera </li> </ul>
+<li> Audio </li>
+    <ul> <li> Star </li>
+    <li> otherItem </li> </ul>
+</ul> |
+
+- Level 1
+	       - Building 1 - Part 1
+	       - Building 1 - Part 2
+	       - Building 2
+	       - Building 3 - Part 1
+	       - Building 3 - Part 2
+		… more Building- Cubes
+	       - Building 23
+	       - Building 24
+	       - Building 25 - Part 1
+	       - Building 25 - Part 2
+	       - Building 26
+- Ground
+- Translucent-Roof
+- Items
+	       - Life1
+		- Torus1
+		- Torus2
+		- Character
+			- same as main Character
+	       - Life2
+	       - PowerUp1
+		- Torus1
+		- Torus2
+		- Carrot
+			- Body
+			- Greenery
+			- Greenery
+			- Greenery
+	       - PowerUp2
+	       - PowerUp3
+	       - PowerUp4
+	       - AddTime1
+			- Pyramid1
+			- Pyramid2
+	       - AddTime2
+		… more AddTime-Items
+	       - AddTime11
+	       - AddTime12
+	       - Key
+			- Torus
+			- Halm
+			- Bart1
+			- Bart2
+			- Bart3
+	       - PowerMode
+			- Torus1
+			- Torus2
+	       - PowerMode
+	       - PowerMode
+	       - PowerMode
+       - Star
+       - Star
+       - Star
+       - Star
+          …
+
+
+
 | 3 | Editor | Visual Editor: <ul> <li> Hierarchy with all Parent Nodes for all needed elements </li> <li> Track Elements and their components, as they stay during the whole game and stay the same at any time </li> <li> Other elements that don’t need further adjustments like the background, the light and the sound nodes </li> </ul> Code: <ul> <li> Creation of the collectables that need to be deleted after collection and need different methods </li> <li> Character as there are many aspects that need to be adjusted </li> </ul> | 
 | 4 | Scriptcomponents | Scriptcomponent to calculate and determine the positions of the obstacles based on how many collectables exist, so they get spread out evenly in the game. <br> It brought me the advantage of needing those code part only once in the scriptcomponent and not twice in each collectable class. | 
 | 5 | Extend | I derived classes for the Pingu-Character, the Coins and the Stars as ƒ.Nodes from Fudge Core. <br> This was very useful for me as I could use the classes to set the methods which are needed in the game. | 
